@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+  <title>Lab Result Attribute</title>
+  
+  
+  
+  
+  
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+
+<!-- Main content -->
+    <section class="content">
+
+
+    
+   <!-- <div class="row" style="text-align:center;">
+
+    
+	
+
+	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS START ----------------------------- -->
+		<div class="container-fluid">
+	 	<div class="row">
+		  <div class="col-12">
+	            <div class="card"> 
+					<div class="card-header">
+					           <h5>
+									<b>Patient Test Results:-&nbsp;&nbsp; </b>
+								
+									
+									<button type="button" class="btn btn-primary" onclick="window.history.back();">Go to previous page</button>
+									
+							
+									
+					            </h5>
+					 </div>
+					 <div class="card-body"  th:each="p : ${LabResultAttrInfo}">
+						<div class="row">
+								<div class="col-sm-4">
+								<!-- 	<div class="form-group">
+										<p>Consultation Date:&nbsp;&nbsp;
+											<span th:text="${p.CONSULT_DATE}"></span>
+										</p>
+									</div> -->
+								</div>
+								<div class="col-sm-8"></div>
+						</div>
+					  <div class="row">
+						  <div class="col-sm-4">
+			                    	<div class="form-group">
+			                    	 	<p>Name(En):&nbsp;&nbsp;
+											    <span th:text="${p.PATIENT_NAME}"></span>
+			                    	 	</p>
+			                    	 </div>
+									 
+			                    	 <div class="form-group">
+			                    	 	<p>Date of Birth:&nbsp;&nbsp;
+											 <span th:text="${p.DATE_OF_BIRTH}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+									
+			                    	  
+									  <div class="form-group">
+			                    	 	<p>Doctor:&nbsp;&nbsp;
+											 <span th:text="${p.DOCTOR_NAME}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+									  
+			                 </div>
+		                  	<div class="col-sm-4">
+							
+								 <div class="form-group">
+		                    	 	<p>Military Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_EMPLOYEE_ID}"></span>
+		                    	 	</p>
+		                    	 </div>
+							
+								 <div class="form-group">
+			                    	 	<p>Age:&nbsp;&nbsp;
+											 <span th:text="${p.PATIENT_AGE_DETAILED}"></span>
+			                    	 	</p>
+			                    	 </div>
+		                    	
+								 <div class="form-group">
+			                    	 	<p>Speciality:&nbsp;&nbsp;
+											 <span th:text="${p.DEPARTMENT_NAME}"></span>
+			                    	 	</p>
+			                     </div> 
+		                    	
+							</div>
+							<div class="col-sm-4">
+							
+								<div class="form-group">
+										<p>Civil Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_CIVILID}"></span>
+										</p>
+								</div>
+								
+								 <div class="form-group">
+		                    	 	<p>Patient Rank:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_DESIGNATION}"></span>
+		                    	 	</p>
+		                    	 </div>
+								 
+								  <div class="form-group">
+			                    	 	<p>Clinic Name:&nbsp;&nbsp;
+											 <span th:text="${p.OFFICE_NAME}"></span>
+			                    	 	</p>
+			                     </div>
+							
+							</div>
+					  </div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS END ----------------------------- -->
+	 	
+			<!-- ----------------------------- PATIENT ReportLink START ----------------------------- -->
+	 	<div class="row">
+		  <div class="col-12">
+	            <div class="card"> 
+					<div class="card-header">
+					         <!--   <h5>
+									<b>Patient Lab Test Results :&nbsp;&nbsp; </b>
+							
+									
+									<button type="button" class="btn btn-primary" onclick="window.history.back();">Go to previous page</button>
+									
+					            </h5> -->
+					 </div>
+				
+					 <div class="card-body"  th:each="L : ${LabResultAttrInfo}">
+					 
+				
+						
+					  <div class="row">
+						  <div class="col-sm-4">
+			                    	<div class="form-group">
+			                    	 	<p>Test_Id:&nbsp;&nbsp;
+											    <span th:text="${L.TEST_ID}"></span>
+			                    	 	</p>
+			                    	 </div>
+									 
+			                    	 <div class="form-group">
+			                    	 	<p>TEST_DETAILSID:&nbsp;&nbsp;
+											 <span th:text="${L.TEST_DETAILSID}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+									
+									
+									
+									 <div class="form-group">
+			                    	 	<p>PARAMETER_ID:&nbsp;&nbsp;
+											 <span th:text="${L.PARAMETER_ID}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+									 <div class="form-group">
+			                    	 	<p>PARAM_MAPPING_NAME:&nbsp;&nbsp;
+											 <span th:text="${L.PARAM_MAPPING_NAME}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+									
+									
+									
+									  <div class="form-group">
+			                    	 	<p>TEST_NAME:&nbsp;&nbsp;
+											 <span th:text="${L.TEST_NAME}"></span>
+											  <!--  <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td> -->
+			                    	 	</p>
+			                    	 </div> 
+									
+									
+			                    	  
+									  <div class="form-group">
+			                    	 	<p>OP_NUMBER:&nbsp;&nbsp;
+											 <span th:text="${L.OP_NUMBER}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+			                    	 
+			                    	 
+			                    	  
+									  <div class="form-group">
+			                    	 	<p>LAB_IDNO:&nbsp;&nbsp;
+											 <span th:text="${L.LAB_IDNO}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+			                    	 
+			                    	   <div class="form-group">
+			                    	 	<p>CONSULT_ID:&nbsp;&nbsp;
+											 <span th:text="${L.CONSULT_ID}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+									  
+			                 </div>
+		             
+					
+					  </div><hr>
+					  	   
+
+	             
+	                     <div class="text-center">   
+                     <a th:href="@{'http://medasportal.kng.kw:8080/eclinic/testReportActionView.do?testDetailsid='+${L.TEST_DETAILSID} +
+	                  '&labno='+${L.LAB_IDNO}+'&ltestid='+${L.TEST_ID}}" >
+                      
+					        <button class="btn btn-secondary " >Preview Report</button> 
+					        </a>
+					        </div><hr>
+	
+	            
+	                
+	                
+					  </div>
+				</div>
+			</div>
+		</div>
+	 	
+	 	<!-- ----------------------------- PATIENT ReportLink  END ----------------------------- -->
+	
+
+       
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+ </div>
+  
+  <!-- /.content-wrapper -->
+  <div>
+
+  </div>
+  
+<script type="text/javascript">
+
+
+
+</script>
+
+
+</body>
+</html>
+
+  
+  
+  
+		

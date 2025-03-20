@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- --------------------------------------- COMMON SCRIPT TIMEOUT for CORE LAYOUT START --------------------------------------- -->
+
+
+
+
+
+	<th:block th:fragment="core_script_timeout">
+			
+			<script type="text/javascript">
+				console.log("Setting up refresh timer");
+				setTimeout(function(){
+					console.log("Reloading page");
+					location.reload()
+				    },1800000);
+			</script>
+			
+	</th:block>
+	<!--
+120000- 2 minutes 
+1800000-30 minutes	
+1800000
+-->
+<!-- --------------------------------------- COMMON SCRIPT TIMEOUT for CORE LAYOUT END --------------------------------------- -->
+
+
+<!-- --------------------------------------- COMMON SCRIPT TIMEOUT for CORE LAYOUT START --------------------------------------- -->
+
+	<th:block th:fragment="win_dt_script_timeout">
+			
+			<script type="text/javascript">
+				console.log("Setting up refresh timer");
+				setTimeout(function(){
+					console.log("Reloading page");
+					location.reload()
+				    },18000000);
+			</script>
+			
+	</th:block>
+	<!--
+120000- 2 minutes
+1800000-30 minutes	
+1800000
+-->
+<!-- --------------------------------------- COMMON SCRIPT TIMEOUT for CORE LAYOUT END --------------------------------------- -->
+
+
+
+</html>
+

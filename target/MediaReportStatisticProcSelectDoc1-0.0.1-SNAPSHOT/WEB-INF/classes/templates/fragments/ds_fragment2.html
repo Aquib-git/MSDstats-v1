@@ -1,0 +1,93 @@
+<!-- Main row -->
+				<div class="row">
+					<!-- Left col -->
+					<div class="col-md-12">
+					  <div class="row">
+						<!-- MAP & BOX PANE -->
+
+					
+							<div class="col-md-8">
+								<div class="card card-primary">
+									<div class="card-header">
+
+										<h3 class="card-title" th:text="#{The_Daily_Out_Patient_visits_by_Department}">The Daily Out-Patient visits by Department</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpViewPatientVisitDeptLabels"
+												th:value="${hmpViewPatientVisitDeptToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpViewPatientVisitDeptData"
+												th:value="${hmpViewPatientVisitDeptToday.hmpbData}" />
+											<canvas id="patientDepTChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+									<!-- /.card-body -->
+
+
+
+								</div>
+							</div>
+						
+                            <div class="col-md-4">
+								
+								<!-- /.info-box -->
+								<a href="./dispenseDetailsTodyInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+									<div class="info-box mb-3 " style="background-color: #0721a3cf!important;color: white">
+										<span class="info-box-icon"><i class="fas fa-users"></i></span>
+                                        
+										<div class="info-box-content">
+											<span class="info-box-text" th:text="#{The_Daily_Dispense_Information}"> The Daily Dispense Information</span> <span
+												class="info-box-number" th:utext="${hmpViewDispenseInfoTodayTotal.TotalViewDispense}" ></span>
+												<span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+												
+										
+										</div>
+										
+										<!-- /.info-box-content -->
+									</div>
+									</a>
+									<!-- /.info-box -->
+									<a href="./vitalsTodayInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+									<div class="info-box mb-3 "  style="background-color: #536be3!important;color: white">
+										<span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+										<div class="info-box-content">
+											<span class="info-box-text" th:text="#{The_Daily_Vitals_Information}">The Daily Vitals Information</span>
+											 <span class="info-box-number" th:utext="${hmpViewVitalsInfoTodayTotal}"></span>
+										     
+										     <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										<!-- /.info-box-content -->
+									</div>
+									</a>
+									<!-- Info Boxes Style 2 -->
+									<div class="info-box " style="background-color: #f4f6f9!important;box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(235 233 233 / 20%);">
+										
+									</div>
+									<div class="info-box  " style="background-color: #f4f6f9!important;box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(235 233 233 / 20%);">
+										
+
+									</div>
+								
+								
+							</div>
+							
+                        </div>
+                        
+                        </div>
+                 </div>

@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<!-- --------------------------------------- COMMON HEADER used for CORE LAYOUT START --------------------------------------- -->
+	
+	<th:block th:fragment="core_header">
+			<!-- Preloader -->
+			 <!-- <div class="preloader flex-column justify-content-center align-items-center">
+				<img class="animation__wobble" src="./admin/dist/img/AdminLTELogoLoad.png" alt="Kng" height="150" width="150">
+			  </div>-->
+
+				<!-- Navbar -->
+			  <nav class="main-header navbar navbar-expand navbar-dark">
+				<!-- Left navbar links -->
+				<ul class="navbar-nav">
+				
+				  <li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+				  </li>
+				  
+				 	  
+				  <li class="nav-item d-none d-sm-inline-block">
+					<a href="index3.html" class="nav-link"></a>
+				  </li>
+				  <li class="nav-item d-none d-sm-inline-block">
+					<a href="#" class="nav-link"></a>
+				  </li>
+				
+				  					
+			
+				  
+				</ul>
+
+				<!-- Right navbar links -->
+				<ul class="navbar-nav ml-auto">
+		
+				</ul>
+				
+							    <!--  languages start-->
+			      <div class="float-right"> 
+										<!-- <lable style="color:white;"><i class="nav-icon fas fa-language"></i>&nbsp;Langauge </lable> -->
+
+
+										<!-- <select onchange="window.location.href =this.value;">
+
+											<option value="#">Select Langauge</option>
+
+											<option th:value="${urlWithEnglish}" >English</option>
+
+											<option th:value="${urlWithArabic}"  >Arabic</option>
+
+										</select>
+										 -->
+									
+  <label style="color:white;"><i class="nav-icon fas fa-language"></i>Language</label>
+<select onchange="window.location.href =this.value;">
+ 
+    <option value="#" >Select Language</option>
+    
+    <option th:value="${urlWithEnglish}" th:selected="${currentLang == 'en'}">English</option>
+    <option  th:value="${urlWithArabic}" th:selected="${currentLang == 'ar'}">Arabic</option>
+</select>
+
+<!-- <select id="languageSelect" onchange="changeLanguage()">
+    <option value="#">Select Language</option>
+    <option value="en">English</option>
+    <option value="ar">Arabic</option>
+</select> -->
+		</div>
+				
+			  </nav>
+			  <!-- /.navbar -->
+	 </th:block>
+
+<!-- --------------------------------------- COMMON HEADER used for CORE LAYOUT END --------------------------------------- -->
+
+ 
+ <!-- 
+ <
+    
+    
+    
+    
+    
+    
+</script> -->
+
+ </html>  

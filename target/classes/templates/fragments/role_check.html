@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Role Check Fragment</title>
+</head>
+<body>
+    <th:block th:fragment="role_check(roles, content)">
+        <th:block th:if="${@thymeleafUtils.containsAny(#request.userPrincipal.authorities, roles)}">
+            <th:block th:insert="${content}"></th:block>
+        </th:block>
+    </th:block>
+</body>
+</html>

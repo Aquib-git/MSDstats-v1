@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="general_modals">
+
+<!-- ------------------------------------------ 1.1 Emergency Service  START ------------------------------------------ -->
+
+
+ <div class="modal fade" id="esmodal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">1. Emergency Service</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="es" th:action="@{/emergencyServiceReport}"  th:object=${brtFormBean} >
+		            <div class="modal-body">
+						
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="mscw-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+						
+		               <div class="row">			                      
+			                    <p>No filter present in this report. Click on submit to redirect...</p>
+
+						</div>  
+						   
+			        </div>
+			        
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
+ <!-- ------------------------------------------ 1.1 Emergency Service  START ------------------------------------------ -->
+
+ 
+ </div>
+ 
+ 
+</html>

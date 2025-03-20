@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>List of Patients Detail</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+   
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+            
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;" th:text="#{Doctor_Dashboard_Details}">Doctor Dashboard Details:&nbsp;&nbsp;
+                 <!--   <a class="btn btn-primary" th:href="@{/doctorDetailsTodyInfo}">Back</a>&nbsp;&nbsp; -->
+                   <!--  <button type="button" class="btn btn-primary" onclick="window.history.back();">Go to previous page</button> -->
+                </h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-header" th:each="p : ${hmpdoctordemo}">
+                <div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<p > <span th:text="#{ Consultation_Dates}"></span>&nbsp;&nbsp;
+											 From <span th:text="${dr.startDateBuffer}"></span> to <span th:text="${dr.endDateBuffer}"></span>
+										</p>
+									</div>
+								</div>
+								<div class="col-sm-8"></div>
+				</div>
+				 <div class="row">
+						  <div class="col-sm-4">
+			                    	<div class="form-group">
+			                    	 	<p > <span th:text="#{Doctor_Name}"></span>&nbsp;&nbsp;
+											    <span th:text="${p.uaserLabel}"></span>
+			                    	 	</p>
+			                    	 </div>
+									 
+									  <div class="form-group">
+			                    	 	<p ><span th:text="#{ Doctor_Rank}"></span>&nbsp;&nbsp;
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+									  
+			                 </div>
+		                  	<div class="col-sm-4">
+							
+								<div class="form-group">
+				                    	 	<p ><span th:text="#{Doctor_Military_Id}"></span>&nbsp;&nbsp;
+												 <span th:text="${p.empId}"></span>
+												   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+				                    	 	</p>
+				                  </div>
+							
+								 <div class="form-group">
+			                    	 	<p ><span th:text="#{ Speciality}"></span>&nbsp;&nbsp;
+											 <span th:text="${p.deptNameDoctorWorkedList}"></span>
+			                    	 	</p>
+			                    	 </div>
+		                    	
+		                    	
+							</div>
+							 <div class="col-sm-4">
+								 
+							 	<div class="form-group">
+		                    	 	<p>Kng/Moh:&nbsp;&nbsp;
+										 <span th:text="${p.KNG_MOH}"></span>
+		                    	 	</p>
+		                    	 </div>
+			                    
+			                     <div class="form-group">
+			                    	 	<p ><span th:text="#{Clinic_Name}"></span>&nbsp;&nbsp;
+											 <span th:text="${p.officeNameDoctorWorkedList}"></span>
+			                    	 	</p>
+			                     </div> 
+	 
+							 </div>
+							
+					  </div>
+              </div>
+              </div>
+              
+              <div class="card">
+              <div class="card-body">
+                <table id="examplePatientDetails1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                     <th>Sl No.</th>
+                    <th>Patient (Military ID)</th>
+                    <th>Patient Name</th>
+                    <th>Patient Rank</th>
+                    <th>Nationality</th>    
+                   <th>Speciality</th>
+                    <th>Clinics Name</th>
+                     <th>Consult Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="PatInfo,itercss : ${hmpPatientDetailsList}">
+                      <td th:text="${itercss.count}"></td>
+           	  
+                      <!--<td th:text="${PatInfo.PATIENT_EMPLOYEE_ID}">
+						  <a th:href="'./consultationDetails/findByConsultId?consultid='+${PatInfo.CONSULT_ID}" class="btn-btn-primary" onClick="openWindow(this.href)">
+             		  <i class="nav-icon fa fa-search"></a>
+						  
+					  </td>-->
+                     <td>
+						  <a th:href="@{'/consultationDetails/findByConsultId?consultid='+${PatInfo.CONSULT_ID}}" class="btn-btn-primary" 
+						  onClick="openWindow(this.href)" th:if= "${#request.userPrincipal.authorities
+							  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+							  || #request.userPrincipal.authorities.contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}"  >
+			  
+             		  		<span th:text="${PatInfo.PATIENT_EMPLOYEE_ID}"></span></a>
+																	   
+							   
+					 </td>
+                      <td th:text="${PatInfo.PATIENT_NAME}"></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_DESIGNATION}"  ></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_KWT_NKWT}"></td> 
+                       
+                      
+                     
+                      <td th:text="${PatInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${PatInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${PatInfo.CONSULT_DATE}"></td>
+                     
+                    
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Debug: Log the current URL
+        console.log("Current URL:", window.location.href);
+
+        // Create URLSearchParams object
+        var urlParams = new URLSearchParams(window.location.search);
+
+        // Extract sdate and edate values
+        var sdate = urlParams.get('sdate');
+        var edate = urlParams.get('edate');
+
+        // Debug: Log the extracted values
+        console.log("sdate:", sdate, "edate:", edate);
+
+        // Set these values in your HTML
+        document.getElementById('startDate').textContent = sdate;
+        document.getElementById('endDate').textContent = edate;
+    });
+</script>
+
+ 
+</body>
+</html>
+
+  
+  
+  

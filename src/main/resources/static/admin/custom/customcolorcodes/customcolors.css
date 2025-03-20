@@ -1,0 +1,21 @@
+*.medas-grey{color:#F8F8F8}
+*.medas-white{color:#FFFFFF}
+*.medas-birt-title-blue{color:#043D93}
+*.medas-fheading33
+{
+	margin: 1px 1px 1px 1px;
+    height: 26;
+    background-color: #F8F8F8;/*#595f69, #043d93, #043d93*/
+    color: #043D93;
+    border: 1px solid #ddd;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+}
+*.medas-linklist
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color:#4F8EDC;
+}

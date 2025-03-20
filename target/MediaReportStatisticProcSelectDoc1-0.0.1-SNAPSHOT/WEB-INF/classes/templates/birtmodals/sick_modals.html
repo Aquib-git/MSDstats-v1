@@ -1,0 +1,209 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="sick_modals">
+	
+ <!-- ------------------------------------------ 5.1 Sick Leave by Doctor Summary Report START ------------------------------------------ -->      
+   
+      <div class="modal fade" id="slbdsrModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">1. Sick Leave by Doctor Summary Report</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+             <form id="slbdsr" th:action="@{/sickLeaveByDoctorSumaryReport}" th:object=${brtFormBean}>
+				 
+		            <div class="modal-body">
+						
+					   <!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="slbdsr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+		               <div class="row">
+			                      
+			                    <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate" class="form-control">
+				                      </div>
+			                	</div>
+			                	
+			                	
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                       <input type="date" th:field="*{brtEdate}" id="edate" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+       <!-- ------------------------------------------ 5.1 Sick Leave by Doctor Summary Report END ------------------------------------------ -->      
+    
+    
+    <!-- ------------------------------------------ 5.2 Sick Leave Summary Report START ------------------------------------------ -->      
+   
+       <div class="modal fade" id="slsrModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">2. Sick Leave Summary Report</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            
+            <form id="slsr" th:action="@{/sickLeaveSumaryReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+		               
+		               <!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="slsr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+		               
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate1" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate1" class="form-control">
+				                      </div>
+			                	</div> 
+			                	           	
+			             </div>
+			                 
+			        </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+      
+       <!-- ------------------------------------------ 5.2 Sick Leave Summary Report END ------------------------------------------ -->      
+   
+   <!-- ------------------------------------------ 5.3 Exemption Details By Doctor START ------------------------------------------ -->      
+   
+<div class="modal fade" id="edbdModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">3. Exemption Details By Doctor</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="edbd" th:action="@{/exemptionDetailReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+						  
+		               <!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="edbd-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->               			
+						
+						
+		               <div class="row">
+			                      
+			                    <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate3" class="form-control">
+				                      </div>
+			                	</div>
+			                	
+			                	
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                       <input type="date" th:field="*{brtEdate}" id="edate3" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid3">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    <!-- ------------------------------------------ 5.3 Exemption Details By Doctor END ------------------------------------------ -->      
+    
+ 
+ 
+ </div>
+ 
+ 
+ 
+ </html>  
+   
+   

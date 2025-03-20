@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Daily Statistics</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+
+
+</head>
+
+
+
+
+<body
+	class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+
+	<div layout:fragment="content">
+
+
+		<!-- Preloader -->
+
+
+		<!-- <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="./admin/dist/img/AdminLTELogoLoad.png" alt="Kng" height="150" width="150">
+  </div> -->
+
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{Daily_Statistics}">Daily Statistics</h1>
+
+					</div>
+					
+					
+				
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./dailyStatistics" th:text="#{Daily_Statistics}">Daily Statistics</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+
+
+
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+
+
+							<div class="card-header">
+
+								<!-- /.row date selector-->
+
+								<form id="formBean" th:action="@{/dailyStatistics}"
+									th:object=${dataFormBean} >
+
+
+<!-- Date Selector start -->
+									<h1 class="card-title m-0"  th:text = "#{Select_Range_Date}">Select Range Date </h1>
+								
+									<button type="button" class="btn btn-primary btn-sm daterange"
+										title="Date range">
+										<i class="far fa-calendar-alt"></i>
+									</button>
+									
+									<h7 dir="rtl" th:text="#{From}"> </h7>
+									
+									<input type="text" th:value="${selectSDate}" readonly="readonly"
+										id="selectSdateInput" th:field="*{selectSDate}"> 
+										
+									<h7 dir="rtl" th:text="#{To}"></h7>
+									
+									<input	type="text" th:value="${selectEDate}" readonly="readonly" 
+										id="selectEdateInput" th:field="*{selectEDate}">
+									<!-- Date Selector start -->
+							
+		<!-- Clinic Selector start -->
+		
+									<div class="float-right">
+										<lable for="clinics" th:text = "#{Select_Clinic}" > Select Clinic </lable>
+
+
+										<select class="" th:field="*{ofcId}" id="dropOperator">
+
+											<option th:value='0'>All Clinics</option>
+
+											<option th:each="eclinic : ${eclinic}"
+												th:value="${eclinic.officeId}"
+												th:text="${eclinic.officeName}"></option>
+
+
+
+										</select>
+									</div>
+									
+									<!-- Clinic Selector Ends -->
+
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				
+				<!-- FRAGMENT CODE -->
+				
+
+
+				<div id="fragments-container"
+					th:replace="fragments/dailyStatisticsFragments :: dailyStatisticsFragments"></div>
+			</div>
+			<!--/. container-fluid -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+	<th:block layout:fragment="script">
+
+		<!-- 
+	<script src="./admin/custom/js/lazyLoadFragments.js"></script> -->
+
+		<div th:replace="shared/chart_script"></div>
+
+		<!-- <script th:src="@{/admin/custom/js/lazyLoadFragments.js}"></script> -->
+
+
+
+		<script type="text/javascript">
+ 
+	function openWindow(url)
+	 {
+		var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+		
+		popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+		
+	 }
+	 
+	$('.daterange').daterangepicker({
+	  ranges: {
+	    Today: [moment(), moment()],
+	    Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+	    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+	    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+	    'This Month': [moment().startOf('month'), moment().endOf('month')],
+	    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	  },
+	  startDate: moment(),
+	  endDate: moment()
+	});
+	
+	$('.daterange').on('apply.daterangepicker',function(ev, picker) {
+	  var start = picker.startDate;
+	  var end = picker.endDate;
+	  document.getElementById("selectSdateInput").value = start.format('YYYY-MM-DD');
+	  document.getElementById("selectEdateInput").value = end.format('YYYY-MM-DD');
+	  document.getElementById("formBean").submit();
+	});
+	
+	$(document).ready(function(){
+		
+		var dropOperator = document.getElementById('dropOperator');
+		
+	
+			
+		
+		dropOperator.addEventListener('change', function(){
+			
+			
+			document.getElementById("formBean").submit();
+		
+		
+		
+		});
+		
+		
+	
+		
+	});
+			
+
+	
+
+	 document.getElementById('formBean').addEventListener('change', function(event) {
+		    // Prevent the default form submission
+		    event.preventDefault();
+
+		    // Get the current form's action URL or current page URL if the form's action is not set
+		    let actionURL = this.action || window.location.href;
+
+		    // The variable you want to append
+		    const newVariable = '?lang';
+
+		    // Check if the URL already has query parameters
+		    if (actionURL.includes('?')) {
+		      // Append the new variable with an '&' as the URL already has parameters
+		      actionURL += '&' + newVariable;
+		    } else {
+		      // Append the new variable with a '?' as this is the first parameter
+		      actionURL += '?' + newVariable;
+		    }
+
+		    // Optionally, if you want to submit the form to this new URL, set the form's action to the new URL
+		    this.action = actionURL;
+
+		    // Submit the form with the new action URL
+		    this.submit();
+		    
+	  });
+	 
+	 
+ </script>
+
+	</th:block>
+</body>
+</html>

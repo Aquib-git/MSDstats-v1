@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Procedures  Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+   
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Procedures  Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                       <th th:if="${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  Consultation</th>
+                    <th>Patient (Military ID)</th>
+                    <th>Patient Name</th>
+                     <th>Patient Rank</th>
+                    <th>Procedure Name</th>
+                    <th>Category Name</th>
+                    <th>Doctor </th>
+                   <!--  <th>Speciality</th> -->
+                    <th>Clinics Name</th>
+                    <th>Status</th>
+                     <th>Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="ProcInfo,itercss : ${hmpViewProcInfoDetailsToday}">
+                      <td th:text="${itercss.count}"></td>
+                      
+                                <td class="text-center" th:if= "${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities.contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  
+			  <a th:href="'./consultationDetails/findByConsultId?consultid='+${ProcInfo.CONSULT_ID}" 
+			  class="btn-btn-primary" onClick="openWindow(this.href)">
+             		  <i class="nav-icon fa fa-search"></i></a></td>
+             		  
+                      <td th:text="${ProcInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${ProcInfo.PATIENT_NAME}" ></td>
+                      <td th:text="${ProcInfo.PATIENT_DESIGNATION}"></td>
+                      
+                      <td th:text="${ProcInfo.PROCEDURE_NAME}"></td>
+                       <td th:text="${ProcInfo.PROCEDURE_CAT}"></td>
+                      <td th:text="${ProcInfo.DOCTOR_NAME}"></td>
+                    <!--   <td th:text="${ProcInfo.DEPARTMENT_NAME}"></td> -->
+                     
+                      <td th:text="${ProcInfo.OFFICE_NAME}" ></td>
+                      <td th:text="${ProcInfo.DONE_STATUS}" ></td>
+                       <td th:text="${ProcInfo.CONSULT_DATE}"></td>
+                      
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+ 
+</body>
+</html>
+
+  
+  
+  

@@ -1,0 +1,171 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- --------------------------------------- COMMON JS used for CORE LAYOUT START --------------------------------------- -->
+<th:block th:fragment="core_js">
+
+	<script type="text/javascript" th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script> $.widget.bridge('uibutton', $.ui.button)</script>
+	<script type="text/javascript" th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	 
+	 	<script type="text/javascript" th:src="@{/admin/plugins/chart.js/Chart.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/chart.js/chartjs-plugin-datalabels.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/chart.js/chartjs-plugin-labels.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/sparklines/sparkline.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/jqvmap/jquery.vmap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/jquery-knob/jquery.knob.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/moment/moment.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/daterangepicker/daterangepicker.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/summernote/summernote-bs4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+		
+	
+	<script type="text/javascript" th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/moment/moment.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/fullcalendar/main.js}"></script>
+	
+	<!-- CodeMirror -->
+	<script type="text/javascript" th:src="@{/admin/plugins/codemirror/codemirror.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/codemirror/mode/css/css.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/codemirror/mode/xml/xml.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/codemirror/mode/htmlmixed/htmlmixed.js}"></script>
+	<script>
+		  $(function () {
+		    // Summernote
+		     $('#summernote1').summernote()
+		    $('#summernote').summernote()
+		
+		    // CodeMirror
+		    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+		      mode: "htmlmixed",
+		      theme: "monokai"
+		    });
+		  })
+	</script>
+	<script type="text/javascript" th:src="@{/admin/plugins/select2/js/select2.full.min.js}"></script>
+	<!--<script type="text/javascript" th:src="@{/admin/custom/js/customjs.js}"></script>
+	-->
+	<!-- jQuery Mapael -->
+	<script type="text/javascript" th:src="@{/admin/plugins/jquery-mousewheel/jquery.mousewheel.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/raphael/raphael.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/jquery-mapael/jquery.mapael.min.js}"></script>
+	<script type="text/javascript" th:src="@{/admin/plugins/jquery-mapael/maps/usa_states.min.js}"></script>
+	
+</th:block>
+<!-- --------------------------------------- COMMON JS used for CORE LAYOUT END --------------------------------------- -->
+
+<!-- --------------------------------------- DATATABLE JS used for CORE LAYOUT START --------------------------------------- -->
+<div th:fragment="core_dt_js">
+			
+		<!-- DataTables  & Plugins -->
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables/jquery.dataTables.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/jszip/jszip.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/pdfmake/pdfmake.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/pdfmake/vfs_fonts.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+		<script type="module">
+			 import { dataTableCreator } from "./admin/custom/dataTableCreator/dataTableCreator.js"
+			/*  COMMON ADMINLTE data table logic */
+		     dataTableCreator("example1",10, ["excel", "colvis"]); 
+		  	/* DOCTOR SCHEDULE MODULE -- 4 ROWS List of Doctors Table */
+		  	 dataTableCreator("exampleDocSch",4, ["excel", "colvis"]);
+		  /* PHARMACY STOCK LIST -- 7 ROWS List*/
+		  	 dataTableCreator("hqStock",7, ["excel", "colvis"]);
+			 dataTableCreator("scmStock",7, ["excel", "colvis"]);
+	         dataTableCreator("tcmStock",7, ["excel", "colvis"]);
+	         dataTableCreator("tdStock",7, ["excel", "colvis"]);
+	         dataTableCreator("kazStock",7, ["excel", "colvis"]);
+
+
+		</script>
+		<script type="module">
+			 import { dataTableCreator } from "../admin/custom/dataTableCreator/dataTableCreator.js"
+			/* PATIENT CONSULTATION DETAILS based on consult id data table logic */
+			/* I had to do it like this because when u pass paremeters to endpoint ES6 will not pick up*/
+			 dataTableCreator("examplePatConsultLab",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultRad",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultProc",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultVitals",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultSick",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultDispence",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatientDetails1",10, ["excel", "colvis"]);
+
+ dataTableCreator("exampleLabResultAttr",10, ["excel", "colvis"]);	
+
+		</script>
+		
+
+</div>
+<!-- --------------------------------------- DATATABLE JS used for CORE LAYOUT END --------------------------------------- -->
+
+
+<!-- --------------------------------------- WINDOW DATATABLE JS LAYOUT START --------------------------------------- -->
+
+
+
+<th:block th:fragment="win_dt_js">
+	 
+		<!-- jQuery -->
+		<script type="text/javascript" th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+		<!-- Bootstrap 4 -->
+		<script type="text/javascript" th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<!-- DataTables  & Plugins -->
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables/jquery.dataTables.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/jszip/jszip.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/pdfmake/pdfmake.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/pdfmake/vfs_fonts.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+		<script type="text/javascript" th:src="@{/admin/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+		<!-- AdminLTE App -->
+		<script type="text/javascript" th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+		<!-- AdminLTE for demo purposes -->
+		<!--<script type="text/javascript" th:src="@{/admin/dist/js/demo.js}"></script>-->
+		<!-- Page specific script -->
+		<script type="module">
+		 import { dataTableCreator } from "./admin/custom/dataTableCreator/dataTableCreator.js"
+			
+		 	dataTableCreator("example1",10, ["excel", "colvis"]); 
+		 	dataTableCreator("exampleDocSch",4, ["excel", "colvis"]);
+		  	 dataTableCreator("hqStock",7, ["excel", "colvis"]);
+			 dataTableCreator("scmStock",7, ["excel", "colvis"]);
+	         dataTableCreator("tcmStock",7, ["excel", "colvis"]);
+	         dataTableCreator("tdStock",7, ["excel", "colvis"]);
+	         dataTableCreator("kazStock",7, ["excel", "colvis"]);
+		</script>
+		<script type="module">
+			 import { dataTableCreator } from "../admin/custom/dataTableCreator/dataTableCreator.js"
+			/* PATIENT CONSULTATION DETAILS based on consult id data table logic */
+			/* I had to do it like this because when u pass paremeters to endpoint ES6 will not pick up*/
+			 dataTableCreator("examplePatConsultLab",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultRad",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultProc",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultVitals",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultSick",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatConsultDispence",10, ["excel", "colvis"]);
+			 dataTableCreator("examplePatientDetails1",10, ["excel", "colvis"]);	
+
+ dataTableCreator("exampleLabResultAttr",10, ["excel", "colvis"]);	
+
+		</script>
+	</th:block>	
+<!-- --------------------------------------- WINDOW DATATABLE JS LAYOUT START --------------------------------------- -->
+ </html>
+ 
+
+
+
+

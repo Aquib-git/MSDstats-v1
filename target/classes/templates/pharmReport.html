@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Pharmacy Reports</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body
+	class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+
+<div layout:fragment="content">
+		
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{alt_Pharmacy_Reports}">Pharmacy Reports</h1>
+
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item" ><a href="#" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./birtReport" th:text="#{alt_Pharmacy_Reports}">Pharmacy Reports</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+		<!-- Main content -->
+		
+	
+		
+<section class="content">
+ <div class="container-fluid">
+		
+<!-- --------------------------------------------------  PHARMACY FRAGMENT called here START -------------------------------------------------- -->
+		
+		<div th:replace="pharmmodals/pharmReport :: pharmReport"></div> 
+		 <!--<div id="modalContainer"></div> -->
+		 
+<!-- -------------------------------------------------- PHARMACY FRAGMENT called here START -------------------------------------------------- -->
+		 
+
+</div>
+
+		
+		<!-- ----------------------------------------- BIRT MODALS USED START ------------------------------------- -->
+		
+		<div id="fragments-container" th:replace="birtmodals/pha_modals :: pha_modals"></div>
+		
+		<!-- ----------------------------------------- BIRT MODALS USED END ------------------------------------- -->
+		
+		
+		
+</section>
+</div>
+
+<th:block layout:fragment="script">
+		<!-- ----------------------------------------- BIRT JS SCRIPTS USED START ------------------------------------- -->
+	
+		<script src="./admin/custom/pharmjs/pharmReportBuilder.js" type="module" ></script>
+				
+		<!-- PHARMACY JS START -->
+		<script src="./admin/custom/brtjs/mscw.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/mbkp.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pitdr.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pvh.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/phavoscf.js" type="module" ></script>
+		<!-- PHARMACY JS END -->
+		
+		
+		
+		<script>
+		function openWindow(url)
+		 {
+			var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+			
+			popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+			
+		 }
+		</script>
+		
+		
+		
+		<!-- ----------------------------------------- BIRT JS SCRIPTS USED END ------------------------------------- -->
+</th:block>
+</body>
+</html>

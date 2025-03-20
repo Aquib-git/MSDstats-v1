@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Sick Leaves Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Sick Leaves Details </h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Consultation</th>
+                    <th>Patient (Military ID)</th>
+                    <th>Patient Name</th>
+                    <th>Patient Rank</th>
+                     <th>Doctor</th>
+                   <!-- <th>Speciality</th> -->
+                    <th>Clinics Name</th>
+                    <th>Leave From</th>
+                    <th>Leave To</th>
+                    <th style="text-align: center;">No Of Days</th>
+                   
+                    <th>Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="sickLeaveInfo,itercss : ${hmpViewSickLeaveInfoDetailsToday}" style="text-align: center;">
+                      <td th:text="${itercss.count}"></td>
+                      
+                    		  <td class="text-center" th:if= "${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities.contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  
+			  <a th:href="'./consultationDetails/findByConsultId?consultid='+${sickLeaveInfo.CONSULT_ID}" 
+			  class="btn-btn-primary" onClick="openWindow(this.href)">
+             		  <i class="nav-icon fa fa-search"></i></a></td>
+             		  
+                      <td th:text="${sickLeaveInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${sickLeaveInfo.PATIENT_NAME}" ></td>
+                    <td th:text="${sickLeaveInfo.PATIENT_DESIGNATION}" ></td>
+                      <td th:text="${sickLeaveInfo.DOCTOR_NAME}"  ></td>
+                      
+                       <!-- <td th:text="${sickLeaveInfo.DEPARTMENT_NAME}"></td> -->
+                      <td th:text="${sickLeaveInfo.OFFICE_NAME}" ></td>
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_TO,'yyyy-MM-dd')}"></td>
+                      <td th:text="${sickLeaveInfo.NO_OF_DAYS}" style="text-align: center;"></td>
+                      <td th:text="${sickLeaveInfo.CONSULT_DATE}"></td>
+                      
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+
+</body>
+</html>
+
+  
+  
+  

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- LAB TAB START ------------------------------------------------- -->
+<div th:fragment="lab">
+	
+	<div class="card-header">
+	       <h5><b>1.Lab:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	 
+	 <div class="card-body">
+		 <div class="row">
+			 <div class="col-12">
+				 <table id="labTab" class="table table-bordered table">
+                   <thead>
+                  <tr>
+                    <th>No.</th>
+                <!--     <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <!--<th>Test count</th>-->
+                    <th>Lab Test Name</th>
+                    <th>Category Name</th>
+                     <th>Doctor</th>
+                    <th>Dept Name</th>
+                    <th>Office Name</th>
+                     <th>Date</th>
+                   
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                      <tr th:each="LabtestInfo,itercss : ${MrdLabDetails}">
+                      <td th:text="${itercss.count}"></td>
+                  <!--     <td th:text="${LabtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${LabtestInfo.PATIENT_NAME}" ></td> -->
+                     <!-- <td th:text="${LabtestInfo.PATIENT_LABTEST_COUNT}"  ></td>-->
+                      <td th:text="${LabtestInfo.testNameList}"></td>
+                      <td th:text="${LabtestInfo.categoryNameList}"></td>
+                      <td th:text="${LabtestInfo.DOCTOR_NAME}"  ></td>
+                      <td th:text="${LabtestInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${LabtestInfo.OFFICE_NAME}"></td>
+                       <td th:text="${LabtestInfo.CONSULT_DATE}"></td>
+
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+			 </div>
+		 </div>
+		 
+	 </div>
+	 
+	 
+	 
+	 
+	 
+	 
+</div>
+<!--  ---------------------------------------------------- LAB TAB END ------------------------------------------------- -->
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Direct Transfer Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Direct Transfer Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Entry Date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Issued From</th>
+                    <th>Issued From ar</th>
+                    <th>Issued To</th>
+                     <th>Issued To ar</th>
+                    <th>Issued By</th>
+                     <th>Issued By ar</th>
+                    <th>Clinic</th>
+                    <th>Clinics Name_ar</th>
+                     <!-- <th style="text-align: center;">No Of Days</th>-->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="sa,itercss : ${directTransferInfoList}" style="text-align: center;">
+                      <td th:text="${itercss.count}"></td>
+                      <td th:text="${sa.ENTRY_DATE}"></td>
+                      <td th:text="${sa.DIRECT_TRANSFER}" ></td>
+                      <td th:text="${sa.SUBMIT_STATUS}" ></td>
+                      <td th:text="${sa.ISSUED_FROM_DEPARTMENT_NAME}"  ></td>
+                      <td th:text="${sa.ISSUED_FROM_DEPARTMENT_NAME_AR}"></td>
+                	  <td th:text="${sa.ISSUED_TO_DEPARTMENT_NAME}"  ></td>
+                      <td th:text="${sa.ISSUED_TO_DEPARTMENT_NAME_AR}"></td>
+                      <td th:text="${sa.USER_LABEL}"></td>
+                      <td th:text="${sa.USERLABEL_ar}"></td>
+                      <td th:text="${sa.ISSUED_FROM_OFFICE_NAME}"  ></td>
+                      <td th:text="${sa.ISSUED_FROM_OFFICE_NAME_AR}"></td>
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+
+</body>
+</html>
+
+  
+  
+  

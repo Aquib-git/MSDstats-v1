@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily X-Ray Tests Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily X-Ray Tests Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                     <th th:if="${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  Consultation</th>
+                    <th>Patient (Military ID)</th>
+                    <th>Patient Name</th>
+                     <th>Patient Rank</th>
+                    <th>Test count</th>
+                    <th>Rad Test Name</th>
+                    <th>Category Name</th>
+                    <th>Doctor</th>
+                    <!--  <th>Speciality</th> -->
+                    <th>Clinics Name</th>
+                     <th>Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="RadtestInfo,itercss : ${hmpViewRadtestInfoDetailsToday}">
+                      <td th:text="${itercss.count}"></td>
+                      
+                          <td class="text-center" th:if= "${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities.contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  
+			  <a th:href="'./consultationDetails/findByConsultId?consultid='+${RadtestInfo.consult_id}" 
+			  class="btn-btn-primary" onClick="openWindow(this.href)">
+             		  <i class="nav-icon fa fa-search"></i></a></td>
+                      
+                      
+                      <td th:text="${RadtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${RadtestInfo.PATIENT_NAME}" ></td>
+                      
+                      <td th:text="${RadtestInfo.PATIENT_DESIGNATION}" ></td>
+                      
+                      
+                      <td th:text="${RadtestInfo.PATIENT_RADTEST_COUNT}"></td>
+                      <td th:text="${RadtestInfo.TEST_NAME}"></td>
+                       <td th:text="${RadtestInfo.categoryNameList}"></td>
+                      <td th:text="${RadtestInfo.DOCTOR_NAME}"  ></td>
+                    <!--   <td th:text="${RadtestInfo.DEPARTMENT_NAME}"></td> -->
+                      <td th:text="${RadtestInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${RadtestInfo.CONSULT_DATE}"></td>
+                      
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>   
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+</body>
+</html>
+
+  
+  
+  

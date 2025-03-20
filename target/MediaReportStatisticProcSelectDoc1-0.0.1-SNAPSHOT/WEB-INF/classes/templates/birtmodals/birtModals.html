@@ -1,0 +1,90 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	
+
+<!-- 
+	This is to test whethere the modals will be dynamic.
+	As of 30 Jan 2024 we cannot make the modals dynamic because of thymeleaf (server side programme).
+	Need to implement AJAX to call the server side programme
+-->	
+
+
+<!-- --------------------------------------------------- SICK LEAVE FRAGMENTS ------------------------------------------------------- -->
+<div th:fragment="sickLeaveByDoctorSumaryFragment">
+	 			 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate" class="form-control">
+				                      </div>
+			                	</div>
+			                	
+			                	
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                       <input type="date" th:field="*{brtEdate}" id="edate" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+</div>
+ 
+  <div th:fragment="sickLeaveSumaryFragment">
+ 						<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate1" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate1" class="form-control">
+				                      </div>
+			                	</div> 
+ 
+ </div>
+ 
+  <div th:fragment="exemptionDetailFragment">
+ 		 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate3" class="form-control">
+				                      </div>
+			                	</div>
+			                	
+			                	
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                       <input type="date" th:field="*{brtEdate}" id="edate3" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid3">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+  </div>
+ <!-- --------------------------------------------------- SICK LEAVE FRAGMENTS ------------------------------------------------------- -->
+
+</html>

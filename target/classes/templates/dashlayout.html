@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout">
+<head>
+   <th:block th:replace="shared/core_css :: core_css"></th:block>  
+    <th:block th:replace="shared/core_css :: core_dt_css"></th:block>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<div class="wrapper">
+
+		<th:block th:replace="shared/core_header :: core_header"></th:block>
+		<th:block th:replace="shared/core_sidebar :: core_sidebar"></th:block>
+	   
+
+		<!-- #########################################################################  --> 
+		<div class="content-wrapper">
+			<div layout:fragment="content">
+
+
+			</div>
+		</div>
+		 <!-- #########################################################################  --> 
+
+
+		<th:block th:replace="shared/core_footer :: core_footer"></th:block>
+		<th:block th:replace="shared/core_script_timeout :: core_script_timeout"></th:block>
+		<th:block th:replace="shared/core_js :: core_js"></th:block>
+		<!-- <th:block th:replace="shared/core_js :: core_dt_js"></th:block>-->
+		
+
+		 <!-- #########################################################################  --> 
+		<div layout:fragment="script">
+				
+						
+		</div>
+		<!-- #########################################################################  --> 
+
+		
+
+	</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+

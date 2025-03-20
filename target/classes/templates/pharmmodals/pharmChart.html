@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Pharmacy Chart</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div layout:fragment="content">
+	
+	
+		
+
+		
+  <div th:fragment="pharmChart">	
+	<!--  ---------------------------------------------------- PHARMACY CHART FRAGMENT START ------------------------------------------------- -->
+		<!-- CHART START-->
+		<div class="row">
+		    <div class="col-12">
+		
+			<div class="card">  
+				<div class="card-header">
+				       <h5 th:text="#{Pharmacy_Charts}"><b>1. Pharmacy Chart:&nbsp;&nbsp;</b></h5>
+				 </div>
+				<div class="card-body">
+					<form id="pharmFormBeanChart" th:action="@{/pharmChart}" class="form-horizontal" th:object=${pharmFormBean} >
+						<span>
+		
+							<div class="row" style="text-align: center;">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4"><p id="pharmChart-error-message" style="color: red; cursor: pointer;"></p></div>
+									<div class="col-sm-4"></div>				
+							</div>
+							
+							
+							<div class="row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem;">
+						            <div style="display: flex; align-items: center;">
+						                <span style="margin-right: 0.5rem;" th:text="#{Clinic_Name}">Clinic Name:</span>
+						                <select id="pharmyClinicId" th:field="*{pharmOid}" >
+						                    <option value='0'>All Clinics</option>
+					           					 <option th:each="e : ${pharmOfficeDateFilter}"
+																	th:value="${e.officeId}"
+																	th:text="${e.officeName}">
+												 </option>
+						                </select>
+						            </div>
+						            <div style="display: flex; align-items: center;">
+						                <span style="margin-right: 0.5rem;" th:text="#{From_date}">From date:</span>
+						                <input type="date" id="pharmySdate" th:field="*{pharmSdate}" style="margin-right: 1rem;">
+						                <span  style="margin-right: 0.5rem;" th:text="#{To_date}">To date:</span>
+						                <input type="date" id="pharmyEdate" th:field="*{pharmEdate}" style="margin-right: 1rem;">
+						                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+						            </div>
+			       			 </div>
+		       			 
+						</span>
+					</form>
+				</div>
+			</div> 
+			
+			
+			<div class="row">
+			<div class="col-md-12">
+				 <div class="row">
+			<!-- ------------------------------------------- SAMPLE COLLECTION  Chart called here START ------------------------------------------ -->
+				 	<div class="col-md-4">
+						 	<div class="card card-primary">
+								 
+									<div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Stock_Adjust_by_Branches}">Stock Adjust by Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									
+									<div class="card-body">
+										<div th:if="${staChart!=null}">
+											<div class="chart">
+												<input type="hidden" th:id="staChartLabels" th:value="${staChart.phasaLabel}" /> 
+												<input type="hidden" th:id="staChartData"   th:value="${staChart.phasaData}" />
+												<canvas id="staChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+											</div>
+										</div>
+									</div>
+									
+							</div>
+					</div>
+			<!-- ------------------------------------------- SAMPLE COLLECTION  Chart called here END ------------------------------------------ -->
+			
+			<!-- ------------------------------------------- ACCESSION/AKNWLDG Chart called here START ------------------------------------------ -->
+					
+					 <div class="col-md-4">
+						 <div class="card card-primary">
+								 
+									<div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Direct_Transfer_by_Branches}">Direct Transfer by Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									
+									<div class="card-body">
+										<div th:if="${drctTrnsChart!=null}">
+											<div class="chart">
+												<input type="hidden" th:id="drctTrnsChartLabels" th:value="${drctTrnsChart.phadtLabel}" /> 
+												<input type="hidden" th:id="drctTrnsChartData"   th:value="${drctTrnsChart.phadtData}" />
+												<canvas id="drctTrnsChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+											</div>
+										</div>
+									</div>
+									
+							</div>
+					 </div>
+				<!-- ------------------------------------------- ACCESSION/AKNWLDG Chart called here END ------------------------------------------ -->
+				
+					
+					<div class="col-md-4">
+					</div>
+					
+					
+				 </div>
+			</div>
+		</div>
+		<!-- CHART END-->
+	  	 </div>
+	  </div>
+	<!--  ---------------------------------------------------- PHARMACY CHART FRAGMENT END ------------------------------------------------- -->
+
+  </div>
+ </div>
+
+
+
+
+<th:block layout:fragment="script">
+		
+
+</th:block>
+</body>
+
+
+</html>

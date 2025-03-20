@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+                layout:decorate="~{corelayout}">
+<head>
+    <title>Lab Result Attribute</title>
+    
+    <script type="text/javascript">
+        function openWindow(event) {
+            event.preventDefault(); // Prevent the default action
+            var url = event.target.getAttribute('data-url');
+            var popupwindow = window.open(url, '', 'location=no,width=900,height=700');
+            popupwindow.moveTo((screen.width / 2) - 400, (screen.height / 2) - 300);
+        }
+
+        
+        
+        function openInMainWindow(event) {
+            event.preventDefault();
+            window.opener.location.href = event.target.href;
+            window.close();
+        }
+    </script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="content" style="overflow:hidden;">
+        <th:block layout:fragment="content">
+            <section class="content">
+                <!-- Patient Demographic Details -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                             <div class="card-header">
+					    <h5><b>Patient Test Results &nbsp;&nbsp;</b>
+					    <button type="button" class="btn btn-primary" onclick="window.history.back();">Previous Page</button>
+					    <ol class="breadcrumb float-sm-right">
+					        <li class="breadcrumb-item"><a th:href="@{/labTestInfo2}" th:text="#{Home}">Home</a></li>
+                                        <li class="breadcrumb-item active"
+                                        	th:if="${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN')) 
+			  || #request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+                                            <a th:href="@{/dailyStatistics}" th:text="#{Daily_Statistics}" ></a>
+                                        </li>
+					    </ol></h5>
+					</div>
+
+                                <div class="card-body" th:each="p : ${PatConsultDetails}">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <p>Name(En):&nbsp;&nbsp;<span th:text="${p.PATIENT_NAME}"></span></p>
+                                                <p>Date of Birth:&nbsp;&nbsp;<span th:text="${p.DATE_OF_BIRTH}"></span></p>
+                                                <p>Doctor:&nbsp;&nbsp;<span th:text="${p.DOCTOR_NAME}"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <p>Military Id:&nbsp;&nbsp;<span th:text="${p.PATIENT_EMPLOYEE_ID}"></span></p>
+                                                <p>Age:&nbsp;&nbsp;<span th:text="${p.PATIENT_AGE_DETAILED}"></span></p>
+                                                <p>Speciality:&nbsp;&nbsp;<span th:text="${p.DEPARTMENT_NAME}"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <p>Civil Id:&nbsp;&nbsp;<span th:text="${p.PATIENT_CIVILID}"></span></p>
+                                                <p>Patient Rank:&nbsp;&nbsp;<span th:text="${p.PATIENT_DESIGNATION}"></span></p>
+                                                <p>Clinic Name:&nbsp;&nbsp;<span th:text="${p.OFFICE_NAME}"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lab Results Details -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title" style="font-size: large;font-weight: bold;">Lab Results Details</h1>
+                                </div>
+                                <div class="card-body">
+                                    <table id="exampleLabResultAttr" class="table table-bordered table-striped table-head-fixed">
+                                        <thead>
+                                            <tr>
+                                                <th>Row_Num</th>
+                                                <th>Test_Id</th>
+                                                <th>Test Name</th>
+                                                <th>Parameter Name</th>
+                                                <th>Test Result</th>
+                                                <th>MIN_VALUE</th>
+                                                <th>MAX_VALUE</th>
+                                                <th>Lab_Id</th>
+                                                <th>op_Number</th>
+                                                <th>Consult ID</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="result, itercss: ${LabResultAttrInfo_dup1contl}">
+                                                <td th:text="${result.row_num}"></td>
+                                                  <td th:text="${result.TEST_ID}"></td>
+                                                <td th:text="${result.TEST_NAME}"></td>
+                                                <td th:text="${result.PARAM_MAPPING_NAME}"></td>
+                                                <td th:text="${result.TEST_RESULT}" th:style="${result.style}"></td>
+                                                <td th:text="${result.MIN_VALUE}"></td>
+                                                <td th:text="${result.MAX_VALUE}"></td>
+                                                <td th:text="${result.LAB_IDNO}"></td>
+                                                <td th:text="${result.OP_NUMBER}"></td>
+                                                <td th:text="${result.CONSULT_ID}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div><hr>
+
+                    <!-- Link/Button to BIRT Report STARTS-->
+               <!--          <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <a href="http://10.201.53.180:8080/birt/frameset?__report=amb_srv.rptdesign" class="btn btn-success" target="_blank">View BIRT Report</a>
+                  
+             
+                    </div>
+                </div>
+                      <! -- Link/Button to BIRT Report ENDS -->
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <div class="col-12 text-center" th:if="${LabResultAttrInfo_dup1contl.size() > 0}">
+                                <button type="button" 
+                                        th:data-url="@{'http://medasportal.kng.kw:8080/eclinic/testReportActionView.do?testDetailsid=' + ${LabResultAttrInfo_dup1contl[0].TEST_DETAILSID} + '&labno=' + ${LabResultAttrInfo_dup1contl[0].LAB_IDNO} + '&ltestid=' + ${LabResultAttrInfo_dup1contl[0].TEST_ID}}"
+                                        class="btn btn-secondary" 
+                                        onclick="openWindow(event)">Preview Report</button><hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </th:block>
+    </div>
+</body>
+</html>

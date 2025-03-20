@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html  lang="ar" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{corelayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div layout:fragment="content">
+
+  
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0" th:text="#{Health_Manpower}">Health Manpower</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a th:href="@{/dailyStatistics}" th:text="#{Home}">Home</a></li>
+              <li class="breadcrumb-item active"><a href="/maindb" th:text="#{Health_Manpower}">Health Manpower</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+       
+      
+        
+        
+        
+        
+         <!-- /.row -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title" th:text="#{The_Current_Health_Workforce}">The Current Health Workforce</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                 <!-- Left col -->
+                 <div class="row">
+                
+		          <div class="col-md-9">
+		          <div class="card">
+		          <div class="card-body">
+		          <div class="row">
+		          <div class="col-md-6">
+		           <p class="text-center" th:text="#{Health_Manpower_By_Category__24-Oct-2019_Until_NOW}">
+                      <strong>Health Manpower By Category: 24 Oct, 2019 - Until NOW</strong>
+                    </p>
+                    
+                    <div class=row>
+                     <div class="col-md-5">
+                    <ul class="chart-legend clearfix">
+                      <li><i class="far fa-circle " style="color: #f56954!important;background-color:#f56954!important;border-radius: 50%"></i><h7 th:text ="#{Doctors}"></h7> </li>
+                      <li><i class="far fa-circle " style="color: #00a65a!important;background-color:#00a65a!important;border-radius: 50%"></i> <h7 th:text ="#{Dentist}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #f39c12!important;background-color:#f39c12!important;border-radius: 50%"></i><h7 th:text ="#{Pharmacists}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #00c0ef!important;background-color:#00c0ef!important;border-radius: 50%"></i> <h7 th:text ="#{Nurses}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #3c8dbc!important;background-color:#3c8dbc!important;border-radius: 50%"></i> <h7 th:text ="#{ Radiographer_Techn}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #132f89!important;background-color:#132f89!important;border-radius: 50%"></i> <h7 th:text ="#{Radiographer_Technologist}"></h7></li>
+                      <li><i class="far fa-circle"  style="color: #1f2d3d!important;background-color:#1f2d3d!important;border-radius: 50%"></i><h7 th:text ="#{Other}"></h7></li>
+                      
+                     
+                     
+                    </ul>
+                  </div>
+                     <div class="col-md-7">
+                     <div class="chart">
+                      <!-- Sales Chart Canvas -->
+                      <input type="hidden" th:id="hmpCategoryLabels" th:value="${hmpCatogary.hmpLabels}"/>
+                      <input type="hidden" th:id="hmpCategoryData" th:value="${hmpCatogary.hmpData}"/>
+                      <canvas id="healthManDoctorChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                       
+                    </div>
+                     </div>
+                    
+                   </div>
+
+		          
+		          </div>
+		          
+		           <div class="col-md-6">
+		           <p class="text-center" th:text="#{ Health_Manpower_By_Branches__24-Oct-2019_Until_NOW}">
+                       <strong>Health Manpower by Branches: 24 Oct, 2019 - Until NOW</strong>
+                    </p>
+                    
+                    <div class=row>
+                     <div class="col-md-9">
+                     <div class="chart">
+                      <!-- Sales Chart Canvas -->
+                      <input type="hidden" th:id="hmpBranchesLabels" th:value="${hmpBranch.hmpbLabels}"/>
+                      <input type="hidden" th:id="hmpBranchesData" th:value="${hmpBranch.hmpbData}"/>
+                      <canvas id="hmpBranchesChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                     
+                    </div>
+                     </div>
+                     <div class="col-md-3">
+                    <ul class="chart-legend clearfix">
+                      <li><i class="far fa-circle " style="color: #f56954!important;"></i>  <h7 th:text ="#{HeadQuarters}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #00a65a!important;"></i> <h7 th:text ="#{Sheikh-Salem}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #f39c12!important;"></i> <h7 th:text ="#{Summod}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #00c0ef!important;"></i><h7 th:text ="#{Tahreer-Dental}"></h7></li>
+                      <li><i class="far fa-circle " style="color: #3c8dbc!important;"></i> <h7 th:text ="#{Tahreer}"></h7></li>
+                       
+                   
+                    </ul>
+                  </div>
+                   </div>
+                    
+		          </div>
+		          
+		          
+		          </div>
+		          </div>
+		         <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      
+                      <h3 class="description-header" th:utext="${hmpCatogary.TotalMedicines}"></h3>
+                      
+                      <span class="description-text" th:text="#{Total_Stock}">Total Stock</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      
+                      <h3 class="description-header" th:utext="${hmpCatogary.SickLeaveCount}"></h3>
+                      
+                      <span class="description-text" th:text="#{Total_Sick_Leaves}">Total Sick Leaves</span>
+                     
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block border-right">
+                      
+                      <h3 class="description-header" th:utext="${hmpLabCatTest.TotalLabTest}" ></h3>
+                      <span class="description-text" th:text="#{ Total_Laboratory_Tests}">Total Laboratory Tests</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-3 col-6">
+                    <div class="description-block">
+                    
+                      <h3 class="description-header" th:utext="${hmpCatogary.TotalProcedure}"></h3>
+                      <span class="description-text" th:text="#{ Total_Procedures}">Total Procedures</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+		          </div>
+		          </div>
+		          <!-- /.col -->
+		          <!-- Right col -->
+		       <div class="col-md-3">
+		        <!-- Info Boxes Style 2 -->
+            <div class="info-box mb-3 bg-warning">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_Health_Manpower}">Total Health Manpower</span>
+                <span class="info-box-number"  th:utext="${hmpBranch.TotalHealthManpower}"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-success">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_Patient_visits}">Total Patient visits</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalPatientVisit}"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-danger">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_Patient}">Total Patient</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalPatientRegistered}"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-info">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_X-rays}">Total X-rays</span>
+                <span class="info-box-number" th:utext="${hmpRadCatTest.TotalRadTest}" ></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+		      </div>
+		      
+		      
+		      
+		      
+		      
+		      </div>
+		      </div>
+		      </div>
+		      </div>
+		      </div>
+		      
+		      
+		 
+            
+         <!-- Info boxes -->
+        <div class="row">
+        
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box mb-3" style="background-color: #1578b3;
+                color: white;">
+              <span class="info-box-icon "
+              
+              ><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Other}">Other</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalOther}">
+                 
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box mb-3" style="background-color: #1578b3;
+                color: white;">
+              <span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Radiographer_Techn}">Radiographer Techn.</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalRadiographerTechn}">
+                 
+                
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box mb-3 " style="background-color: #1578b3;color: white;">
+              <span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Nurses}">Nurses</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalNurses}">
+                  
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box mb-3" style="background-color: #1578b3; color: white;">
+              <span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Pharmacists}">Pharmacists</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalPharmacusts}"></span>
+              </div>
+              <!-- /.info-box-content -->
+               
+            </div>
+            <!-- /.info-box -->
+          </div>
+                
+          
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-2">
+          
+            <div class="info-box mb-3 " style="background-color: #1578b3; color: white;">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_Dentist}">Total Dentist </span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalDentist}"></span>
+              </div>
+              <!-- /.info-box-content -->
+              <a href="./doctorDashboard" class="small-box-footer" style="color:#ffc107;">More <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+            <!-- /.info-box -->
+           
+          </div>
+          <!-- /.col -->
+          
+          <div class="col-12 col-sm-6 col-md-2">
+          
+            <div class="info-box mb-3 " style="background-color: #1578b3; color: white;">
+              <span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text" th:text="#{Total_Doctors}">Total Doctors</span>
+                <span class="info-box-number" th:utext="${hmpCatogary.TotalDoctors}"></span>
+              </div>
+              <!-- /.info-box-content -->
+               <a href="./doctorDashboard" class="small-box-footer" style="color:#ffc107">More <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+           
+            <!-- /.info-box -->
+           
+          </div>
+          
+          
+         
+        </div>
+        <!-- /.row -->
+        
+        
+        
+        
+
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-8">
+            <!-- MAP & BOX PANE -->
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- DIRECT CHAT -->
+                
+                  
+                  <!-- /.card-header -->
+               
+	             <!-- BAR CHART -->
+	            <div class="card">
+	              <div class="card-header">
+	                <h3 class="card-title" th:text="#{Out-Patient_visits_YearWise_from_2019-Until_NOW}">Out-Patient visits YearWise from 2019 - Until NOW</h3>
+	
+	                <div class="card-tools">
+	                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+	                    <i class="fas fa-minus"></i>
+	                  </button>
+	                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+	                    <i class="fas fa-times"></i>
+	                  </button>
+	                </div>
+	              </div>
+	              <div class="card-body">
+	                <div class="chart">
+                      <input type="hidden" th:id="hmpPatientVisitLabels" th:value="${hmpPatientVisitYearwise.hmpbLabels}"/>
+                      <input type="hidden" th:id="hmpPatientVisitData" th:value="${hmpPatientVisitYearwise.hmpbData}"/>
+	                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+	                </div>
+	              </div>
+	              <!-- /.card-body -->
+	              </br>
+                  </br>
+	            </div>
+                   
+                   
+                   
+              
+                  
+               
+                
+                <!--/.direct-chat -->
+              </div>
+              <!-- /.col -->
+
+              <div class="col-md-6">
+               <!-- TABLE: Out-Patient Visits -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title" th:text="#{Out-Patient_visits_by_Branches_from_2019-Until_NOW}">Out-Patient visits by Branches from 2019 - Until NOW</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                     <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Name</th>
+                      <th>Progress</th>
+                      <th style="width: 40px">Count</th>
+                    </tr>
+                    </thead>
+                   <tbody><!-- th:text="${Patient.officeName}" -->
+                   
+                   
+                  <tr th:each="Patient,itercss : ${hmpViewPatientAll.hmpPatientVisitData}">
+                      <td th:text="${Patient.row_num} +."></td>
+                      <td >
+                      
+                      <span style="font-size:medium; " 
+   	                th:text="${#httpServletRequest.getParameter('lang') == 'ar' ? Patient.oFFICENAME_AR : Patient.officeName}">
+					</span></td>
+					
+					
+                      <td>
+                        <div class="progress progress-xs" style="height:20px">
+                          <div th:class="${Patient.row_num}==1? 'badge bg-danger':
+                                          (${Patient.row_num}==2? 'progress-bar bg-warning': 
+                                          (${Patient.row_num}==3? 'progress-bar bg-primary': 
+                                          (${Patient.row_num}==4? 'progress-bar bg-success':
+                                          'badge bg-danger' ) ))"                                           
+                                           th:style="'width:'+${Patient.totalCount}/${hmpViewPatientAll.TotalPatientVisit}*100+'%'"> 
+                                          <!--  <span th:text="${Patient.totalCount}/${hmpViewPatientAll.TotalPatientVisit}*100"></span> --> 
+                         </div>
+                        </div>
+                       
+                      </td>
+                      <td><span th:class="${Patient.row_num}==1? 'badge bg-danger':
+                                          (${Patient.row_num}==2? 'badge bg-warning': 
+                                          (${Patient.row_num}==3? 'badge bg-primary': 
+                                          (${Patient.row_num}==4? 'badge bg-success':
+                                          'badge bg-danger' ) ))"
+                                   th:text="${#numbers.formatInteger(Patient.totalCount,3)}"></span></td>
+                    </tr>
+                                 
+                  </tbody>
+                  </table>
+                  </br>
+                  </br>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              
+             
+ 
+            </div>
+            <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            
+             <!-- DONUT CHART -->
+             
+              <div class="row">
+              <div class="col-md-12">
+              
+              <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title" th:text="#{ Out-Patient_visits_by_Department_from_2019-Until_NOW}">Out-Patient visits by Department from 2019 - Until NOW</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row" th:with="mapData=${hmpPatientVisitDeptData}">
+                
+                 <div class="col-md-3">
+                    <ul class="chart-legend clearfix" >
+                      <li><i class="far fa-circle"  style="color: #4b77a9!important;background-color:#4b77a9!important;border-radius: 50%"></i> <h7 th:text ="#{ General_Practitioner}"></h7>  <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('General Practitioner')}"></span></li>
+                      <li><i class="far fa-circle"  style="color: #5f255f!important;background-color:#5f255f!important;border-radius: 50% "></i><h7 th:text ="#{Dental}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Dental')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #d21243!important;background-color:#d21243!important;border-radius: 50% "></i><h7 th:text ="#{Internal_Medicine}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Internal Medicine')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #B27200!important;background-color:#B27200!important;border-radius: 50% "></i><h7 th:text ="#{Surgical}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Surgery')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #00c0ef!important;background-color:#00c0ef!important;border-radius: 50% "></i> <h7 th:text ="#{ENT}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('ENT')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #27a544!important;background-color:#27a544!important;border-radius: 50% "></i><h7 th:text ="#{ Emergeny_Medical}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Emergency Medicine')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #2b78fd!important;background-color:#2b78fd!important;border-radius: 50% "></i><h7 th:text ="#{Chest}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Chest')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #e11011!important;background-color:#e11011!important;border-radius: 50% "></i> <h7 th:text ="#{Dermatology}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Dermatology')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #f10bf1!important;background-color:#f10bf1!important;border-radius: 50% "></i> <h7 th:text ="#{Diabetes}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Diabetes')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #260326fc!important;background-color:#260326fc!important;border-radius: 50% "></i><h7 th:text ="#{EMS}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('EMS')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #808000!important;background-color:#808000!important;border-radius: 50% "></i> <h7 th:text ="#{Radiology }"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Radiology')}"></span></li>
+                     
+                    </ul>
+                  </div>
+                  <div class="col-md-3">
+                   <!--  <ul class="chart-legend clearfix">
+                      <li><i class="far fa-circle"  style="color: #6610f2!important;background-color:#6610f2!important;border-radius: 50%"></i> <h7 th:text ="#{Nutrition}"></h7><span style="background-color: #1578b3!important;color: white;margin-left: 90px;" th:text="${mapData.get('Nutrition')}"> </span></li>
+                      <li><i class="far fa-circle"  style="color: #e935d68f!important;background-color:#e935d68f!important;border-radius: 50% "></i> <h7 th:text ="#{Allergy}"></h7><span style="background-color: #1578b3!important;color: white; margin-left: 80px;" th:text="${mapData.get('Allergy')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #ff5e07!important;background-color:#ff5e07!important;border-radius: 50%"></i> <h7 th:text ="#{Laboratory}"></h7><span style="background-color: #1578b3!important;color: white; margin-left: 80px;" th:text="${mapData.get('Laboratory')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #9ba8b7!important;background-color:#9ba8b7!important;border-radius: 50% "></i> <h7 th:text ="#{Cardiology}"></h7><span style="background-color: #1578b3!important;color: white;margin-left: 80px;" th:text="${mapData.get('Cardiology')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #1f2d3d!important;background-color:#1f2d3d!important;border-radius: 50% "></i> <h7 th:text ="#{Ophthalmology}"></h7><span style="background-color: #1578b3!important;color: white; margin-left: 45px;" th:text="${mapData.get('Ophthalmology')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #800000!important;background-color:#800000!important;border-radius: 50%"></i> <h7 th:text ="#{physiotherapy}"></h7> <span style="background-color: #1578b3!important;color: white;margin-left: 55px;" th:text="${mapData.get('Physiotherapy')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #000080!important;background-color:#000080!important;border-radius: 50% "></i> <h7 th:text ="#{ Family_Medicine}"></h7><span style="background-color: #1578b3!important;color: white; margin-left: 43px;" th:text="${mapData.get('Family Medicine')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #7FFF00!important;background-color:#7FFF00!important;border-radius: 50% "></i> <h7 th:text ="#{Orthopedic}"></h7><span style="background-color: #1578b3!important;color: white;margin-left: 75px;" th:text="${mapData.get('Orthopedic')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #8A2BE2!important;background-color:#8A2BE2!important;border-radius: 50% "></i> <h7 th:text ="#{Patient_Education}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Patient Education')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #795548!important;background-color:#795548!important;border-radius: 50% "></i> <h7 th:text ="#{Podiatry}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Podiatry')}"></span></li>
+                     
+                     
+                    </ul> -->
+                    
+                    
+                     <ul class="chart-legend clearfix">
+                      <li><i class="far fa-circle"  style="color: #6610f2!important;background-color:#6610f2!important;border-radius: 50%"></i> <h7 th:text ="#{Nutrition}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Nutrition')}"> </span></li>
+                      <li><i class="far fa-circle"  style="color: #e935d68f!important;background-color:#e935d68f!important;border-radius: 50% "></i> <h7 th:text ="#{Allergy}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Allergy')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #ff5e07!important;background-color:#ff5e07!important;border-radius: 50%"></i> <h7 th:text ="#{Laboratory}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Laboratory')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #9ba8b7!important;background-color:#9ba8b7!important;border-radius: 50% "></i> <h7 th:text ="#{Cardiology}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Cardiology')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #1f2d3d!important;background-color:#1f2d3d!important;border-radius: 50% "></i> <h7 th:text ="#{Ophthalmology}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Ophthalmology')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #800000!important;background-color:#800000!important;border-radius: 50%"></i> <h7 th:text ="#{physiotherapy}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Physiotherapy')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #000080!important;background-color:#000080!important;border-radius: 50% "></i> <h7 th:text ="#{ Family_Medicine}"></h7><span style="background-color: #1578b3!important;color: white; " th:text="${mapData.get('Family Medicine')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #7FFF00!important;background-color:#7FFF00!important;border-radius: 50% "></i> <h7 th:text ="#{Orthopedic}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Orthopedic')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #8A2BE2!important;background-color:#8A2BE2!important;border-radius: 50% "></i> <h7 th:text ="#{Patient_Education}"></h7><span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Patient Education')}"></span></li>
+                      <li><i class="far fa-circle" style="color: #795548!important;background-color:#795548!important;border-radius: 50% "></i> <h7 th:text ="#{Podiatry}"></h7> <span style="background-color: #1578b3!important;color: white;" th:text="${mapData.get('Podiatry')}"></span></li>
+                     
+                     
+                    </ul>
+                    
+                  </div>
+              
+                  <div class="col-md-6">
+                    <div class="chart">
+                      <input type="hidden" th:id="hmpPatientDeptLabels" th:value="${hmpPatientVisitDept.hmpbLabels}"/>
+                      <input type="hidden" th:id="hmpPatientDeptData" th:value="${hmpPatientVisitDept.hmpbData}"/>
+                      <canvas id="donutVisitChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                    </div>
+                    <!-- ./chart-responsive -->
+                  </div>
+                  <!-- /.col -->
+                 
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-body -->
+              
+              </div>
+              
+              </div>
+              </div>
+              
+        
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-4">
+         
+          
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title" th:text="#{ Doctors_Usage}">Doctors Usage</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="chart">
+                      <input type="hidden" th:id="hmpDoctorBranchesLabels" th:value="${hmpDoctorBranch.hmpbLabels}"/>
+                      <input type="hidden" th:id="hmpDoctorBranchesData" th:value="${hmpDoctorBranch.hmpbData}"/>
+                      <canvas id="pieDoctorChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;" ></canvas>
+                    </div>
+                    <!-- ./chart-responsive -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-4">
+                    <ul class="chart-legend clearfix">
+                                           
+                      <li><i class="far fa-circle"  style="color: #4b77a9!important;background-color:#4b77a9!important;border-radius: 50% "></i> <h7 th:text ="#{HeadQuarters}"></h7></li>
+                      <li><i class="far fa-circle"  style="color: #5f255f!important;background-color:#5f255f!important;border-radius: 50% "></i> <h7 th:text ="#{Tahreer-Dental}"></h7></li>
+                      <li><i class="far fa-circle" style="color: #d21243!important;background-color:#d21243!important;border-radius: 50% "></i> <h7 th:text ="#{Tahreer}"></h7> </li>
+                      <li><i class="far fa-circle" style="color: #B27200!important;background-color:#B27200!important;border-radius: 50% "></i><h7 th:text ="#{Sheikh-Salem}"></h7></li>
+                      <li><i class="far fa-circle" style="color: #00c0ef!important;background-color:#00c0ef!important;border-radius: 50% "></i> <h7 th:text ="#{Summod}"></h7></li>
+                     
+                    </ul>
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-body -->
+              
+              <!-- /.footer -->
+            </div>
+            <!-- /.card -->
+
+            
+            
+            <!-- TABLE: Doctor Department -->
+          
+  
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        
+         <div class="row">
+          <div class="col-md-12" style="background-color: white;">
+          
+            <div class="card-header" style="background-color: #1170d538" th:text="#{ Out-Patient_visits_Month_Wise_by_Branches_in}">
+                <h3 class="card-title">
+                Out-Patient visits Month Wise by Branches  in <span  th:utext="${#dates.year(#dates.createNow())-1}"></span>  
+               </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <input type=hidden th:id="hmpHQdata" th:value="${hmpPatientVisitMonthWiseByYear.hmpHQdata}"/>
+                  <input type="hidden" th:id="hmpShdata" th:value="${hmpPatientVisitMonthWiseByYear.hmpShdata}"/>
+                  <input type="hidden" th:id="hmpSmdata" th:value="${hmpPatientVisitMonthWiseByYear.hmpSmdata}"/>
+                  <input type="hidden" th:id="hmpThDdata" th:value="${hmpPatientVisitMonthWiseByYear.hmpThDdata}"/>
+                  <input type="hidden" th:id="hmpTHdata" th:value="${hmpPatientVisitMonthWiseByYear.hmpTHdata}"/>
+                  
+                  <canvas id="barChartPatientByMonth" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+		      
+	</div>
+	</div>
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+ 
+  <!-- /.content-wrapper -->
+
+  
+</div>
+  
+
+
+<th:block layout:fragment="script">
+<script src="./admin/dist/js/pages/dashboard2.js"></script>
+	<!--<div th:replace="shared/healthscript"></div>-->
+	<!--<script type="text/javascript" th:src="@{/admin/dist/js/pages/dashboard2.js}"></script>-->
+    
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script>
+	//-------------------------------------
+//-------------
+    //- BAR CHART -
+    //-------------
+           
+
+       var hmpHQdata = $("#hmpHQdata").val();
+       hmpHQdata = hmpHQdata.replace("[","").replace("]","").split(",");
+       var hmpShdata = $("#hmpShdata").val().trim();
+       hmpShdata = hmpShdata.replace("[","").replace("]","").split(",");
+       var hmpSmdata = $("#hmpSmdata").val();
+       hmpSmdata = hmpSmdata.replace("[","").replace("]","").split(",");
+       var hmpThDdata = $("#hmpThDdata").val().trim();
+       hmpThDdata = hmpThDdata.replace("[","").replace("]","").split(",");
+       var hmpTHdata = $("#hmpTHdata").val().trim();
+       hmpTHdata = hmpTHdata.replace("[","").replace("]","").split(",");
+    
+       
+       
+       
+       function getUrlParameter(name) {
+    	    name = name.replace(/[\[\]]/g, '\\$&');
+    	    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    	        results = regex.exec(window.location.href);
+    	    if (!results) return null;
+    	    if (!results[2]) return '';
+    	    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    	}
+       var lang = getUrlParameter('lang'); // This remains unchanged from the previous example
+       
+       var labels = {
+    		    headquarters: lang === "ar" ? 'المقر الرئيسي' : 'HeadQuarters',
+    		    sheikhSalemCamp: lang === "ar" ? 'مخيم الشيخ سالم' : 'Sheikh Salem Camp',
+    		    summodCamp: lang === "ar" ? 'مخيم سمود' : 'Summod Camp',
+    		    tahreerCampDental: lang === "ar" ? 'مخيم تحرير - الأسنان' : 'Tahreer Camp-Dental',
+    		    tahreerCamp: lang === "ar" ? 'مخيم تحرير' : 'Tahreer Camp',
+    		    // Add any additional camps or locations here
+    		};
+       
+       function translateMonthToArabic(month) {
+    	    var monthsArabic = {
+    	        'January': 'يناير',
+    	        'February': 'فبراير',
+    	        'March': 'مارس',
+    	        'April': 'أبريل',
+    	        'May': 'مايو',
+    	        'June': 'يونيو',
+    	        'July': 'يوليو',
+    	        'August': 'أغسطس',
+    	        'September': 'سبتمبر',
+    	        'October': 'أكتوبر',
+    	        'November': 'نوفمبر',
+    	        'December': 'ديسمبر'
+    	    };
+    	    return monthsArabic[month] || month; // Fallback to the original month name if not found
+    	}
+       
+  
+
+      var areaBarChartPatientData = {
+     
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      .map(month=> lang === "ar" ? translateMonthToArabic(month) : month),
+      
+      
+      datasets: [
+        {
+        
+          label               :labels.headquarters,
+          backgroundColor     : '#4b77a9',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius         : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : hmpHQdata
+        },
+        {
+        	 label: labels.sheikhSalemCamp,
+          backgroundColor     : '#5f255f',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : hmpShdata
+        },
+        {
+        	 label: labels.summodCamp,
+            backgroundColor     : '#d21243',
+            borderColor         : 'rgba(210, 214, 222, 1)',
+            pointRadius         : false,
+            pointColor          : 'rgba(210, 214, 222, 1)',
+            pointStrokeColor    : '#c1c7d1',
+            pointHighlightFill  : '#fff',
+            pointHighlightStroke: 'rgba(220,220,220,1)',
+            data                : hmpSmdata
+          },
+          {
+        	  label: labels.tahreerCampDental,
+              backgroundColor     : '#B27200',
+              borderColor         : 'rgba(210, 214, 222, 1)',
+              pointRadius         : false,
+              pointColor          : 'rgba(210, 214, 222, 1)',
+              pointStrokeColor    : '#c1c7d1',
+              pointHighlightFill  : '#fff',
+              pointHighlightStroke: 'rgba(220,220,220,1)',
+              data                : hmpThDdata
+            },
+            {
+            	 label: labels.tahreerCamp,
+                backgroundColor     : '#00c0ef',
+                borderColor         : 'rgba(210, 214, 222, 1)',
+                pointRadius         : false,
+                pointColor          : 'rgba(210, 214, 222, 1)',
+                pointStrokeColor    : '#c1c7d1',
+                pointHighlightFill  : '#fff',
+                pointHighlightStroke: 'rgba(220,220,220,1)',
+                data                : hmpTHdata
+              },
+      ]
+    }
+
+   
+    var barChartPatientCanvas = $('#barChartPatientByMonth').get(0).getContext('2d')
+    var barChartPatientData = $.extend(true, {}, areaBarChartPatientData)
+    
+
+    var barBarPatientOptions = {	
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false,
+      plugins:{
+	   labels:{
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder',
+		arc:true,
+		positon:'outside',
+		overlap:false
+		}
+		}
+      
+     
+       }
+    
+
+    new Chart(barChartPatientCanvas, {
+      type: 'bar',
+      data: barChartPatientData,
+      options: barBarPatientOptions,
+      
+    })
+          
+
+</script>
+</th:block>
+
+</body>
+</html>

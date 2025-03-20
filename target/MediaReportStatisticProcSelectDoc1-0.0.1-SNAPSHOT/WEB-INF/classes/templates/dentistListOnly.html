@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>Kng Dentist List Only</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">
+					List of KNG Dentists: &nbsp;
+			    </h1>
+			    <p>	Consultations dates from &nbsp;
+					<span th:text="${dr1.startDateBuffer}" id="fdate"></span> &nbsp;
+					to&nbsp;
+					<span th:text="${dr1.endDateBuffer}" id="tdate"></span>&nbsp;
+				</p>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Doctor Name</th>
+                      <th>Counts of Patient</th>
+                     <!--  <th>No.Branch</th>
+                      <th>Wo.Days/Total</th> -->
+                      <th>Speciality</th>
+                      <th>Clinics Name</th>
+                      <th> </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="doctor,itercss : ${dentistOnlyListByDate}">
+                      <td th:text="${itercss.count}"></td>
+                      <td th:text="${doctor.uaserLabel}"></td>
+                      
+                      <td>
+					    
+					    <a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+               				th:attr="data-doctor-id=${doctor.doctorId}"  class="docformurl" onclick="openWindow1(this.href);">
+                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+           			   </a>
+
+            		  </td> 
+
+                <!--       <td th:text="${doctor.officeCount}"></td>
+                      <td th:text="${doctor.daysWorked}+' /' + ${doctor.noOfDays} "></td> -->
+                      <td th:text="${doctor.deptnameList}"></td>
+                      <td th:text="${doctor.officeNameList}"></td>
+                      <td>
+                       <a th:href="'./doctorInfo?docId='+${doctor.doctorId}" th:attr="data-doctor-info-id=${doctor.doctorId}"
+	                      class="docinfourl"  data-toggle="modal" target="_blank" onclick="openWindow(this.href); " >
+	                        <i class="fas fa-search"></i>
+	                   </a>
+                    </td>
+                      
+                    </tr>
+                  </tbody>
+                  
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>   
+  </div>
+  
+  <!-- /.content-wrapper -->
+<script>
+//----------------------------------------------------------------------------------------------------------
+function openWindow1(url)
+ {
+	var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+	
+	popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+	
+ }
+
+function openWindow(url)
+ {
+	var popupwindow=window.open(url,'','location=no,width=500,height=500');
+	
+	popupwindow.moveTo(screen.width/2-250,screen.height/2-250);
+	
+ }
+ 
+//----------------------------------------------------------------------------------------------------------
+</script>
+
+</body>
+</html>
+
+  
+  
+  

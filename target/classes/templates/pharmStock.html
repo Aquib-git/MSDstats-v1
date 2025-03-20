@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Pharmacy Stock</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div layout:fragment="content">
+	
+	
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{alt_Pharmacy_Stocks}">Pharmacy Stock</h1>
+
+					</div>
+					
+					
+				
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./pharmChart" th:text="#{alt_Pharmacy_Stocks}">Pharmacy Stock</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+
+<section class="content">
+	
+	<div class="container-fluid">
+	<!--  ---------------------------------------------------- PHARMACY STOCK FRAGMENT START ------------------------------------------------- -->
+			<div th:replace="pharmmodals/pharmStock :: pharmStock"></div> 
+	<!--  ---------------------------------------------------- PHARMACY STOCK FRAGMENT end ------------------------------------------------- -->
+	</div>
+	
+</section>
+</div>
+
+
+
+
+<th:block layout:fragment="script">
+	
+<script src="./admin/plugins/chart.js/chart.min_new.js"></script>
+<script src="./admin/plugins/chart.js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+<script src="./admin/custom/pharmjs/ps.js" type="module" ></script>
+
+			
+
+</th:block>
+</body>
+
+
+</html>

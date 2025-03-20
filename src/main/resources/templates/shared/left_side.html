@@ -1,0 +1,111 @@
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+      <img src="./admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light"><h6>Kuwait National Guards</h6></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="./admin/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">[[${#request.userPrincipal.principal.fullName}]]</a>
+          
+         
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+     
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <!--<a href="./maindb" class="nav-link">-->
+			 <a th:href="@{/maindb}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Health Manpower
+              </p>
+            </a>
+         </li>
+         <li class="nav-item">
+            <a th:href="@{/dailyStatistics}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Daily Statistics
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+         </li>
+         <li class="nav-item">
+            <a th:href="@{/doctorDashboard}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                 Doctors Duty Schedule
+                              </p>
+            </a>
+         </li>
+         
+           <li class="nav-item">
+            <a th:href="@{/mrdeid}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Patient History
+                              </p>
+            </a>
+         </li>
+         
+          <li class="nav-item">
+            <a href="./logout" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                LogOut
+               </p>
+            </a>
+         </li>
+         
+
+              
+              
+            </ul>
+          </li>
+          
+      
+          
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  
+  //----------------------------- MRD FORM SUBMIT LOGIC START----------------------------------
+<script>		
+		document.addEventListener('DOMContentLoaded', function (){
+			
+		 		 var form = document.getElementById('mrdFormBean'); // Get the form by its ID
+		
+		 			 form.addEventListener('submit', function (e) {
+		    e.preventDefault(); // Prevent the normal form submission
+		
+		    var civilId = document.getElementById('mrdInput1').value; // Get the civilId from the input
+		
+		    // Assuming your server-side is set to accept GET requests
+		    var actionURL = form.getAttribute('action');
+		    window.location.href = actionURL + '?selectCivilId=' + encodeURIComponent(civilId);
+		  });
+		});
+		</script>	
+	//----------------------------- MRD FORM SUBMIT LOGIC END----------------------------------
+  
+  

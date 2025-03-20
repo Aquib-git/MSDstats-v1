@@ -1,0 +1,410 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="inv_modals">
+	
+	
+	
+<!-- ------------------------------------------ 2.1 KNG Xray tests taken START ------------------------------------------ -->      
+ 
+	<div class="modal fade" id="xrayModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">1. KNG Xray tests taken</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="xray" th:action="@{/KngXrayTestTaken}" th:object=${brtFormBean}>
+			
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="xray-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate17" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                       <input type="date" th:field="*{brtEdate}" id="edate17" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			               
+			                 <div class="row">	
+			                	 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                       <select class="form-control" th:field="*{brtOid}" id="oid17">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Demographic:</label>
+				                        <select class="form-control" th:field="*{brtKwtNkwtid}" id="kwtid17">
+				                        	
+				                       		 </select>
+				                      </div>
+			                	</div>           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+ 
+ <!-- ------------------------------------------2.1  KNG Xray tests taken END ------------------------------------------ -->      
+
+
+
+
+<!-- ------------------------------------------ 2.2 KNG Lab tests taken START ------------------------------------------ -->      
+  
+
+<div class="modal fade" id="labModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">2. KNG Lab tests taken</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="lab" th:action="@{/KngLabTestTaken}" th:object=${brtFormBean}>
+			
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="lab-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate18" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate18" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			               
+			                 <div class="row">	
+			                	 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid18">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Demographic:</label>
+				                        <select class="form-control" th:field="*{brtKwtNkwtid}" id="kwtid18">
+				                        	
+				                       		 </select>
+				                      </div>
+			                	</div>           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+ 
+ <!-- ------------------------------------------2.2  KNG Lab tests taken END ------------------------------------------ -->     
+ 
+ <!-- ------------------------------------------ 2.3 Lab Patient Collected Count Report START ------------------------------------------ -->      
+	<div class="modal fade" id="labPatCollectModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">3. KNG Lab Patient Collected Count</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="klpcollectedcount" th:action="@{/KngLabPatientCollectedCount}" th:object=${brtFormBean}>
+			
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="klpcollectedcount-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate_klpcollectedcount" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate_klpcollectedcount" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			               
+			                 <div class="row">	
+			                	 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid_klpcollectedcount">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Type:</label>
+				                        <select class="form-control" th:field="*{brtReportTypeId}" id="reporttype_klpcollectedcount">
+				                        	
+				                       	</select>
+				                      </div>
+			                	</div>           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+ 
+ <!-- ------------------------------------------ 2.3 Lab Patient Collected Count Report END ------------------------------------------ -->      
+
+<!-- ------------------------------------------ 2.4 Lab Patient Accessed Count Report START ------------------------------------------ -->      
+	<div class="modal fade" id="labPatAccessedModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">4. KNG Lab Patient Accessed Count</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="klpaccessedcount" th:action="@{/KngLabPatientAccessedCount}" th:object=${brtFormBean}>
+			
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="klpaccessedcount-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate_klpaccessedcount" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate_klpaccessedcount" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			               
+			                 <div class="row">	
+			                	 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid_klpaccessedcount">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Type:</label>
+				                        <select class="form-control" th:field="*{brtReportTypeId}" id="reporttype_klpaccessedcount">
+				                        	
+				                       	</select>
+				                      </div>
+			                	</div>           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+ 
+ <!-- ------------------------------------------ 2.4 Lab Patient Accessed Count Report END ------------------------------------------ -->      
+
+
+
+ <!-- ------------------------------------------ 2.5 Lab Patient Processed Count Report START ------------------------------------------ -->      
+
+	<div class="modal fade" id="labpcpModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">5. KNG Lab Patient Processed Count</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="lpcpr" th:action="@{/KngLabPatientCountProcessed}" th:object=${brtFormBean}>
+			
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="lpcpr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate_lpcpr" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate_lpcpr" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			               
+			                 <div class="row">	
+			                	 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid_lpcpr">
+				        	       			<option th:value='0'>-- All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Type:</label>
+				                        <select class="form-control" th:field="*{brtReportTypeId}" id="reporttype_lpcpr">
+				                        	
+				                       	</select>
+				                      </div>
+			                	</div>           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
+ 
+ <!-- ------------------------------------------ 2.5 Lab Patient Processed Count Processed Report END ------------------------------------------ -->      
+
+ 
+</div> 
+
+
+
+</html>
+ 
+ 
+ 
+ 
+ 
+  

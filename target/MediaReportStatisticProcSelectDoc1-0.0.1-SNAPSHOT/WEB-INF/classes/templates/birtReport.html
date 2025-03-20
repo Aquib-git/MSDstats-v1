@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Kng Birt Reports</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body
+	class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+
+<div layout:fragment="content">
+		
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Kng Reports</h1>
+
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./birtReport">Kng Reports</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+		<!-- Main content -->
+		
+	
+		
+<section class="content">
+ <div class="container-fluid">
+<!-- -------------------------------------------------- GENERAL FRAGMENT START -------------------------------------------------- -->
+<!--
+<div class="row">
+  <div class="col-12">
+   <div class="card card-success collapsed-card">
+              			
+            <div class="card-header" data-card-widget="collapse">
+                <h3 class="card-title">1. General</h3>
+   
+				       <div class="card-tools">
+				         
+				       </div>
+				              
+			  </div>
+			             
+			              
+			  <div class="card-body pad table-responsive">
+			     <table class="table table-bordered text-center">
+
+                  <tr>	
+	                    <td class="col-md-2">
+	                        <a th:href="@{/emergencyServiceReport}" target="_blank" class="btn btn-block bg-gradient-primary">1. Emergency Services</a>
+	                    </td>
+	                    <td class="col-md-10">
+							
+						</td>
+                  </tr>               
+               
+                  </table>
+			  </div>
+			              
+      </div>
+	</div>
+</div>
+-->
+<!-- -------------------------------------------------- GENERAL FRAGMENT END -------------------------------------------------- -->
+		
+<!-- -------------------------------------------------- DYNAMIC REPORT GENERATION called here START -------------------------------------------------- -->
+		
+		 <div id="dynamicReportContainer"></div>	
+		 <!--<div id="modalContainer"></div> -->
+		 
+<!-- -------------------------------------------------- DYNAMIC REPORT GENERATION called here START -------------------------------------------------- -->
+		 
+
+</div>
+
+		
+		<!-- ----------------------------------------- BIRT MODALS USED START ------------------------------------- -->
+		<div id="fragments-container" th:replace="birtmodals/general_modals :: general_modals"></div>
+		<div id="fragments-container" th:replace="birtmodals/inv_modals :: inv_modals"></div>
+		<div id="fragments-container" th:replace="birtmodals/patvisit_modals :: patvisit_modals"></div>
+		<div id="fragments-container" th:replace="birtmodals/pha_modals :: pha_modals"></div>
+		<div id="fragments-container" th:replace="birtmodals/sick_modals :: sick_modals"></div>
+		
+		<!-- ----------------------------------------- BIRT MODALS USED END ------------------------------------- -->
+		
+		
+		
+</section>
+</div>
+
+<th:block layout:fragment="script">
+		<!-- ----------------------------------------- BIRT JS SCRIPTS USED START ------------------------------------- -->
+		
+		<!-- Birt Report Constructor Logic START-->
+		<script src="./admin/custom/brtjs/coreReportBuilder.js" type="module" ></script>
+		<!-- <script src="./admin/custom/brtjs/coreModalBuilder.js" type="module" ></script> -->
+		
+		
+		<!-- Birt Report Constructor Logic END-->
+	
+		<!-- GENERAL JS START -->
+		<script src="./admin/custom/brtjs/es.js" type="module" ></script>
+		<!-- GENERAL JS END -->
+	
+		<!-- INVESTIGATIONS JS START -->
+		<script src="./admin/custom/brtjs/xray.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/lab.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/klpcollectedcount.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/klpaccessedcount.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/lpcpr.js" type="module" ></script>
+		<!-- INVESTIGATIONS JS END -->
+		
+		
+		<!-- PATIENT VISIT JS START -->
+		<script src="./admin/custom/brtjs/pvbddr.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/cpd.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pmvps.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pyvps.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/procmvps.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/procyvps.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pvcbpdw.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/sv.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pc.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/vc.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pvoscf.js" type="module" ></script>
+		<!-- PATIENT VISIT JS START -->
+		
+		<!-- PHARMACY JS START -->
+		<script src="./admin/custom/brtjs/mscw.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/mbkp.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pitdr.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/pvh.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/phavoscf.js" type="module" ></script>
+		<!-- PHARMACY JS END -->
+		
+		
+		<!-- SICK LEAVE JS START -->
+		<script src="./admin/custom/brtjs/slbdsr.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/slsr.js" type="module" ></script>
+		<script src="./admin/custom/brtjs/edbd.js" type="module" ></script>
+		<!-- SICK LEAVE JS END -->
+		
+		<script>
+		function openWindow(url)
+		 {
+			var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+			
+			popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+			
+		 }
+		</script>
+		
+		
+		
+		<!-- ----------------------------------------- BIRT JS SCRIPTS USED END ------------------------------------- -->
+</th:block>
+</body>
+</html>

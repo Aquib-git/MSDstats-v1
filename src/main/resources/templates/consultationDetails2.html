@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+  <title>The Daily Patient Details</title>
+  
+  
+  
+  
+  
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+    
+   <!-- <div class="row" style="text-align:center;">
+	    <h1 class="card-title" style="font-size: large; font-weight: bold; text-align:center; width: 100%;">Patient Total Consultation Details :&nbsp;&nbsp;
+	     <a class="btn btn-primary" th:href="@{/patientDetailsTodyInfo}">Back</a>&nbsp;&nbsp;
+	    </h1>
+    </div>-->
+    
+	
+	<div class="container-fluid">
+			<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS START ----------------------------- -->
+	 	<div class="row">
+		  <div class="col-12">
+	            <div class="card"> 
+					<div class="card-header">
+					           <h5>
+									<b>Patient Total Consultation Details:&nbsp;&nbsp; </b>
+									<!-- <a class="btn btn-primary" th:href="@{/patientDetailsTodyInfo}">Back</a>&nbsp;&nbsp; -->
+									
+									<!--  <button id="btn1" onclick="prevPage()">Previous page</button> -->
+									
+									<button type="button" class="btn btn-primary" onclick="window.history.back();">Go to previous page</button>
+									
+									<button type="button" class="btn btn-primary" onclick="window.history.forward();">Go to forward page</button>
+									
+					            </h5>
+					 </div>
+					 <div class="card-body"  th:each="p : ${PatConsultDetails}">
+					<!-- 	<div class="row">
+								<div class="col-sm-4">
+									
+								</div>
+								<div class="col-sm-8"></div>
+						</div> -->
+					  <div class="row">
+						  <div class="col-sm-4">
+						  
+						  <div class="form-group">
+										<p>Consultation Date:&nbsp;&nbsp;
+											<span th:text="${p.CONSULT_DATE}"></span>
+										</p>
+									</div>
+			                    	<div class="form-group">
+			                    	 	<p>Name(En):&nbsp;&nbsp;
+											    <span th:text="${p.PATIENT_NAME}"></span>
+			                    	 	</p>
+			                    	 </div>
+									 
+			                    	 <div class="form-group">
+			                    	 	<p>Date of Birth:&nbsp;&nbsp;
+											 <span th:text="${p.DATE_OF_BIRTH}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+									
+			                    	  
+									  <div class="form-group">
+			                    	 	<p>Doctor:&nbsp;&nbsp;
+											 <span th:text="${p.DOCTOR_NAME}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div> 
+									  
+			                 </div>
+		                  	<div class="col-sm-4">
+							
+								 <div class="form-group">
+		                    	 	<p>Military Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_EMPLOYEE_ID}"></span>
+		                    	 	</p>
+		                    	 </div>
+		                    	 <div class="form-group">
+										<p>Civil Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_CIVILID}"></span>
+										</p>
+								</div>
+							
+								 <div class="form-group">
+			                    	 	<p>Age:&nbsp;&nbsp;
+											 <span th:text="${p.PATIENT_AGE_DETAILED}"></span>
+			                    	 	</p>
+			                    	 </div>
+		                    	
+								 <div class="form-group">
+			                    	 	<p>Speciality:&nbsp;&nbsp;
+											 <span th:text="${p.DEPARTMENT_NAME}"></span>
+			                    	 	</p>
+			                     </div> 
+		                    	
+							</div>
+							<div class="col-sm-4">
+						
+								 <div class="form-group">
+		                    	 	<p>Patient Rank:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_DESIGNATION}"></span>
+		                    	 	</p>
+		                    	 </div>
+								 
+								  <div class="form-group">
+			                    	 	<p>Clinic Name:&nbsp;&nbsp;
+											 <span th:text="${p.OFFICE_NAME}"></span>
+			                    	 	</p>
+			                     </div>
+			                     
+			                      
+								  <div class="form-group">
+			                    	 	<p>Consult Id:&nbsp;&nbsp;
+											 <span th:text="${p.CONSULT_ID}"></span>
+			                    	 	</p>
+			                     </div>
+							
+							</div>
+					  </div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS END ----------------------------- -->
+	
+	<!-- ------------------------------------------------------------------ CONSULTATION TAB START ----------------------------------------------------------------------- -->
+	
+		<div class="row">
+		<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						 <ul class="nav nav-pills">
+		                  <li class="nav-item"><a class="nav-link active"  href="#lab" data-toggle="tab" >1.Lab</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#xray" data-toggle="tab">2.X-ray</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#proc" data-toggle="tab">3.Procedure</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#sick" data-toggle="tab">4.Sick Leave</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#vital" data-toggle="tab">5.Vital Signs</a></li>  
+		                  <li class="nav-item"><a class="nav-link"  href="#dispense" data-toggle="tab">6.Dispense</a></li>  
+		                </ul>
+					</div>	
+					
+					  <div class="card-body">
+						   <div class="tab-content">
+				                  <!-- -------------------------------------------------- LAB TAB START ------------------------------------------------- -->
+				                  <div class="active tab-pane" id="lab">
+								  		<th:block th:replace="tabs/lab_tab2"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- LAB TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- XRAY TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="xray">
+								  		<th:block th:replace="tabs/xray_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- XRAY TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- PROCEDURE TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="proc">
+								  		<th:block th:replace="tabs/proc_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- PROCEDURE TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- SICK TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="sick">
+								  		<th:block th:replace="tabs/sick_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- SICK TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- VITAL TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="vital">
+								  		<th:block th:replace="tabs/vital_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- VITAL TAB END ------------------------------------------------- -->
+			                	
+			                     <!-- -------------------------------------------------- DISPENSE TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="dispense">
+								  		<th:block th:replace="tabs/dispense_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- DISPENSE TAB END ------------------------------------------------- -->
+			                
+                			</div>
+					  </div>			
+				</div>
+		</div>
+	</div>
+	
+	<!-- ------------------------------------------------------------------ CONSULTATION TAB END ----------------------------------------------------------------------- -->
+	
+	
+	
+       
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+  
+  
+  
+ </div>
+  
+  <!-- /.content-wrapper -->
+  
+  
+  
+  <div>
+
+  </div>
+  
+
+</body>
+</html>
+
+  
+  
+  

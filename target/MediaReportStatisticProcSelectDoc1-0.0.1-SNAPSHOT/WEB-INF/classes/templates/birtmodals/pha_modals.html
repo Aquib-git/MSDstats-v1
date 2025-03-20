@@ -1,0 +1,339 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="pha_modals">
+	
+		
+			<!-- ------------------------------------------ 4.1 Medicine Stock - Clinic Wiset START ------------------------------------------ -->      
+     
+       <div class="modal fade" id="mscwModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">1. Medicine Stock - Clinic Wise</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="mscw" th:action="@{/medicineStockClinicWise}"  th:object=${brtFormBean} >
+		            <div class="modal-body">
+						
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="mscw-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+						
+		               <div class="row">
+			                      
+			                     <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                          <select class="form-control" th:field="*{brtOid}" id="oid19">
+					        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+							          			<option th:each="e : ${officeDateFilter}"
+													th:value="${e.officeId}"
+													th:text="${e.officeName}">
+												</option>
+		 					    			</select>  
+				                      </div>
+			                	</div> 
+			                	
+			                	
+							</div>  
+						   
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+<!-- ------------------------------------------ 4.1 Medicine Stock - Clinic Wiset END ------------------------------------------ -->      
+     		
+	<!-- ------------------------------------------ 4.2 Medicine by KNG Pharmacy START ------------------------------------------ -->      
+     
+       <div class="modal fade" id="mbkpModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">2. Medicine by KNG Pharmacy</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="mbkp" th:action="@{/medicineByKngPharmacyReport}"  th:object=${brtFormBean} >
+		            <div class="modal-body">
+						
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="mbkp-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+						
+		                <div class="row">
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                          <input type="date" th:field="*{brtSdate}" id="sdate19" class="form-control">
+				                      </div>
+			                	</div> 
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                         <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate19" class="form-control">
+				                      </div>
+			                	</div>    
+						 </div>  
+						  
+						  <div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid20">
+				        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>Demographic:</label>
+					                        <select class="form-control" th:field="*{brtKwtNkwtid}" id="kwtid19">
+				                       		 </select>
+					                      </div>
+				                </div>    
+						 	</div>  
+						 	
+						 	<div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Military Id:</label>
+				                      <input type="text" placeholder="Optional" class="form-control" th:field="*{brtPid}" id="pid19">
+				                        
+				                      </div>
+			                	</div>
+			                	<!--<div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>Medicine Dispensed:</label>
+					                       
+					                        <input type="text" placeholder="Type All for ALL" class="form-control" th:field="*{brtFillerid}" id="fid19" >
+					                      </div>
+				                </div>    -->
+						 	</div>  
+						 	
+						  
+			           </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+<!-- ------------------------------------------ 4.2 Medicine by KNG Pharmacy END ------------------------------------------ -->      
+     			
+     
+     <!-- ------------------------------------------ 4.3 Pharmacy Visit History Report START ------------------------------------------ -->      
+            <div class="modal fade" id="pvhrModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">3. Pharmacy Visit History</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="pvh" th:action="@{/pharmacyVisitHistory}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="pvh-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+						<div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Civil Id/Military Id/MR. No:</label>
+				                         <input type="text" class="form-control" th:field="*{brtPid}" id="pid1">
+				                      </div>
+			                	</div> 
+			                			                	
+							</div>  
+						
+						   
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+     
+     <!-- ------------------------------------------ 4.3 Pharmacy Visit History Report END ------------------------------------------ -->      
+     
+      <!-- ------------------------------------------ 4.4 Pharmacy Visit-Officer,Soldier,Civilian,Family START ------------------------------------------ -->      
+            <div class="modal fade" id="phavoscfModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">4. Pharmacy Visit-Officer,Soldier,Civilian,Family</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+           <form id="phavoscf" th:action="@{/phavisitOfficerSoldierCivilianFamily}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="phavoscf-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+						<div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                          <input type="date" th:field="*{brtSdate}" id="sdate15" class="form-control">
+				                      </div>
+			                	</div> 
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                         <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate15" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                			                	
+							</div>  
+						
+						   
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+     
+     <!-- ------------------------------------------ 4.4 Pharmacy Vsit-Officer,Soldier,Civilian,Family START ------------------------------------------ -->      
+      
+     	<!-- ------------------------------------------ 4.5 Pharmacy Items Total Dispensed Report START ------------------------------------------ -->      
+     
+       <div class="modal fade" id="pitdrModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">5. Pharmacy Items Total Dispensed Report</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="pitdr" th:action="@{/pharmacyItemsTotalDispensedReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="pitdr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+
+						<div class="row">
+			                   <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                          <input type="date" th:field="*{brtSdate}" id="sdate14" class="form-control">
+				                      </div>
+			                	</div> 
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                         <label>To Date:</label>
+				                         <input type="date" th:field="*{brtEdate}" id="edate14" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+							</div>  
+						
+		               <div class="row">
+			                      
+			                     <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                           <select class="form-control" th:field="*{brtOid}" id="oid14">
+				        	       			<option th:value='0'>--Please select Clinic--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>  
+				                      </div>
+			                	</div> 
+			                	<div class="col-sm-6">
+			                    	<div class="form-group">
+				                         <label>Pharmacy Item Name:</label>
+				                       <select class="form-control select2"  style="width: 100%;" th:field="*{brtMedicineid}" id="mid14">
+				        	       			<option th:value='0'>-- Select Clinic to fetch Medicine List --</option>			    					  					    					    
+						          			
+		 					    		</select>	
+				                      </div>
+			                	</div> 
+			                	
+							</div>  
+						   
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+     <!-- ------------------------------------------ 4.5 Pharmacy Items Total Dispensed Report end ------------------------------------------ -->      
+     
+     
+     
+  </div>
+  
+  
+  
+  
+</html>

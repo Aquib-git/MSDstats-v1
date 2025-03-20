@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Lab Charts</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div layout:fragment="content">
+	
+	
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{Lab_Chart}">Lab Charts</h1>
+
+					</div>
+					
+					
+				
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./labChart" th:text="#{Lab_Chart}">Lab Charts</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+
+	
+<div th:fragment="labChart">	
+	<div class="container-fluid">
+		<div class="row">
+		    <div class="col-12">
+	
+	<!--  ---------------------------------------------------- LAB CHART START ------------------------------------------------- -->
+		
+			<div class="card">  
+				<div class="card-header">
+				       <h5><b>1. Lab Chart:&nbsp;&nbsp;</b></h5>
+				 </div>
+				<div class="card-body">
+					<form id="labFormBeanChart" th:action="@{/labChart}" class="form-horizontal" th:object=${labFormBean} >
+						<span>
+		
+							<div class="row" style="text-align: center;">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4"><p id="labchart-error-message" style="color: red; cursor: pointer;"></p></div>
+									<div class="col-sm-4"></div>				
+							</div>
+							
+							
+							<div class="row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem;">
+						            <div style="display: flex; align-items: center;">
+						                <span style="margin-right: 0.5rem;">Clinic Name:</span>
+						                <select id="labyClinicId" th:field="*{labOid}" >
+						                    <option value='0'>All Clinics</option>
+					           					 <option th:each="e : ${LabOfficeDateFilter}"
+																	th:value="${e.officeId}"
+																	th:text="${e.officeName}">
+												 </option>
+						                </select>
+						            </div>
+						            <div style="display: flex; align-items: center;">
+						                <span style="margin-right: 0.5rem;">From date:</span>
+						                <input type="date" id="labySdate" th:field="*{labSdate}" style="margin-right: 1rem;">
+						                <span  style="margin-right: 0.5rem;">To date:</span>
+						                <input type="date" id="labyEdate" th:field="*{labEdate}" style="margin-right: 1rem;">
+						                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+						            </div>
+			       			 </div>
+		       			 
+						</span>
+					</form>
+				</div>
+			</div> 
+			
+			
+			<div class="row">
+			<div class="col-md-12">
+				 <div class="row">
+			<!-- ------------------------------------------- SAMPLE COLLECTION  Chart called here START ------------------------------------------ -->
+				 	<div class="col-md-4">
+						 	<div class="card card-primary">
+								 
+									<div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Sample_Collection_by_Branches}">Sample Collection by Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="sampleCollectChartLabels" th:value="${sampleCollectChart.labscoLabel}" /> 
+											<input type="hidden" th:id="sampleCollectChartData"   th:value="${sampleCollectChart.labscoData}" />
+											<canvas id="sampleCollectChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+										</div>
+									</div>
+									
+							</div>
+					</div>
+			<!-- ------------------------------------------- SAMPLE COLLECTION  Chart called here END ------------------------------------------ -->
+			
+			<!-- ------------------------------------------- ACCESSION/AKNWLDG Chart called here START ------------------------------------------ -->
+					
+					 <div class="col-md-4">
+						 <div class="card card-primary">
+								 
+									<div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Accession_by_Branches}">Accession by Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="accessAcknwldgChartLabels" th:value="${accessAcknwldgChart.labaaoLabel}" /> 
+											<input type="hidden" th:id="accessAcknwldgChartData"   th:value="${accessAcknwldgChart.labaaoData}" />
+											<canvas id="accessAcknwldgChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+										</div>
+									</div>
+									
+							</div>
+					 </div>
+				<!-- ------------------------------------------- ACCESSION/AKNWLDG Chart called here END ------------------------------------------ -->
+				
+					
+					<div class="col-md-4">
+					</div>
+					
+					
+				 </div>
+			</div>
+		</div>
+			
+			
+			
+	<!--  ---------------------------------------------------- LAB CHART END ------------------------------------------------- -->
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    </div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+
+
+<th:block layout:fragment="script">
+	
+<script src="./admin/plugins/chart.js/chart.min_new.js"></script>
+<script src="./admin/plugins/chart.js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+<script type="module">
+  import { VerticalBarChartCreator } from '/admin/custom/chartCreator/VerticalBarChartCreator.js';
+
+/* -------------------------------------------------------- SAMPLE COLLECTION CHART LOGIC called here START --------------------------------------------------------*/
+	
+	var sampleCollectChartLabels = document.getElementById("sampleCollectChartLabels");
+	var sampleCollectChartData = document.getElementById("sampleCollectChartData");
+	var sampleCollectChartName = `sampleCollectChart`; //This has to be same as the id present in the canvas
+	var sampleCollectHoverDescription= `Sample Collect`;
+	var sampleCollectByOfficeUrlLogic=`./sampleCollectInfoWithOffice?OfficeName=`;
+	
+	VerticalBarChartCreator(sampleCollectChartLabels,sampleCollectChartData,sampleCollectChartName,sampleCollectHoverDescription,sampleCollectByOfficeUrlLogic);
+
+/* -------------------------------------------------------- SAMPLE COLLECTION CHART LOGIC called here END --------------------------------------------------------*/
+
+/* -------------------------------------------------------- ACCESSION CHART LOGIC called here START --------------------------------------------------------*/
+
+	var accessionChartLabels = document.getElementById("accessAcknwldgChartLabels");
+	var accessionChartData = document.getElementById("accessAcknwldgChartData");
+	var accessionChartName = `accessAcknwldgChart`; //This has to be same as the id present in the canvas
+	var accessionHoverDescription= `Accession`;
+	var accessionByOfficeUrlLogic=`./accessAcknwldgInfoWithOffice?OfficeName=`;
+	
+	VerticalBarChartCreator(accessionChartLabels,accessionChartData,accessionChartName,accessionHoverDescription,accessionByOfficeUrlLogic);
+
+/* -------------------------------------------------------- ACCESSION CHART LOGIC called here END --------------------------------------------------------*/
+
+</script>
+	
+			
+
+</th:block>
+</body>
+
+
+</html>

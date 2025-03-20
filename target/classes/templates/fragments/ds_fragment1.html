@@ -1,0 +1,155 @@
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h5 class="card-title" th:text="#{The_Daily_Statistics_For_AllBranches}">The Daily Statistics For All
+									Branches</h5>
+									
+
+								<div class="card-tools">
+								 
+									<button type="button" class="btn btn-tool"
+										data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+
+									<button type="button" class="btn btn-tool"
+										data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<!-- Left col -->
+								<div class="row">
+
+									<div class="col-12 col-sm-6 col-md-2">
+									 <a href="./doctorDetailsTodyInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+										<div class="info-box mb-3" style="background-color: #1578b3; color: white;">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{Doctors}">Doctors</span> <span
+													class="info-box-number"
+													th:text="${hmpDoctorBranchToday.TotalDoctorOfficeToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											
+                                                <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./patientDetailsTodyInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-success">
+											<span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{Patients }">Patients </span> <span
+													class="info-box-number"
+													th:utext="${hmpViewPatientToday.TotalPatientVisitToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                            <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+
+									</div>
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./labTestInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-danger">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{Laboratory_Tests}">Laboratory Tests</span> <span
+													class="info-box-number"
+													th:utext="${hmpLabRadTestToday.TotalLabVisitToday}"></span>
+
+											</div>
+										
+											  <!-- /.info-box-content -->
+                                             <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./radTestInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3"
+											style="background-color: #817d17; color: white;">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{X-rays}">X-rays</span> <span
+													class="info-box-number"
+													th:utext="${hmpLabRadTestToday.TotalRadVisitToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                            
+                                            <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+
+									<div class="col-12 col-sm-6 col-md-2">
+									 <a href="./sickLeaveInfo" data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-info">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{Sick_Leaves}">Sick Leaves</span> <span
+													class="info-box-number"
+													th:utext="${hmpViewSickLeaveToday.TotalSickLeaveToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                         <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./procInfo"  data-toggle="modal" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3"
+											style="background-color: #25463d; color: white;">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text" th:text="#{Procedures}">Procedures</span> <span
+													class="info-box-number"
+													th:utext="${hmpProceduOfficeToday.TotalProceduOfficeCountToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											
+										 <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>

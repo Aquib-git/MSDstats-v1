@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- LAB TAB START ------------------------------------------------- -->
+<div th:fragment="lab">
+	<!-- This is lab_tab ist   -->
+	<div class="card-header">
+	       <h5><b>1.Lab:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	<div class="card-body">
+		<table id="examplePatConsultLab" class="table table-bordered table-striped table-head-fixed">
+			<thead>
+				<tr>
+					<th>Row_No.</th>
+					<th>Test Id</th>
+					<th>Lab Test Name</th>
+					<th>View Results</th>
+					<th>Category Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="LabtestInfo,itercss : ${PatConsultLabDetails}">
+					<td th:text="${itercss.count}"></td>
+					<td th:text="${LabtestInfo.TEST_ID}"></td>
+					<td th:text="${LabtestInfo.testNameList}"></td>
+					<td>   
+						<a th:href="@{'/labResults/findByConsultId?consultid=' + ${LabtestInfo.CONSULT_ID} + '&tid=' + ${LabtestInfo.TEST_ID}}" class="btn btn-secondary">
+							View Results
+						</a>
+					</td>
+					<td th:text="${LabtestInfo.categoryNameList}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--  ---------------------------------------------------- LAB TAB END ------------------------------------------------- -->
+</html>

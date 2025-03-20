@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Patient Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+    
+    <div class="row" style="text-align:center;">
+    
+    <h1 class="card-title" style="font-size: large; font-weight: bold; text-align:center; width: 100%;">MRD Patient Total Consultation Details
+    
+    <!-- <a class="btn btn-primary" th:href="@{/patientDetailsTodyInfo}">Back</a>&nbsp;&nbsp;
+    -->
+    </h1>
+    
+    
+    </div>
+    
+    
+      <div class="container-fluid">
+      <!-- --------------------------------- PATIENT LAB CONSULT DETAILS based on CONSULT_ID START --------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Lab Consult Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="examplePatConsultLab" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                <!--     <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <th>Test count</th>
+                    <th>Lab Test Name</th>
+                    <th>Category Name</th>
+                   <!--  <th>Doctor</th>
+                    <th>Speciality Name</th>
+                    <th>Branch Name</th>
+                     <th>Date</th> -->
+                   
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                      <tr th:each="LabtestInfo,itercss : ${PatConsultLabDetails}">
+                      <td th:text="${itercss.count}"></td>
+                  <!--     <td th:text="${LabtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${LabtestInfo.PATIENT_NAME}" ></td> -->
+                      <td th:text="${LabtestInfo.PATIENT_LABTEST_COUNT}"  ></td>
+                      <td th:text="${LabtestInfo.testNameList}"></td>
+                      <td th:text="${LabtestInfo.categoryNameList}"></td>
+                     <!--  <td th:text="${LabtestInfo.DOCTOR_NAME}"  ></td>
+                      <td th:text="${LabtestInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${LabtestInfo.OFFICE_NAME}"></td>
+                       <td th:text="${LabtestInfo.CONSULT_DATE}"></td> -->
+
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT LAB CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+        
+        
+       <!-- --------------------------------- PATIENT RAD CONSULT DETAILS based on CONSULT_ID START --------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Xray Consult Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+               <table id="examplePatConsultRad" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                  <!--   <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <th>Test count</th>
+                    <th>Rad Test Name</th>
+                    <th>Category Name</th>
+                   <!--  <th>Doctor</th>  
+                    <th>Speciality Name</th>
+                    <th>Branch Name</th>
+                     <th>Date</th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="RadtestInfo,itercss : ${PatConsultRabDetails}">
+                      <td th:text="${itercss.count}"></td>
+                     <!--  <td th:text="${RadtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${RadtestInfo.PATIENT_NAME}" ></td> -->
+                      <td th:text="${RadtestInfo.PATIENT_RADTEST_COUNT}" ></td>
+                      <td th:text="${RadtestInfo.TEST_NAME}"></td>
+                       <td th:text="${RadtestInfo.categoryNameList}"></td>
+                     <!--  <td th:text="${RadtestInfo.DOCTOR_NAME}"  ></td>
+                      <td th:text="${RadtestInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${RadtestInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${RadtestInfo.CONSULT_DATE}"></td> -->
+                      
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT RAD CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+       
+        
+        <!-- --------------------------------- PATIENT Procedure CONSULT DETAILS based on CONSULT_ID START --------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Procedure Consult Details
+                
+               
+                </h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                     <table id="examplePatConsultProc" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                 <!--    <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <th>Procedure Name</th>
+                    <th>Category Name</th>
+                   <!--  <th>Doctor </th>
+                    <th>Speciality Name</th>
+                    <th>Branch Name</th>   --> 
+                    <th>Status</th>
+                    <!--  <th>Date</th> -->
+               </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="ProcInfo,itercss : ${PatConsultProcDetails}">
+                      <td th:text="${itercss.count}"></td>
+                    <!--   <td th:text="${ProcInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${ProcInfo.PATIENT_NAME}" ></td>
+                    -->   <td th:text="${ProcInfo.PROCEDURE_NAME}"></td>
+                       <td th:text="${ProcInfo.PROCEDURE_CAT}"></td>
+                       
+                    <!--   <td th:text="${ProcInfo.DOCTOR_NAME}"></td>
+                      <td th:text="${ProcInfo.DEPARTMENT_NAME}"></td>
+                     
+                      <td th:text="${ProcInfo.OFFICE_NAME}"></td>  -->
+                      <td th:text="${ProcInfo.DONE_STATUS}"></td>
+                    <!--    <td th:text="${ProcInfo.CONSULT_DATE}"></td> -->
+                     
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT Procedure CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+       
+         
+       <!-- --------------------------------- PATIENT VITALS CONSULT DETAILS based on CONSULT_ID START --------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Vitals Consult Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+               <table id="examplePatConsultVitals" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                  <th>No.</th>
+                    <!-- <th>Patient Name</th>
+                    <th>Nationality</th>
+                    --> 
+                    <th>Vitals Count</th>
+                    <th>Vitals Name</th>
+                  <!--   <th>Doctor </th> -->
+                 <!--    <th>Speciality Name</th>
+                    <th>Branch Name</th>
+                    <th>Kng-Moh </th> -->
+           <!--         
+                    <th>Date</th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="Vitals,itercss : ${PatConsultVitalDetails}">
+                     <td th:text="${itercss.count}"></td>
+                      <!-- <td th:text="${Vitals.PATIENT_NAME}"  ></td>
+                      <td th:text="${Vitals.PATIENT_KWT_NKWT}"></td> -->
+                      <td th:text="${Vitals.VITALS_COUNT}"  ></td>
+                      <td th:text="${Vitals.VITAL_DETAILS}"></td>  
+                      
+                     <!--  <td th:text="${Vitals.DOCTOR_NAME}"  ></td>
+                      <td th:text="${Vitals.DEPARTMENT_NAME}"></td>
+                      <td th:text="${Vitals.OFFICE_NAME}" ></td>
+                       <td th:text="${Vitals.KNG_MOH}"></td>
+                      
+                      <td th:text="${Vitals.CONSULT_DATE}"></td>
+                      -->
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT VITALS CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+       
+       
+         <!-- --------------------------------- PATIENT Sick leave  CONSULT DETAILS based on CONSULT_ID START --------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Sick Leave Consult Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+               <table id="examplePatConsultSick" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                 <th>No.</th>
+                   <!--  <th>Kng ID</th>
+                    <th>Patient Name</th>
+                    
+                     <th>Doctor</th>
+                     <th>Speciality Name</th>
+                     <th>Branch Name</th> -->
+                    <th>Leave From</th>
+                    <th>Leave To</th>
+                    <th style="text-align: center;">No Of Days</th>
+                   
+                  
+                   
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="sickLeaveInfo,itercss : ${PatConsultSickDetails}">
+                     
+                     <td th:text="${itercss.count}"></td>
+                  <!--     <td th:text="${sickLeaveInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${sickLeaveInfo.PATIENT_NAME}" ></td>
+                    
+                      <td th:text="${sickLeaveInfo.DOCTOR_NAME}"  ></td>
+                      
+                       <td th:text="${sickLeaveInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${sickLeaveInfo.OFFICE_NAME}" ></td> -->
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_TO,'yyyy-MM-dd')}"></td>
+                      <td th:text="${sickLeaveInfo.NO_OF_DAYS}" style="text-align: center;"></td>
+                     <!--  <td th:text="${sickLeaveInfo.CONSULT_DATE}"></td> -->
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT Sick leave  CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+       
+       <!-- ---------------------------------  PATIENT Dispence leave  CONSULT DETAILS based on CONSULT_ID Start--------------------------------- -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">Patient Dispense Consult Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+               <table id="examplePatConsultDispence" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                
+                    <th>No.</th>
+                   <!--  <th>Patient Name</th> -->
+                   <!--  <th>Nationality</th> -->
+                    <th>Item Count</th>
+                    <th>Item Name</th>
+                    <!-- <th>Item Unit</th> -->
+                 <!--    <th>Doctor </th>
+                    <th>Speciality Name</th>
+                    <th>Branch Name</th> -->
+                    <!-- <th>Kng-Moh </th> -->
+                   
+                   <!--  <th>Status</th>  -->
+             <!--         <th>Date</th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="Dispense,itercss : ${PatConsultDispenceDetails}">
+                     
+                    <td th:text="${itercss.count}"></td>
+                   <!--    <td th:text="${Dispense.INVCUSTNAME}" ></td> -->
+                    <!--   <td th:text="${Dispense.PATIENT_KWT_NKWT}"></td> -->
+                      <td th:text="${Dispense.ITEM_COUNT}" ></td>
+                      <td th:text="${Dispense.ITEM_NAME}"></td>  
+                      <!-- <td th:text="${Dispense.itemUnitList}"></td> -->
+                      
+                  <!--     <td th:text="${Dispense.DOCTOR_NAME}"  ></td>
+                      <td th:text="${Dispense.DEPARTMENT_NAME}"></td>
+                      <td th:text="${Dispense.OFFICE_NAME}" ></td> -->
+                       <!-- <td th:text="${Dispense.KNG_MOH}"></td>-->
+                     
+                     <!--  <td th:text="${Dispense.INV_STATUS}"  ></td> -->
+                   <!--    <td th:text="${Dispense.INVOICE_DATE}"></td> -->
+                    
+                     
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- --------------------------------- PATIENT Dispence leave  CONSULT DETAILS based on CONSULT_ID END --------------------------------- -->
+       
+       
+       
+       
+         </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+ </div>
+  
+  <!-- /.content-wrapper -->
+
+</body>
+</html>
+
+  
+  
+  

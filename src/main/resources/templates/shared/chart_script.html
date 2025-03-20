@@ -1,0 +1,125 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<script src="./admin/plugins/chart.js/chart.min_new.js"></script>
+	<script src="./admin/plugins/chart.js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+<script type="module">
+import { ChartKaBaap } from './admin/custom/chartCreator/ChartKaBaap.js';
+import { VerticalBarChartCreator } from './admin/custom/chartCreator/VerticalBarChartCreator.js';
+import { PieChartCreator } from './admin/custom/chartCreator/PieChartCreator.js';
+import { DoughnutChartCreator } from './admin/custom/chartCreator/DoughnutChartCreator.js';
+import { GetUrlParameter } from './admin/custom/chartCreator/GetUrlParameter.js';
+
+$(document).ready(function() 
+{ 	
+/*------------------------------------------------------ Common Current Language function call ------------------------------------------------------ */
+	var ChartLangElement = GetUrlParameter('lang');
+/*------------------------------------------------------ Common Current Language function call ------------------------------------------------------ */
+
+/*------------------------------------------------------ fragment 2 JS START ------------------------------------------------------ */
+	//PATIENT DEPT CHART JS START
+	var pdChartLabels = document.getElementById("hmpViewPatientVisitDeptLabels");
+	var pdChartData = document.getElementById("hmpViewPatientVisitDeptData");
+	var pdChartName = `patientDepTChart`; //This has to be same as the id present in the canvas
+	var pdChartColor =  ['#00c0ef','#27a544','#000080','#4b77a9', '#d21243', '#ff5e07','#5f255f','#9ba8b7','#2b78fd','#e11011', '#f10bf1', '#260326fc' ,'#6610f2', '#1f2d3d','#7FFF00','#800000','#808000','#B27200'];
+	var pdHoverDescription= `Patient Dept Visit`;
+	var pdByOfficeUrlLogic=`./patientDetailsTodyInfoWithDept?DeptName=`;
+	
+	PieChartCreator(pdChartLabels,pdChartData,pdChartName,pdChartColor,pdHoverDescription,pdByOfficeUrlLogic,ChartLangElement);
+	//ChartKaBaap(pdChartLabels,pdChartData,pdChartName,pdChartColor,pdHoverDescription,pdByOfficeUrlLogic,'bar',ChartLangElement);
+	//PATIENT DEPT CHART JS END
+
+/*------------------------------------------------------ fragment 2 JS END ------------------------------------------------------ */
+
+/* ------------------------------------------------------ fragment 3 JS START ------------------------------------------------------*/
+	
+	//PATIENT OFFICE CHART JS START 
+	var poChartLabels = document.getElementById("hmpViewPatientTodayLabels");
+	var poChartData = document.getElementById("hmpViewPatientTodayData");
+	var poChartName = `dailyViewPatientChart`; //This has to be same as the id present in the canvas
+	var poChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var poHoverDescription= `Patient Office Visit`;
+	var poByOfficeUrlLogic=`./patientDetailsTodyInfoWithOffice?OfficeName=`;
+	
+	//VerticalBarChartCreator(poChartLabels,poChartData,poChartName,poChartColor,poHoverDescription,poByOfficeUrlLogic);
+	VerticalBarChartCreator(poChartLabels,poChartData,poChartName,poChartColor,poHoverDescription,poByOfficeUrlLogic,ChartLangElement)
+	//PATIENT OFFICE CHART JS END
+	 
+	//XRAY OFFICE CHART JS START 
+	var roChartLabels = document.getElementById("hmpLabRadTestTodayLabels");
+	var roChartData = document.getElementById("hmpLabRadTestTodayData");
+	var roChartName = `dailyLabRadTestChart`; //This has to be same as the id present in the canvas
+	var roChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var roHoverDescription= `Xray tests by office`;
+	var roByOfficeUrlLogic=`./radTestInfoWithOffice?OfficeName=`;
+	
+	VerticalBarChartCreator(roChartLabels,roChartData,roChartName,roChartColor,roHoverDescription,roByOfficeUrlLogic,ChartLangElement);
+	//XRAY OFFICE CHART JS END
+		
+	//LAB OFFICE CHART JS START 
+	var loChartLabels = document.getElementById("hmpLabTodayLabels");
+	var loChartData = document.getElementById("hmpLabTodayData");
+	var loChartName = `labTestsChart`; //This has to be same as the id present in the canvas
+	var loChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var loHoverDescription= `Lab tests by office`;
+	var loByOfficeUrlLogic=`./labTestInfoWithOffice?OfficeName=`;
+	
+	VerticalBarChartCreator(loChartLabels,loChartData,loChartName,loChartColor,loHoverDescription,loByOfficeUrlLogic,ChartLangElement);
+	//LAB OFFICE CHART JS END
+	 
+/* ------------------------------------------------------ fragment 3 JS END ------------------------------------------------------*/
+
+/* ------------------------------------------------------ fragment 4 JS START ------------------------------------------------------*/
+	
+	//SICK OFFICE CHART JS START
+	var soChartLabels = document.getElementById("hmpSickLeaveTodayLabels");
+	var soChartData = document.getElementById("hmpSickLeaveTodayData");
+	var soChartName = `sickLeavesChart`; //This has to be same as the id present in the canvas
+	var soChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var soHoverDescription= `Sick leave by office`;
+	var soByOfficeUrlLogic=`./sickLeaveInfoWithOffice?OfficeName=`;
+	
+	PieChartCreator(soChartLabels,soChartData,soChartName,soChartColor,soHoverDescription,soByOfficeUrlLogic,ChartLangElement);
+	//SICK OFFICE CHART JS END
+	
+	//DOCTOR OFFICE CHART JS START
+	var doChartLabels = document.getElementById("hmpDoctorBranchesTodayLabels");
+	var doChartData = document.getElementById("hmpDoctorBranchesTodayData");
+	var doChartName = `dailyDoctorsChart`; //This has to be same as the id present in the canvas
+	var doChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var doHoverDescription= `Doctors by office`;
+	var doByOfficeUrlLogic=`./doctorDetailsTodyInfoWithOffice?OfficeName=`;
+	
+	VerticalBarChartCreator(doChartLabels,doChartData,doChartName,doChartColor,doHoverDescription,doByOfficeUrlLogic,ChartLangElement);
+	//DOCTOR OFFICE CHART JS END 
+	
+	//PROC OFFICE CHART JS START
+	var procoChartLabels = document.getElementById("hmpProceduOfficeTodayLabels");
+	var procoChartData = document.getElementById("hmpProceduOfficeTodayData");
+	var procoChartName = `proceduOfficeChart`; //This has to be same as the id present in the canvas
+	var procoChartColor = ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var procoHoverDescription= `Procedures by office`;
+	var procoByOfficeUrlLogic=`./procInfooWithOffice?OfficeName=`;
+	
+	DoughnutChartCreator(procoChartLabels,procoChartData,procoChartName,procoChartColor,procoHoverDescription,procoByOfficeUrlLogic,ChartLangElement);
+	//PROC OFFICE CHART JS END
+	
+/* ------------------------------------------------------ fragment 4 JS END ------------------------------------------------------*/
+
+/* ------------------------------------------------------ fragment 5 JS START ------------------------------------------------------*/
+	
+	//DISPENSE OFFICE CHART JS START
+	var dispOffChartLabels = document.getElementById("hmpDispenseOfficeTodayLabels");
+	var dispOffChartData = document.getElementById("hmpDispenseOfficeTodayData");
+	var dispOffChartName = `dispenseChart`; //This has to be same as the id present in the canvas
+	var dispOffChartColor =  ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var dispOffHoverDescription= `Dispense by office`;
+	var dispOffByOfficeUrlLogic=`./dispenseInfoWithOffice?OfficeName=`;
+ 
+ 	PieChartCreator(dispOffChartLabels,dispOffChartData,dispOffChartName,dispOffChartColor,dispOffHoverDescription,dispOffByOfficeUrlLogic,ChartLangElement);
+	//DISPENSE OFFICE CHART JS END
+
+/* ------------------------------------------------------ fragment 5 JS END ------------------------------------------------------*/
+});
+
+</script>
+</html>

@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Statistics</title>
+
+</head>
+<body
+	class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+	<div layout:fragment="content">
+
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Daily Statistics</h1>
+						
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active"><a href="./dailyStatistics">Daily Statistics</a> </li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+         
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+			<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+					<div class="card">
+					<div class="card-header">
+			<form  id="formBean" th:action="@{/dailyStatistics}"  th:object=${dataFormBean} >
+			
+						<!--<h1 class="card-title m-0"  >Select Range Date </h1>-->Select Range Date
+					        <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+                           <i class="far fa-calendar-alt"></i>
+                       </button>
+                       
+                      From:  <input type="text" readonly="readonly"   id="selectSdateInput"  th:field="*{selectSDate}" >
+                      To:  <input type="text" readonly="readonly" id="selectEdateInput"  th:field="*{selectEDate}" >
+                        
+               </form>
+                       </div>
+                   
+                       </div>
+					</div>
+				</div>	
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="card">
+							<div class="card-header">
+								<h5 class="card-title">The Daily Statistics For All
+									Branches</h5>
+									
+
+								<div class="card-tools">
+								 
+									<button type="button" class="btn btn-tool"
+										data-card-widget="collapse">
+										<i class="fas fa-minus"></i>
+									</button>
+
+									<button type="button" class="btn btn-tool"
+										data-card-widget="remove">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body">
+								<!-- Left col -->
+								<div class="row">
+
+									<div class="col-12 col-sm-6 col-md-2">
+									 <a href="./doctorDetailsTodyInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+										<div class="info-box mb-3" style="background-color: #1578b3; color: white;">
+											<span class="info-box-icon "><i
+												class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">Doctors</span> <span
+													class="info-box-number"
+													th:utext="${hmpDoctorBranchToday.TotalDoctorOfficeToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											
+                                                <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./patientDetailsTodyInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-success">
+											<span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">Patients </span> <span
+													class="info-box-number"
+													th:utext="${hmpViewPatientToday.TotalPatientVisitToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                            <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+
+									</div>
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./labTestInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-danger">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">Laboratory Tests</span> <span
+													class="info-box-number"
+													th:utext="${hmpLabRadTestToday.TotalLabVisitToday}"></span>
+
+											</div>
+										
+											  <!-- /.info-box-content -->
+                                             <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./radTestInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3"
+											style="background-color: #817d17; color: white;">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">X-rays</span> <span
+													class="info-box-number"
+													th:utext="${hmpLabRadTestToday.TotalRadVisitToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                            
+                                            <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+
+									<div class="col-12 col-sm-6 col-md-2">
+									 <a href="./sickLeaveInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3 bg-info">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">Sick Leaves</span> <span
+													class="info-box-number"
+													th:utext="${hmpViewSickLeaveToday.TotalSickLeaveToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											 <!-- /.info-box-content -->
+                                         <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+									<!-- /.col -->
+
+									<div class="col-12 col-sm-6 col-md-2">
+									<a href="./procInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);">
+										<div class="info-box mb-3"
+											style="background-color: #25463d; color: white;">
+											<span class="info-box-icon "><i class="fas fa-users"></i></span>
+
+											<div class="info-box-content">
+												<span class="info-box-text">Procedures</span> <span
+													class="info-box-number"
+													th:utext="${hmpProceduOfficeToday.TotalProceduOfficeCountToday}"></span>
+
+											</div>
+											<!-- /.info-box-content -->
+											
+										 <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										</a>
+										<!-- /.info-box -->
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<!-- Main row -->
+				<div class="row">
+					<!-- Left col -->
+					<div class="col-md-12">
+					  <div class="row">
+						<!-- MAP & BOX PANE -->
+
+					
+							<div class="col-md-8">
+								<div class="card card-primary">
+									<div class="card-header">
+
+										<h3 class="card-title">The Daily Out-Patient visits by Department</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpViewPatientVisitDeptLabels"
+												th:value="${hmpViewPatientVisitDeptToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpViewPatientVisitDeptData"
+												th:value="${hmpViewPatientVisitDeptToday.hmpbData}" />
+											<canvas id="patientDepTChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+									<!-- /.card-body -->
+
+
+
+								</div>
+							</div>
+						
+                            <div class="col-md-4">
+								
+								<!-- /.info-box -->
+								<a href="./dispenseDetailsTodyInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+									<div class="info-box mb-3 " style="background-color: #0721a3cf!important;color: white">
+										<span class="info-box-icon"><i class="fas fa-users"></i></span>
+                                        
+										<div class="info-box-content">
+											<span class="info-box-text"> The Daily Dispense Information</span> <span
+												class="info-box-number" th:utext="${hmpViewDispenseInfoTodayTotal.TotalViewDispense}" ></span>
+												<span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+												
+										
+										</div>
+										
+										<!-- /.info-box-content -->
+									</div>
+									</a>
+									<!-- /.info-box -->
+									<a href="./vitalsTodayInfo" class="small-box-footer" style="color:#ffc107;" target="_blank" onclick="openWindow(this.href);" >
+									<div class="info-box mb-3 "  style="background-color: #536be3!important;color: white">
+										<span class="info-box-icon"><i class="fas fa-users"></i></span>
+
+										<div class="info-box-content">
+											<span class="info-box-text">The Daily Vitals Information</span>
+											 <span class="info-box-number" th:utext="${hmpViewVitalsInfoTodayTotal}"></span>
+										     
+										     <span class="small-box-footer"  style="color:#ffc107;" >More <i class="fas fa-arrow-circle-right"></i></span>
+										</div>
+										<!-- /.info-box-content -->
+									</div>
+									</a>
+									<!-- Info Boxes Style 2 -->
+									<div class="info-box " style="background-color: #f4f6f9!important;box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(235 233 233 / 20%);">
+										
+									</div>
+									<div class="info-box  " style="background-color: #f4f6f9!important;box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(235 233 233 / 20%);">
+										
+
+									</div>
+								
+								
+							</div>
+							
+                        </div>
+                        
+                        </div>
+                 </div>
+				     	<div class="row">
+				     	<div class="col-md-12">
+				     	  <div class="row">
+							<div class="col-md-4">
+								<div class="card card-primary">
+									<div class="card-header border-transparent">
+										<h3 class="card-title">The Daily Out-Patient Visits by Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpViewPatientTodayLabels"
+												th:value="${hmpViewPatientToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpViewPatientTodayData"
+												th:value="${hmpViewPatientToday.hmpbData}" />
+											<canvas id="dailyViewPatientChart"
+												style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+										</div>
+									<!--</div>-->
+									<div class="card-body p-0">
+										<div class="table-responsive">
+											<table class="table m-0">
+												<thead>
+													<tr>
+														<th style="width: 10px">#</th>
+														<th>Name</th>
+														<th></th>
+														<th style="width: 40px">Count</th>
+														<th style="width: 40px"></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr
+														th:each="Patient,itercss : ${hmpViewPatientToday.hmpPatientVisitDataToday}">
+														<td th:text="${itercss.index+1} +."></td>
+														<td style="font-size:medium; ;font-weight: bold;" >
+														<a th:href="'./patientDetailsTodyInfoWithOffice?OfficeName='+${Patient.officeName}" target="_blank" onclick="openWindow(this.href); " >
+														 <span style="font-size:medium;font-weight: bold;" th:text="${Patient.officeName}"></span>
+														</a>
+														</td>
+														<td>
+														
+
+														</td>
+														<td><span
+															th:class="${itercss.index+1}==1? 'badge bg-danger':
+                                          (${itercss.index+1}==2? 'badge bg-warning': 
+                                          (${itercss.index+1}==3? 'badge bg-primary': 
+                                          (${itercss.index+1}==4? 'badge bg-success':
+                                          'badge bg-danger' ) ))"
+															th:text="${Patient.totalCount}"></span></td>
+															
+														 <td>
+									                      <a th:href="'./patientDetailsTodyInfoWithOffice?OfficeName='+${Patient.officeName}" target="_blank" onclick="openWindow(this.href); " >
+									                        <i class="fas fa-search"></i>
+									                      </a>
+									                    </td>
+															
+													</tr>
+
+
+												</tbody>
+											</table>
+										</div>
+										<!-- /.table-responsive -->
+									</div>
+									<!-- /.card-body -->
+
+									</div>
+
+
+									<!-- /.card-body -->
+								</div>
+
+							</div>
+							<div class="col-md-4">
+							  <div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">The Daily X-Rays</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpLabRadTestTodayLabels"
+												th:value="${hmpLabRadTestToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpLabRadTestTodayData"
+												th:value="${hmpLabRadTestToday.hmpRadData}" />
+											<canvas id="dailyLabRadTestChart"
+												style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+										</div>
+										<div class="card-body p-0">
+										<div class="table-responsive">
+											<table class="table m-0">
+												<thead>
+													<tr>
+														<th style="width: 10px">#</th>
+														<th>Name</th>
+														<th></th>
+														<th style="width: 40px">Count</th>
+														<th style="width: 40px"></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr
+														th:each="rad,itercss : ${hmpLabRadTestToday.hmpLabRadDataToday}">
+														<td th:text="${itercss.index+1} +."></td>
+														<td style="font-size:medium; ;font-weight: bold;" >
+														<a th:href="'./radTestInfoWithOffice?OfficeName='+${rad.officeName}"  target="_blank" onclick="openWindow(this.href);" >
+														 <span style="font-size:medium;font-weight: bold;" th:text="${rad.officeName}"></span>
+														</a>
+														</td>
+														<td>
+														
+
+														</td>
+														<td><span
+															th:class="${itercss.index+1}==1? 'badge bg-danger':
+                                          (${itercss.index+1}==2? 'badge bg-warning': 
+                                          (${itercss.index+1}==3? 'badge bg-primary': 
+                                          (${itercss.index+1}==4? 'badge bg-success':
+                                          'badge bg-danger' ) ))"
+															th:text="${rad.totalRadCount}"></span></td>
+															
+														 <td>
+									                      <a th:href="'./radTestInfoWithOffice?OfficeName='+${rad.officeName}"  target="_blank" onclick="openWindow(this.href); " >
+									                        <i class="fas fa-search"></i>
+									                      </a>
+									                    </td>
+															
+													</tr>
+
+
+												</tbody>
+											</table>
+										</div>
+										<!-- /.table-responsive -->
+									</div>
+									<!-- /.card-body -->
+									</div>
+									<!-- /.card-body -->
+								</div>
+							</div>
+
+					        <div class="col-md-4">
+
+								<div class="card card-success">
+									<div class="card-header">
+										<h3 class="card-title">The Daily Laboratory Tests</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="chart">
+													<input type="hidden" th:id="hmpLabTodayLabels"
+														th:value="${hmpLabRadTestToday.hmpbLabels}" /> <input
+														type="hidden" th:id="hmpLabTodayData"
+														th:value="${hmpLabRadTestToday.hmpLabData}" />
+													<canvas id="labTestsChart"
+														style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+												</div>
+												<!-- ./chart-responsive -->
+											</div>
+											<!-- /.col 
+											<div class="col-md-4">
+												<ul class="chart-legend clearfix">
+													<li><i class="far fa-circle"
+														style="color: #4b77a9 !important; background-color: #4b77a9 !important; border-radius: 50%"></i>
+														HeadQuarters</li>
+													<li><i class="far fa-circle"
+														style="color: #5f255f !important; background-color: #5f255f !important; border-radius: 50%"></i>
+														Tahreer-Dental</li>
+													<li><i class="far fa-circle"
+														style="color: #d21243 !important; background-color: #d21243 !important; border-radius: 50%"></i>
+														Tahreer</li>
+													<li><i class="far fa-circle"
+														style="color: #B27200 !important; background-color: #B27200 !important; border-radius: 50%"></i>
+														Sheikh Salem</li>
+													<li><i class="far fa-circle"
+														style="color: #00c0ef !important; background-color: #00c0ef !important; border-radius: 50%"></i>
+														Summod</li>
+
+
+												</ul>
+											</div>
+											-->
+											<!-- /.col -->
+										</div>
+										<!-- /.row -->
+									</div>
+									<!-- /.card-body -->
+
+									<!-- /.footer -->
+								</div>
+								<!-- /.card -->
+							
+                             </div>
+
+						
+                         <!-- /.row -->
+			     	</div>
+			     		<!-- /.col -->
+			     		</div>
+			     		</div>
+			     		
+			     	
+			
+				<!-- /.row -->
+				<div class="row">
+				 <div class="col-md-12">
+				     <div class="row">
+				     <div class="col-md-4">
+						
+						<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">The Daily Sick Leaves By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpSickLeaveTodayLabels"
+												th:value="${hmpViewSickLeaveToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpSickLeaveTodayData"
+												th:value="${hmpViewSickLeaveToday.hmpbData}" />
+											<canvas id="sickLeavesChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+						
+						</div>
+						<div class="col-md-4">
+						<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">The Daily Doctors By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpDoctorBranchesTodayLabels"
+												th:value="${hmpDoctorBranchToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpDoctorBranchesTodayData"
+												th:value="${hmpDoctorBranchToday.hmpbData}" />
+											<canvas id="dailyDoctorsChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+									</div>
+									<!-- /.card-body -->
+								</div>
+						</div>
+						
+						<div class="col-md-4">
+					<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title">The Daily Procedures By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpProceduOfficeTodayLabels" th:value="${hmpProceduOfficeToday.hmpbLabels}" />
+											<input type="hidden" th:id="hmpProceduOfficeTodayData" th:value="${hmpProceduOfficeToday.hmpbData}" />
+											<canvas id="proceduOfficeChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+						</div>
+			    </div>
+			   </div>		
+				</div>
+				</div>
+				<!--/. container-fluid -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+<th:block layout:fragment="script">
+		<script src="./admin/plugins/chart.js/chart.min_new.js"></script>
+		<script
+			src="./admin/plugins/chart.js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+
+<script type="text/javascript">
+
+
+//Get context with jQuery - using jQuery's .get() method.
+ var hmpLabTodayLabels = $("#hmpLabTodayLabels").val();
+ hmpLabTodayLabels = hmpLabTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").split(",");
+  var hmpLabTodayData = $("#hmpLabTodayData").val().trim();
+  hmpLabTodayData = hmpLabTodayData.replace("[","").replace("]","").split(",");
+var labTestsChartCanvas = $('#labTestsChart').get(0).getContext('2d');
+var labTestsChartData = {
+  labels: hmpLabTodayLabels
+	  //[
+	 // 'HeadQuarters',
+	//  'Sheikh Salem Camp',
+	//  'Summod Camp',
+    //  'Tahreer Camp-Dental',
+    //  'Tahreer Camp'
+    
+  //]
+  ,
+  datasets: [
+    {
+      data: hmpLabTodayData,//[10, 5, 13, 8, 2],
+      backgroundColor: ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243']
+    }
+  ]
+ 
+}
+ var labTestsChartOptions = {
+  legend: {
+    display: false
+  },
+  
+  plugins:{
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder'
+		},
+		 datalabels:{
+				color:'white',
+				fontStyle:'bolder',
+				formatter:function(value,ctx){
+					 return value>0?value:'';
+			      	}
+				
+			        }
+		
+},
+   onClick: function(event,element){
+	if(element.length>0){
+		var url='./labTestInfoWithOffice?OfficeName='+labTestsChartChart.data.labels[element[0].index].trim(); 
+		openWindow(url);
+	}
+	
+}
+ 
+}
+// Create pie or douhnut chart
+// You can switch between pie and douhnut using the method below.
+// eslint-disable-next-line no-unused-vars
+var labTestsChartChart = new Chart(labTestsChartCanvas, {
+  type: 'pie',
+  data: labTestsChartData,
+  options: labTestsChartOptions,
+  plugins:[ChartDataLabels]
+  
+ 
+});
+
+
+//-----------------dailyDoctors-----
+//Get context with jQuery - using jQuery's .get() method.
+
+ var hmpDoctorBranchesTodayLabels = $("#hmpDoctorBranchesTodayLabels").val();
+     hmpDoctorBranchesTodayLabels = hmpDoctorBranchesTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").split(",");
+  var hmpDoctorBranchesTodayData = $("#hmpDoctorBranchesTodayData").val().trim();
+  hmpDoctorBranchesTodayData = hmpDoctorBranchesTodayData.replace("[","").replace("]","").split(",");
+  
+var dailyDoctorsChartCanvas = $('#dailyDoctorsChart').get(0).getContext('2d')
+var dailyDoctorsChartData = {
+	
+	labels: hmpDoctorBranchesTodayLabels
+	// [
+	//	   'HeadQuarters',
+	//	   'Sheikh Salem Camp',
+	//	   'Summod Camp',
+	//       'Tahreer Camp-Dental',
+	 //      'Tahreer Camp'    
+	//    ]
+	    ,
+	
+  datasets: [
+    {
+        data:hmpDoctorBranchesTodayData ,// [30, 17, 15, 19, 20],
+        backgroundColor: ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243'],
+        label: 'Daily Doctors',
+        
+       
+       // data: [5, 2, 9, 8, 3],
+     // backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc']
+    }
+  ]
+ 
+}
+ var dailyDoctorsChartOptions = {
+  legend: {
+    display: false
+  },
+  plugins:{
+	  legend: {
+		    display: false
+		  },
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder',
+		
+		},
+		 datalabels:{
+	        	
+	        	
+	        	labels:{
+	        		value:{
+	        			color:'white'
+	        		}
+	        	}
+	        }
+		
+		
+},
+scales: {
+    yAxes: [{
+      ticks: {
+    	  beginAtZero:true
+      }
+     
+    }]
+  },
+  onClick: function(event,element){
+		if(element.length>0){
+			var url='./doctorDetailsTodyInfoWithOffice?OfficeName='+dailyDoctorsChartChart.data.labels[element[0].index].trim();
+			openWindow(url);
+		}
+		
+	}
+ 
+}
+// Create pie or douhnut chart
+// You can switch between pie and douhnut using the method below.
+// eslint-disable-next-line no-unused-vars
+var dailyDoctorsChartChart = new Chart(dailyDoctorsChartCanvas, {
+  type: 'bar',
+  data: dailyDoctorsChartData,
+  options: dailyDoctorsChartOptions,
+  plugins:[ChartDataLabels]
+  
+ 
+});
+
+//---------------------Daily sickLeaves 
+//Get context with jQuery - using jQuery's .get() method.
+
+
+var hmpSickLeaveTodayLabels = $("#hmpSickLeaveTodayLabels").val().trim();
+hmpSickLeaveTodayLabels = hmpSickLeaveTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").split(",");
+var hmpSickLeaveTodayData = $("#hmpSickLeaveTodayData").val().trim();
+hmpSickLeaveTodayData = hmpSickLeaveTodayData.replace("[","").replace("]","").split(",");
+var sickLeavesChartCanvas = $('#sickLeavesChart').get(0).getContext('2d')
+var sickLeavesChartData = {
+  labels:  hmpSickLeaveTodayLabels 
+   //[
+//	  'HeadQuarters',
+//	  'Sheikh Salem Camp',
+//	  'Summod Camp',
+ //     'Tahreer Camp-Dental',
+ //     'Tahreer Camp'
+    
+//  ]
+   ,
+  datasets: [
+    {
+      data: hmpSickLeaveTodayData ,// [5, 2, 2, 8, 3]
+      backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc']
+    }
+  ]
+ 
+}
+ var sickLeavesChartOptions = {
+  legend: {
+    display: true
+  },
+  plugins:{
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder'
+		},
+		 datalabels:{
+		color:'white',
+		fontStyle:'bolder',
+		formatter:function(value,ctx){
+			 return value>0?value:'';
+	      	}
+		
+	        }
+		
+},
+ onClick: function(event,element){
+	if(element.length>0){
+		var url='./sickLeaveInfoWithOffice?OfficeName='+sickLeavesChartChart.data.labels[element[0].index].trim();
+		openWindow(url);
+	}
+	
+}
+ 
+}
+// Create pie or douhnut chart
+// You can switch between pie and douhnut using the method below.
+// eslint-disable-next-line no-unused-vars
+var sickLeavesChartChart = new Chart(sickLeavesChartCanvas, {
+  type: 'pie',
+  data: sickLeavesChartData,
+  options: sickLeavesChartOptions,
+  plugins:[ChartDataLabels]
+  
+ 
+});
+
+//----------------------------------------------------
+    //- BAR CHART -
+    //-------------
+//-------------------------------------------------------------------------
+ var hmpLabRadTestTodayLabels = $("#hmpLabRadTestTodayLabels").val();
+       hmpLabRadTestTodayLabels = hmpLabRadTestTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").split(",");
+       
+  var hmpLabRadTestTodayData = $("#hmpLabRadTestTodayData").val().trim();
+  hmpLabRadTestTodayData = hmpLabRadTestTodayData.replace("[","").replace("]","").split(",");
+  
+var dailyLabRadTestChartCanvas = $('#dailyLabRadTestChart').get(0).getContext('2d')
+var dailyLabRadTestChartData = {
+	
+	labels: hmpLabRadTestTodayLabels
+		//[
+	//	   'HeadQuarters',
+		//   'Sheikh Salem Camp',
+	//	   'Summod Camp',
+	 //      'Tahreer Camp-Dental',
+	 //      'Tahreer Camp'    
+	//    ]
+	,
+	
+  datasets: [
+    {
+    	data:hmpLabRadTestTodayData ,// [30, 17, 15, 19, 20],
+        backgroundColor: ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243'],
+        label: 'Daily Doctors',
+        
+       
+       // data: [5, 2, 9, 8, 3],
+     // backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc']
+    }
+  ]
+ 
+}
+ var dailyLabRadTestChartOptions = {
+  legend: {
+    display: false
+  },
+  plugins:{
+	  legend: {
+		    display: false
+		  },
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder',
+		
+		},
+		 datalabels:{
+	        	
+	        	
+	        	labels:{
+	        		value:{
+	        			color:'white'
+	        		}
+	        	}
+	        }
+		
+		
+},
+scales: {
+    yAxes: [{
+      ticks: {
+    	  beginAtZero:true
+      }
+     
+    }]
+  },
+  onClick: function(event,element){
+		if(element.length>0){
+			let str=parseInt(element[0].index);
+			let num=str+1;
+			var url='./radTestInfoWithOffice?OfficeName='+dailyLabRadTestChartChart.data.labels[element[0].index].trim();
+			openWindow(url);
+		}
+		
+	}
+  
+}
+// Create pie or douhnut chart
+// You can switch between pie and douhnut using the method below.
+// eslint-disable-next-line no-unused-vars
+var dailyLabRadTestChartChart = new Chart(dailyLabRadTestChartCanvas, {
+  type: 'bar',
+  data: dailyLabRadTestChartData,
+  options: dailyLabRadTestChartOptions,
+  plugins:[ChartDataLabels]
+  
+ 
+});
+
+
+//---------------------Daily patient DepT Chart 
+//Get context with jQuery - using jQuery's .get() method.
+
+var hmpViewPatientVisitDeptLabels = $("#hmpViewPatientVisitDeptLabels").val().trim();
+hmpViewPatientVisitDeptLabels = hmpViewPatientVisitDeptLabels.replace("[","").replace("]","").split(",");
+var hmpViewPatientVisitDeptData = $("#hmpViewPatientVisitDeptData").val().trim();
+hmpViewPatientVisitDeptData = hmpViewPatientVisitDeptData.replace("[","").replace("]","").split(",");
+var PatientVisitDeptChartCanvas = $('#patientDepTChart').get(0).getContext('2d')
+var PatientVisitDeptChartData = {
+labels:  hmpViewPatientVisitDeptLabels 
+ //[
+//	  'HeadQuarters',
+//	  'Sheikh Salem Camp',
+//	  'Summod Camp',
+//     'Tahreer Camp-Dental',
+//     'Tahreer Camp'
+  
+//]
+ ,
+datasets: [
+  {
+    data: hmpViewPatientVisitDeptData ,// [5, 2, 2, 8, 3]
+   // backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#9ba8b7','#260326fc' ,'#00c0ef','#27a544','#000080','#4b77a9', '#d21243', '#ff5e07','#6610f2', '#1f2d3d','#7FFF00','#800000','#808000','#B27200'],
+    backgroundColor : ['#00c0ef','#27a544','#000080','#4b77a9', '#d21243', '#ff5e07','#5f255f','#9ba8b7','#2b78fd','#e11011', '#f10bf1', '#260326fc' ,'#6610f2', '#1f2d3d','#7FFF00','#800000','#808000','#B27200'],
+  }
+]
+
+}
+var PatientVisitDeptChartOptions = {
+legend: {
+  align:'end',
+  labels:{
+	  usePointStyle: true,
+	  padding: 20
+  }
+  
+},
+plugins:{
+	  
+		 datalabels:{
+		color:'white',
+		fontStyle:'bolder',
+		align:'left',
+		
+		
+		formatter:
+			function(value,ctx){
+			 return value>0?value:'';
+	      	},
+	      	
+	      	
+		
+	        }
+		
+},
+onClick: function(event,element){
+	if(element.length>0){
+		var url='./patientDetailsTodyInfoWithDept?DeptName='+PatientVisitDeptChartChart.data.labels[element[0].index].trim();
+		openWindow(url);
+	}
+	
+}
+
+}
+//Create pie or douhnut chart
+//You can switch between pie and douhnut using the method below.
+//eslint-disable-next-line no-unused-vars
+var PatientVisitDeptChartChart = new Chart(PatientVisitDeptChartCanvas, {
+type: 'doughnut',
+data: PatientVisitDeptChartData,
+options: PatientVisitDeptChartOptions,
+plugins:[ChartDataLabels]
+
+
+});
+
+
+//-----------------dailyDoctors-----
+//Get context with jQuery - using jQuery's .get() method.
+
+var hmpViewPatientTodayLabels = $("#hmpViewPatientTodayLabels").val();
+   hmpViewPatientTodayLabels = hmpViewPatientTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").split(",");
+var hmpViewPatientTodayData = $("#hmpViewPatientTodayData").val().trim();
+hmpViewPatientTodayData = hmpViewPatientTodayData.replace("[","").replace("]","").split(",");
+
+var dailyViewPatientChartCanvas = $('#dailyViewPatientChart').get(0).getContext('2d')
+var dailyViewPatientChartData = {
+	
+	labels:hmpViewPatientTodayLabels,
+	//labels:  [
+	//	   'HeadQuarters',
+	//	   'Sheikh Salem Camp',
+	//	   'Summod Camp',
+	//       'Tahreer Camp-Dental',
+	//       'Tahreer Camp'    
+	//    ],
+	
+datasets: [
+  {
+      data:hmpViewPatientTodayData ,// [30, 17, 15, 19, 20],
+      backgroundColor: ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243'],
+      label: 'Daily Doctors',
+      
+     
+     // data: [5, 2, 9, 8, 3],
+   // backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc']
+  }
+]
+
+}
+var dailyViewPatientChartOptions = {
+legend: {
+  display: false
+},
+plugins:{
+	  legend: {
+		    display: false
+		  },
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder',
+		
+		},
+		 datalabels:{
+	        	
+	        	
+	        	labels:{
+	        		value:{
+	        			color:'white'
+	        		}
+	        	}
+	        }
+		
+		
+},
+scales: {
+  yAxes: [{
+    ticks: {
+  	  beginAtZero:true
+    }
+   
+  }]
+},
+ onClick: function(event,element){
+	if(element.length>0){
+		let str=parseInt(element[0].index);
+		let num=str+1;
+		var url='./patientDetailsTodyInfoWithOffice?OfficeName='+dailyViewPatientChartChart.data.labels[element[0].index].trim();
+		openWindow(url);
+	}
+	
+}
+
+
+}
+//Create pie or douhnut chart
+//You can switch between pie and douhnut using the method below.
+//eslint-disable-next-line no-unused-vars
+var dailyViewPatientChartChart = new Chart(dailyViewPatientChartCanvas, {
+type: 'bar',
+data: dailyViewPatientChartData,
+options: dailyViewPatientChartOptions,
+plugins:[ChartDataLabels]
+
+
+});
+
+
+//---------------------Daily "hmpProcedu Office Today " 
+//Get context with jQuery - using jQuery's .get() method.
+
+
+var hmpProceduOfficeTodayLabels = $("#hmpProceduOfficeTodayLabels").val();
+hmpProceduOfficeTodayLabels = hmpProceduOfficeTodayLabels.replace("[","").replace("]","").replaceAll("-MultiSpeciality","").replaceAll("Al Ali","").split(",");
+var hmpProceduOfficeTodayData = $("#hmpProceduOfficeTodayData").val().trim();
+hmpProceduOfficeTodayData = hmpProceduOfficeTodayData.replace("[","").replace("]","").split(",");
+var ProceduOfficeChartCanvas = $('#proceduOfficeChart').get(0).getContext('2d')
+var ProceduOfficeChartData = {
+labels:  hmpProceduOfficeTodayLabels 
+ //[
+//	  'HeadQuarters',
+//	  'Sheikh Salem Camp',
+//	  'Summod Camp',
+//     'Tahreer Camp-Dental',
+//     'Tahreer Camp'
+  
+//]
+ ,
+datasets: [
+  {
+    data: hmpProceduOfficeTodayData ,// [5, 2, 2, 8, 3]
+    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#2b78fd']
+  }
+]
+
+}
+var ProceduOfficeChartOptions = {
+legend: {
+  display: true
+},
+plugins:{
+	  labels:{
+	
+		render:'value',
+		fontColor:'white',
+		fontStyle:'bolder'
+		},
+		 datalabels:{
+		color:'white',
+		fontStyle:'bolder',
+		formatter:function(value,ctx){
+			 return value > 0?value:'';
+	      	}
+		
+	        }
+		
+},
+ onClick: function(event,element){
+	if(element.length>0){
+		var url='./procInfooWithOffice?OfficeName='+ProceduOfficeChartChart.data.labels[element[0].index].trim();
+		openWindow(url);
+	}
+	
+}
+
+
+}
+//Create pie or douhnut chart
+//You can switch between pie and douhnut using the method below.
+//eslint-disable-next-line no-unused-vars
+var ProceduOfficeChartChart = new Chart(ProceduOfficeChartCanvas, {
+type: 'doughnut',
+data: ProceduOfficeChartData,
+options: ProceduOfficeChartOptions,
+plugins:[ChartDataLabels]
+
+
+});
+
+
+
+//------------------------
+function openWindow(url)
+ {
+	var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+	
+	popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+	
+ }
+ 
+$('.daterange').daterangepicker({
+  ranges: {
+    Today: [moment(), moment()],
+    Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    'This Month': [moment().startOf('month'), moment().endOf('month')],
+    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  },
+  startDate: moment(),
+  endDate: moment()
+});
+
+$('.daterange').on('apply.daterangepicker', function(ev, picker) {
+  var start = picker.startDate;
+  var end = picker.endDate;
+  document.getElementById("selectSdateInput").value = start.format('YYYY-MM-DD');
+  document.getElementById("selectEdateInput").value = end.format('YYYY-MM-DD');
+  document.getElementById("formBean").submit();
+});
+
+
+
+</script>
+
+
+	</th:block>
+</body>
+</html>

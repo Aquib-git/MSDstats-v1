@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Vitals   Details  2</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">    
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Vitals   Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-head-fixed text-nowrap">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Patient Name</th>
+                    <th>Nationality</th>
+                    <th>Vitals Count</th>
+                    <th>Vitals Name</th>
+                    <th>Doctor </th>
+                    <th>Dept. Name</th>
+                    <th>Office Name</th>
+                    <th>Kng-Moh </th>
+                   
+                    <th>Date</th>
+                   
+                   
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                    <tr th:each="Vitals,itercss : ${hmpViewPatientInfoTodayById}">
+                     <td th:text="${itercss.count}"></td>
+                     
+                      <td th:text="${Vitals.PATIENT_NAME}" style="font-weight: bold;" ></td>
+                      <td th:text="${Vitals.PATIENT_KWT_NKWT}"></td>
+                      <td th:text="${Vitals.VITALS_COUNT}"  style="color: blue;font-weight: bold;"></td>
+                      <td th:text="${Vitals.VITAL_DETAILS}"></td>  
+                      
+                      <td th:text="${Vitals.DOCTOR_NAME}"  style="color: green;font-weight: bold;"></td>
+                      <td th:text="${Vitals.DEPARTMENT_NAME}"></td>
+                      <td th:text="${Vitals.OFFICE_NAME}" style="color: blue;font-weight: bold;"></td>
+                       <td th:text="${Vitals.KNG_MOH}"></td>
+                      
+                      <td th:text="${Vitals.CONSULT_DATE}"></td>
+                     
+                     
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+     </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+
+</body>
+</html>
+
+  
+  
+  

@@ -1,0 +1,100 @@
+		<div class="row">
+				 <div class="col-md-12">
+				     <div class="row">
+				     <div class="col-md-4">
+						
+						<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title" 
+										th:text ="#{The_Daily_Sick_Leaves_By_Branches}">The Daily Sick Leaves By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpSickLeaveTodayLabels"
+												th:value="${hmpViewSickLeaveToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpSickLeaveTodayData"
+												th:value="${hmpViewSickLeaveToday.hmpbData}" />
+											<canvas id="sickLeavesChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+						
+						</div>
+						<div class="col-md-4">
+						<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title" 
+										th:text ="#{The_Daily_Doctors_By_Branches}">The Daily Doctors By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpDoctorBranchesTodayLabels"
+												th:value="${hmpDoctorBranchToday.hmpbLabels}" /> <input
+												type="hidden" th:id="hmpDoctorBranchesTodayData"
+												th:value="${hmpDoctorBranchToday.hmpbData}" />
+											<canvas id="dailyDoctorsChart"
+												style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+									</div>
+									<!-- /.card-body -->
+								</div>
+						</div>
+						
+						<div class="col-md-4">
+					<!-- BAR CHART -->
+								<div class="card card-primary">
+									<div class="card-header">
+										<h3 class="card-title" th:text ="#{The_Daily_Procedures_By_Branches}">The Daily Procedures By Branches</h3>
+
+										<div class="card-tools">
+											<button type="button" class="btn btn-tool"
+												data-card-widget="collapse">
+												<i class="fas fa-minus"></i>
+											</button>
+											<button type="button" class="btn btn-tool"
+												data-card-widget="remove">
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="chart">
+											<input type="hidden" th:id="hmpProceduOfficeTodayLabels" th:value="${hmpProceduOfficeToday.hmpbLabels}" />
+											<input type="hidden" th:id="hmpProceduOfficeTodayData" th:value="${hmpProceduOfficeToday.hmpbData}" />
+											<canvas id="proceduOfficeChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+										</div>
+
+									</div>
+									<!-- /.card-body -->
+								</div>
+						</div>
+			    </div>
+			   </div>		
+		</div>

@@ -1,0 +1,767 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="patvisit_modals">
+	
+
+
+<!-- ------------------------------------------ 3.1 Patient visits by Doctor, Dept Report START ------------------------------------------ -->
+<div class="modal fade" id="pvbddrModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">1. Patient visits by Doctor,Dept Report</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="pvbddr" th:action="@{/patientVisitsByDoctorDepartmentReport}" th:object=${brtFormBean}>
+			        <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="pvbddr-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+						
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate4" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate4" class="form-control">
+				                      </div>
+			                	</div>            	
+			                </div>
+			                 <div class="row">
+			                      
+			                    <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid4">
+				        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    			</select>
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>Department Name:</label>
+				                        <select class="form-control" th:field="*{brtDid}" id="did4">
+				        	       			<option th:value='0'>-- All Departments --</option>			    					  					    					    
+						          			
+		 					    		</select>	
+				                      </div>
+			                	</div>    
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>Doctor Name:</label>
+				                        <select class="form-control" th:field="*{brtDocid}" id="docid4">
+				        	       			<option th:value='0'>-- All Doctors --</option>			    					  					    					    
+						          			
+		 					    			</select>	
+				                      </div>
+			                	</div>           	
+			                </div>
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+<!-- ------------------------------------------ 3.1 Patient visits by Doctor, Dept Report END ------------------------------------------ -->      
+       
+    
+    <!-- ------------------------------------------ 3.2 Chronic Patient Detailed START ------------------------------------------ -->      
+     
+      <div class="modal fade" id="cpdModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">2. Chronic Patient Detailed</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="cpd" th:action="@{/chronicPatientReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="cpd-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                    <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate5" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate5" class="form-control">
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid5">
+				        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>
+				                      </div>
+			                	</div>
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+ 
+ <!-- ------------------------------------------ 3.2 Chronic Patient Detailed END ------------------------------------------ -->      
+      
+     
+    <!-- ------------------------------------------ 3.3 Patient Yealry Visits per Speciality START ------------------------------------------ -->      
+     
+      <div class="modal fade" id="pyvpsModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">3. Patient Yearly Visits per Speciality</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="pyvps" th:action="@{/patientYearlyVisitsperSpecalityReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+							<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="pyvps-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+		               <div class="row">
+
+							  <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                         <select class="form-control" th:field="*{brtOid}" id="oid7">
+				        	       			<option th:value='0'>--Please select Clinic--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>   
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>Year:</label>
+				                        <select class="form-control" th:field="*{brtYearid}" id="yearid7">
+				                        	
+				                        </select>	
+				                      </div>
+			                	</div> 
+			                	
+			                	
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- ------------------------------------------ 3.3 Patient Yealry Visits per Speciality END ------------------------------------------ -->      
+     
+     
+    
+     
+     <!-- ------------------------------------------ 3.4 Patient Yearly Visits Categorized By Procedure START ------------------------------------------ -->      
+ 
+	<div class="modal fade" id="pyvcbpModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">4. Patient Yearly Visits Categorized By Procedure</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="procyvps" th:action="@{/patientYearlyVisitsCategorizedProcedure}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="procyvps-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+						
+						
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid9">
+				        	       			<option th:value='0'>--Please Select Clinic--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>  
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>Year:</label>
+				                        <select class="form-control" th:field="*{brtYearid}" id="yearid9">
+				                        	
+				                        </select>	
+				                      </div>
+			                	</div> 
+ 
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+	<!-- ------------------------------------------ 3.4 Patient Yearly Visits Categorized By Procedure END ------------------------------------------ -->      
+      
+     <!-- ------------------------------------------ 3.5 Patients Visits Categorized By Procedure-Doctor Wise(Quarter) START ------------------------------------------ -->      
+     
+      <div class="modal fade" id="pvcbpdwModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">5. Patient Visits Categorized By Procedure-Doctor Wise(Quarter)</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="pvcbpdw" th:action="@{/patientVisitsCategorizedProcedureDocWise}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="pvcbpdw-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+					   
+		               <div class="row">
+			                      
+			                     <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                          <select class="form-control" th:field="*{brtOid}" id="oid10">
+				        	       			<option th:value='0'>--Please Select Clinic--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>  
+				                      </div>
+			                	</div>
+			                	 
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                         <label>Department Name:</label>
+				                       <select class="form-control" th:field="*{brtDid}" id="did10">
+				        	       			<option th:value='0'>-- All Departments --</option>			    					  					    					    
+						          			
+		 					    		</select>	
+				                      </div>
+			                	</div> 
+ 							
+ 								<div class="col-sm-4">
+			                		<div class="form-group">
+				                         <label>Doctor Name:</label>
+				                         <select class="form-control" th:field="*{brtDocid}" id="docid10">
+				        	       			<option th:value= '0'>-- All Doctors --</option>			    					  					    					    
+						          			
+		 					    			</select>	
+				                      </div>
+			                	</div> 
+			                	           	
+			                </div>
+			                <div class="row">
+								 <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>Quarter:</label>
+				                        <select class="form-control" th:field="*{brtQrterid}" id="qid10">  					  					    					    
+						          			
+		 					    			</select>	
+				                      </div>
+			                	</div>
+			                	 
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                         <label>Year:</label>
+				                        <select class="form-control" th:field="*{brtYearid}" id="yearid10">
+				                        	
+				                        </select>
+				                      </div>
+			                	</div> 
+							</div>  
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+   <!-- ------------------------------------------ 3.5 Patients Visits Categorized By Procedure-Doctor Wise(Quarter) END ------------------------------------------ -->      
+     
+   <!-- ------------------------------------------ 3.6 Speciality Visit START ------------------------------------------ -->      
+  
+
+	<div class="modal fade" id="svModal">
+	        <div class="modal-dialog modal-xl">
+	          <div class="modal-content">
+	            <div class="modal-header">
+	              <h4 class="modal-title">6. Speciality Visit</h4>
+	              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                <span aria-hidden="true">&times;</span>
+	              </button>
+	            </div>
+	            <form id="sv" th:action="@{/specialityvisit}" th:object=${brtFormBean}>
+		             <div class="modal-body">
+						 <!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="sv-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+			               <div class="row">
+				                      
+				                    <div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>From Date:</label>
+					                        <input type="date" th:field="*{brtSdate}" id="sdate11" class="form-control">
+					                      </div>
+				                	</div>
+				                	<div class="col-sm-6">
+				                		<div class="form-group">
+					                        <label>To Date:</label>
+					                        <input type="date" th:field="*{brtEdate}" id="edate11" class="form-control">
+					                      </div>
+				                	</div> 
+				               </div>
+				               
+				                 <div class="row">	
+				                	 <div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>Clinic Name:</label>
+					                         <select class="form-control" th:field="*{brtOid}" id="oid11">
+					        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+							          			<option th:each="e : ${officeDateFilter}"
+													th:value="${e.officeId}"
+													th:text="${e.officeName}">
+												</option>
+		 					    			</select>  
+					                      </div>
+				                	</div>
+				                	
+				                	<div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>Demographic:</label>
+					                        <select class="form-control" th:field="*{brtKwtNkwtid}" id="kwtid11">
+				                        	
+				                       		 </select>
+					                      </div>
+				                	</div>           	
+				                </div>
+				                 
+				               </div>
+				            <div class="modal-footer justify-content-center">
+				              <button type="submit" class="btn btn-primary">Submit</button>
+				            </div>
+	             </form>
+	          </div>
+	          <!-- /.modal-content -->
+	        </div>
+	        <!-- /.modal-dialog -->
+	      </div>
+	      <!-- /.modal -->
+	 
+ 	<!-- ------------------------------------------ 3.6 Speciality Visit END ------------------------------------------ -->      
+ 
+     <!-- ------------------------------------------ 3.7 Patient Count START ------------------------------------------ -->      
+     
+	 <div class="modal fade" id="pcModal">
+	        <div class="modal-dialog modal-xl">
+	          <div class="modal-content">
+	            <div class="modal-header">
+	              <h4 class="modal-title">7. Patient Count</h4>
+	              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                <span aria-hidden="true">&times;</span>
+	              </button>
+	            </div>
+	          	 <form id="pc" th:action="@{/patientcount}" th:object=${brtFormBean}>
+			            <div class="modal-body">
+							<!-- ERROR MESSAGE DISPLAY START -->
+							<div class="row" style="text-align: center;">
+										  <div class="col-sm-4"></div>
+										  <div class="col-sm-4"><p id="pc-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+										  <div class="col-sm-4"></div>
+							</div>
+					   		<!-- ERROR MESSAGE DISPLAY END -->
+			               <div class="row">
+				                      
+				                    <div class="col-sm-6">
+				                    	<div class="form-group">
+					                        <label>From Date:</label>
+					                        <input type="date" th:field="*{brtSdate}" id="sdate12" class="form-control">
+					                      </div>
+				                	</div>
+				                	<div class="col-sm-6">
+				                		<div class="form-group">
+					                        <label>To Date:</label>
+					                        <input type="date" th:field="*{brtEdate}" id="edate12" class="form-control">
+					                      </div>
+				                	</div> 
+				               </div>
+				                 
+				               </div>
+				            <div class="modal-footer justify-content-center">
+				              <button type="submit" class="btn btn-primary">Submit</button>
+				            </div>
+	             </form>
+	          </div>
+	          <!-- /.modal-content -->
+	        </div>
+	        <!-- /.modal-dialog -->
+	      </div>
+	      <!-- /.modal -->
+  <!-- ------------------------------------------ 3.7 Patient Count END ------------------------------------------ -->      
+  
+   <!-- ------------------------------------------ 3.8 Visit Count START ------------------------------------------ -->      
+ 
+ <div class="modal fade" id="vcModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">8. Visit Count</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="vc" th:action="@{/visitcount}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+							<div class="row" style="text-align: center;">
+										  <div class="col-sm-4"></div>
+										  <div class="col-sm-4"><p id="vc-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+										  <div class="col-sm-4"></div>
+							</div>
+					   	<!-- ERROR MESSAGE DISPLAY END -->
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate13" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate13" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+  <!-- ------------------------------------------ 3.8 Visit Count END ------------------------------------------ -->      
+      
+  <!-- ------------------------------------------ 3.9 Patient Visit-Officer,Soldier,Civilian,Family START ------------------------------------------ -->      
+ 
+ <div class="modal fade" id="pvoscfModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">9. Patient Visit-Officer,Soldier,Civilian,Family</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <form id="pvoscf" th:action="@{/patvisitOfficerSoldierCivilianFamily}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						<!-- ERROR MESSAGE DISPLAY START -->
+							<div class="row" style="text-align: center;">
+										  <div class="col-sm-4"></div>
+										  <div class="col-sm-4"><p id="pvoscf-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+										  <div class="col-sm-4"></div>
+							</div>
+					   	<!-- ERROR MESSAGE DISPLAY END -->
+		               <div class="row">
+			                      
+			                    <div class="col-sm-6">
+			                    	<div class="form-group">
+				                        <label>From Date:</label>
+				                        <input type="date" th:field="*{brtSdate}" id="sdate16" class="form-control">
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-6">
+			                		<div class="form-group">
+				                        <label>To Date:</label>
+				                        <input type="date" th:field="*{brtEdate}" id="edate16" class="form-control">
+				                      </div>
+			                	</div> 
+			               </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+  <!-- ------------------------------------------ 3.9 Patient Visit-Officer,Soldier,Civilian,Family END ------------------------------------------ -->      
+     
+   <!-- ------------------------------------------ 3.10 Patient Monthly Visits per Speciality START ------------------------------------------ -->      
+    
+      <div class="modal fade" id="pmvpsModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">10. Patient Monthly Visits per Speciality</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+              <form id="pmvps" th:action="@{/patientMonthlyVisitsperSpecalityReport}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="cpd-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+						
+		               <div class="row">     
+			                    <div class="col-sm-4">
+			                    	<div class="form-group">
+										<label>Clinic Name:</label>
+				                         <select class="form-control" th:field="*{brtOid}" id="oid6">
+				        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>  
+				                      </div>
+			                	</div>
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+										<label>Month:</label>
+										<select class="form-control" th:field="*{brtMonthid}" id="monthid6">
+				                        	
+				                        </select>	
+				                      </div>
+			                	</div> 
+			                	
+			                	 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Year:</label>
+				                        <select class="form-control" th:field="*{brtYearid}" id="yearid6">
+				                        	
+				                        </select>	
+				                      </div>
+			                	</div>
+			                	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    <!-- ------------------------------------------ 3.10 Patient Monthly Visits per Speciality END ------------------------------------------ -->      
+              
+      <!-- ------------------------------------------ 3.11 Patient Monthly Visits Categorized by Procedure START ------------------------------------------ -->      
+     
+       <div class="modal fade" id="pmvcbpModal">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">11. Patient Monthly Visits Categorized by Procedure</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+           <form id="procmvps" th:action="@{/patientMonthlyVisitsCategorizedProcedure}" th:object=${brtFormBean}>
+		            <div class="modal-body">
+						
+						<!-- ERROR MESSAGE DISPLAY START -->
+						<div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="procmvps-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+						</div>
+					   <!-- ERROR MESSAGE DISPLAY END -->
+
+						
+		               <div class="row">
+								 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Clinic Name:</label>
+				                        <select class="form-control" th:field="*{brtOid}" id="oid8">
+				        	       			<option th:value='0'>--All Clinics--</option>			    					  					    					    
+						          			<option th:each="e : ${officeDateFilter}"
+												th:value="${e.officeId}"
+												th:text="${e.officeName}">
+											</option>
+		 					    		</select>  
+				                      </div>
+			                	</div>
+								 
+								 <div class="col-sm-4">
+			                    	<div class="form-group">
+				                        <label>Month:</label>
+				                         <select class="form-control" th:field="*{brtMonthid}" id="monthid8">
+				                        	
+				                        </select>
+				                      </div>
+			                	</div>
+			                	
+			                	<div class="col-sm-4">
+			                		<div class="form-group">
+				                        <label>Year:</label>
+				                        <select class="form-control" th:field="*{brtYearid}" id="yearid8">
+				                        	
+				                        </select>	
+				                      </div>
+			                	</div> 
+	           	
+			                </div>
+			                 
+			               </div>
+			            <div class="modal-footer justify-content-center">
+			              <button type="submit" class="btn btn-primary">Submit</button>
+			            </div>
+             </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+      <!-- ------------------------------------------ 3.11 Patient Monthly Visits Categorized by Procedure END ------------------------------------------ -->      
+     
+     
+    
+      
+      
+        
+ </div>
+ 
+ 
+ 
+ </html>   
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     

@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- Procedure TAB START ------------------------------------------------- -->
+<div th:fragment="proc">
+	
+	<div class="card-header">
+	       <h5><b>3.Procedure:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+         <div class="card-body">
+                     <table id="examplePatConsultProc" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                 <!--    <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <th>Procedure Name</th>
+                    <th>Category Name</th>
+                    
+                   <!--  <th>Doctor </th>
+                    <th>Dept. Name</th>
+                    
+                    <th>Office Name</th>   --> 
+                    <th>Status</th>
+                    <!--  <th>Date</th> -->
+               </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="ProcInfo,itercss : ${PatConsultProcDetails}">
+                      <td th:text="${itercss.count}"></td>
+                    <!--   <td th:text="${ProcInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${ProcInfo.PATIENT_NAME}" ></td>
+                    -->   <td th:text="${ProcInfo.PROCEDURE_NAME}"></td>
+                       <td th:text="${ProcInfo.PROCEDURE_CAT}"></td>
+                       
+                    <!--   <td th:text="${ProcInfo.DOCTOR_NAME}"></td>
+                      <td th:text="${ProcInfo.DEPARTMENT_NAME}"></td>
+                     
+                      <td th:text="${ProcInfo.OFFICE_NAME}"></td>  -->
+                      <td th:text="${ProcInfo.DONE_STATUS}"></td>
+                    <!--    <td th:text="${ProcInfo.CONSULT_DATE}"></td> -->
+                     
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+	 
+</div>
+<!--  ---------------------------------------------------- Procedure TAB END ------------------------------------------------- -->
+</html>

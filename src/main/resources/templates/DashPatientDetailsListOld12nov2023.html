@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>List of Patients Detail</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+   
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">List of Patients Detail:&nbsp;&nbsp;
+                </h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="examplePatientDetails1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                     <th>Sl No.</th>
+                    <th>Patient (Military ID)</th>
+                    <th>Patient Name</th>
+                    <th>Patient Rank</th>
+                    <th>Nationality</th>    
+                   <th>Speciality</th>
+                    <th>Clinics Name</th>
+                     <th>Consult Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="PatInfo,itercss : ${hmpPatientDetailsList}">
+                      <td th:text="${itercss.count}"></td>
+           	  
+                      <td th:text="${PatInfo.PATIENT_EMPLOYEE_ID}"></td>
+                     
+                      <td th:text="${PatInfo.PATIENT_NAME}"></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_DESIGNATION}"  ></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_KWT_NKWT}"></td> 
+                       
+                      
+                     
+                      <td th:text="${PatInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${PatInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${PatInfo.CONSULT_DATE}"></td>
+                     
+                    
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+ 
+</body>
+</html>
+
+  
+  
+  

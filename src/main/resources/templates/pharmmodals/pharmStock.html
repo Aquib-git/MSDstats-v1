@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Pharmacy Stock</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div layout:fragment="content">
+	
+	
+
+
+	
+<div th:fragment="pharmStock">	
+<!--  ---------------------------------------------------- PHARMACY STOCK FRAGMENT START ------------------------------------------------- -->
+
+		<div class="row">
+		    <div class="col-12">
+		
+			<div class="card">  
+				<div class="card-header">
+				       <h5 th:text="#{Pharmacy_Stocks}"><b>2. Pharmacy Stock:&nbsp;&nbsp;</b></h5>
+				 </div>
+				<div class="card-body">
+					<form id="pharmStockId" th:action="@{/pharmStock}" class="form-horizontal" th:object=${pharmFormBean} >
+						<span>
+		
+							<div class="row" style="text-align: center;">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4"><p id="pschart-error-message" style="color: red; cursor: pointer;"></p></div>
+									<div class="col-sm-4"></div>				
+							</div>
+		
+		       			 	<div class="row">
+								  <div class="col-sm-6">
+								    <div class="form-group d-flex align-items-center">
+								      <span for="pharmItemId1" class="mr-2" th:text="#{Pharmacy_Item_Name}">Pharmacy Item Name:</span>
+								      <select class="form-control select2" style="width: auto; flex-grow: 1;" id="pharmItemId1">
+								        <option value="0"></option>
+								        <!-- Dynamically populated options will go here -->
+								      </select>
+								      <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i></button>
+								    </div>
+								  </div> 
+							</div>
+							
+							
+						</span>
+					 </form>
+				</div>
+			</div> 
+			
+			
+		<div class="row">
+		  <div class="col-md-12">
+		     <div class="row">
+				<!-- ------------------------------------------- HQ Stock List START ------------------------------------------ -->
+				 	<div class="col-md-6">
+						 	<div class="card card-primary">
+								  <div class="card-header">
+										<h3 class="card-title" th:text="#{HeadQuarter_Stock}">HeadQuarter Stock </h3>
+									</div>
+
+					              <div class="card-body table-responsive p-0">
+					                <table id="hqStock"  class="table table-bordered table-striped">
+					                  <thead>
+					                    <tr>
+					                      <th>No.</th>
+					                      <th>Item Name</th>
+					                      <th>Item Code</th>                      
+					                      <th>Item Unit</th>
+					                      <th>Stock Qty</th>                   
+					                       <!-- <th>Clinic Name</th>-->
+					                    </tr>
+					                  </thead>
+					                  <tbody>
+										<tr th:each="p,itercss : ${hqStockList}">
+											<td th:text="${itercss.count}"></td>
+											<td th:text="${p.ITEM_NAME}"></td>
+											<td th:text="${p.ITEM_CODE}"></td>
+											<td th:text="${p.ITEM_UNIT}"></td>
+											<td th:text="${p.PHARMACY_STOCK}"></td>
+											<!--<td th:text="${p.OFFICE_NAME}"></td> -->
+											
+					                     <!-- <td>		    
+												<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+						               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+						                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+						           			   </a>
+					            		  </td> --> 
+					                    </tr>
+					                 
+					                  </tbody>
+					                </table>
+					              </div>	
+							</div>
+					</div>
+				<!-- ------------------------------------------- HQ Stock List END ------------------------------------------ -->
+			
+				<!-- ------------------------------------------- SCM Stock List START ------------------------------------------ -->
+				 	<div class="col-md-6">
+						 	<div class="card card-primary">
+								  <div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Summod_Stock}">Summod Stock </h3>
+									</div>
+
+					              <div class="card-body table-responsive p-0">
+					                <table id="scmStock"  class="table table-bordered table-striped">
+					                  <thead>
+					                    <tr>
+					                      <th>No.</th>
+					                      <th>Item Name</th>
+					                      <th>Item Code</th>                      
+					                      <th>Item Unit</th>
+					                      <th>Stock Qty</th>                   
+					                       <!-- <th>Clinic Name</th>-->
+					                    </tr>
+					                  </thead>
+					                  <tbody>
+										<tr th:each="p,itercss : ${scmStockList}">
+											<td th:text="${itercss.count}"></td>
+											<td th:text="${p.ITEM_NAME}"></td>
+											<td th:text="${p.ITEM_CODE}"></td>
+											<td th:text="${p.ITEM_UNIT}"></td>
+											<td th:text="${p.PHARMACY_STOCK}"></td>
+											<!--<td th:text="${p.OFFICE_NAME}"></td> -->
+					                     <!-- <td>		    
+												<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+						               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+						                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+						           			   </a>
+					            		  </td> --> 
+					                    </tr>
+					                 
+					                  </tbody>
+					                </table>
+					              </div>	
+							</div>
+					</div>
+				<!-- ------------------------------------------- SCM Stock List END ------------------------------------------ -->
+			
+				
+	       </div>
+	      <div class="row">
+			  <!-- ------------------------------------------- TCM Stock List START ------------------------------------------ -->
+				 	<div class="col-md-6">
+						 	<div class="card card-primary">
+								  <div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Tahreer_Stock}">Tahreer Stock </h3>
+									</div>
+
+					              <div class="card-body table-responsive p-0">
+					                <table id="tcmStock"  class="table table-bordered table-striped">
+					                  <thead>
+					                    <tr>
+					                      <th>No.</th>
+					                      <th>Item Name</th>
+					                      <th>Item Code</th>                      
+					                      <th>Item Unit</th>
+					                      <th>Stock Qty</th>                   
+					                       <!-- <th>Clinic Name</th>-->
+					                    </tr>
+					                  </thead>
+					                 <tbody>
+										<tr th:each="p,itercss : ${tcmStockList}">
+											<td th:text="${itercss.count}"></td>
+											<td th:text="${p.ITEM_NAME}"></td>
+											<td th:text="${p.ITEM_CODE}"></td>
+											<td th:text="${p.ITEM_UNIT}"></td>
+											<td th:text="${p.PHARMACY_STOCK}"></td>
+											<!--<td th:text="${p.OFFICE_NAME}"></td> -->
+											
+					                    <!--<tr th:each="doctor,itercss : ${hmpDoctorList}">-->
+					                      <!--<td th:text="${itercss.count}"></td>-->
+					                     <!-- <td>		    
+												<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+						               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+						                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+						           			   </a>
+					            		  </td> --> 
+					                    </tr>
+					                 
+					                  </tbody>
+					                </table>
+					              </div>	
+							</div>
+					</div>
+				<!-- ------------------------------------------- TCM Stock List END ------------------------------------------ -->
+
+				<!-- ------------------------------------------- TCD Stock List START ------------------------------------------ -->
+				 	<div class="col-md-6">
+						 	<div class="card card-primary">
+								  <div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Tahreer_Dental_Stock}">Tahreer-Dental Stock </h3>
+									</div>
+
+					              <div class="card-body table-responsive p-0">
+					                <table id="tdStock"  class="table table-bordered table-striped">
+					                  <thead>
+					                    <tr>
+					                      <th>No.</th>
+					                      <th>Item Name</th>
+					                      <th>Item Code</th>                      
+					                      <th>Item Unit</th>
+					                      <th>Stock Qty</th>                   
+					                     <!-- <th>Clinic Name</th>-->
+					                    </tr>
+					                  </thead>
+					                  <tbody>
+										<tr th:each="p,itercss : ${tdStockList}">
+											<td th:text="${itercss.count}"></td>
+											<td th:text="${p.ITEM_NAME}"></td>
+											<td th:text="${p.ITEM_CODE}"></td>
+											<td th:text="${p.ITEM_UNIT}"></td>
+											<td th:text="${p.PHARMACY_STOCK}"></td>
+											<!--<td th:text="${p.OFFICE_NAME}"></td> -->
+											
+					                    <!--<tr th:each="doctor,itercss : ${hmpDoctorList}">-->
+					                      <!--<td th:text="${itercss.count}"></td>-->
+					                     <!-- <td>		    
+												<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+						               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+						                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+						           			   </a>
+					            		  </td> --> 
+					                    </tr>
+					                 
+					                  </tbody>
+					                </table>
+					              </div>	
+							</div>
+					</div>
+				<!-- ------------------------------------------- TCD Stock List END ------------------------------------------ -->
+			</div>
+			
+			 <div class="row">
+				<!-- ------------------------------------------- KAZ Stock List START ------------------------------------------ -->
+				 		<div class="col-md-12">
+						 	<div class="card card-primary">
+								  <div class="card-header border-transparent">
+										<h3 class="card-title" th:text="#{Kazma_Stock}">Kazma Stock </h3>
+									</div>
+
+					              <div class="card-body table-responsive p-0">
+									  
+					                <table id="kazStock"  class="table table-bordered table-striped">
+					                  <thead>
+					                    <tr>
+					                      <th>No.</th>
+					                      <th>Item Name</th>
+					                      <th>Item Code</th>                      
+					                      <th>Item Unit</th>
+					                      <th>Stock Qty</th>                   
+					                       <!-- <th>Clinic Name</th>-->
+					                    </tr>
+					                  </thead>
+					                  <tbody>
+										<tr th:each="p,itercss : ${kazStockList}">
+											<td th:text="${itercss.count}"></td>
+											<td th:text="${p.ITEM_NAME}"></td>
+											<td th:text="${p.ITEM_CODE}"></td>
+											<td th:text="${p.ITEM_UNIT}"></td>
+											<td th:text="${p.PHARMACY_STOCK}"></td>
+											<!--<td th:text="${p.OFFICE_NAME}"></td> -->
+											
+					                    <!--<tr th:each="doctor,itercss : ${hmpDoctorList}">-->
+					                      <!--<td th:text="${itercss.count}"></td>-->
+					                     <!-- <td>		    
+												<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+						               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+						                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+						           			   </a>
+					            		  </td> --> 
+					                    </tr>
+					                 
+					                  </tbody>
+					                </table>
+					              </div>	
+							</div>
+					</div>
+				<!-- ------------------------------------------- KAZ Stock List END ------------------------------------------ -->
+			
+	       </div>
+	      
+	      
+	      
+	      
+	  </div>
+	</div>
+    
+	  </div>
+	</div>
+
+</div>
+<!--  ---------------------------------------------------- PHARMACY STOCK FRAGMENT end ------------------------------------------------- -->
+
+</div>
+
+
+
+
+<th:block layout:fragment="script">
+		
+
+</th:block>
+</body>
+
+
+</html>

@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- Dispense TAB START ------------------------------------------------- -->
+<div th:fragment="dispense">
+	
+	<div class="card-header">
+	       <h5><b>6.Dispense:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	 
+              <div class="card-body">
+               <table id="examplePatConsultDispence" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                
+                    <th>No.</th>
+                   <!--  <th>Patient Name</th> -->
+                   <!--  <th>Nationality</th> -->
+                    <th>Item Count</th>
+                    <th>Item Name</th>
+                    <!-- <th>Item Unit</th> -->
+                 <!--    <th>Doctor </th>
+                    <th>Dept. Name</th>
+                    <th>Office Name</th> -->
+                    <!-- <th>Kng-Moh </th> -->
+                   
+                   <!--  <th>Status</th>  -->
+             <!--         <th>Date</th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="Dispense,itercss : ${PatConsultDispenceDetails}">
+                     
+                    <td th:text="${itercss.count}"></td>
+                   <!--    <td th:text="${Dispense.INVCUSTNAME}" ></td> -->
+                    <!--   <td th:text="${Dispense.PATIENT_KWT_NKWT}"></td> -->
+                      <td th:text="${Dispense.ITEM_COUNT}" ></td>
+                      <td th:text="${Dispense.ITEM_NAME}"></td>  
+                      <!-- <td th:text="${Dispense.itemUnitList}"></td> -->
+                      
+                  <!--     <td th:text="${Dispense.DOCTOR_NAME}"  ></td>
+                      <td th:text="${Dispense.DEPARTMENT_NAME}"></td>
+                      <td th:text="${Dispense.OFFICE_NAME}" ></td> -->
+                       <!-- <td th:text="${Dispense.KNG_MOH}"></td>-->
+                     
+                     <!--  <td th:text="${Dispense.INV_STATUS}"  ></td> -->
+                   <!--    <td th:text="${Dispense.INVOICE_DATE}"></td> -->
+                    
+                     
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->	 
+	 
+</div>
+<!--  ---------------------------------------------------- Dispense TAB END ------------------------------------------------- -->
+</html>

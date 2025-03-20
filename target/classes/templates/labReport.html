@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+
+<!-- <meta http-equiv="refresh" content="5; url=/login"> -->
+
+<title>Lab Reports</title>
+
+<!-- <script src="http://ajax.google"></script> -->
+<style>
+	.btn{
+		text-align: left;
+		padding-left: 16px;
+	}
+</style>
+
+</head>
+
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div layout:fragment="content">
+	
+	
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{alt_Lab_Report}">Lab Reports</h1>
+
+					</div>
+					
+					
+				
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a
+								href="./labReport" th:text="#{alt_Lab_Report}">Lab Reports</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+
+	
+	
+	<div class="container-fluid">
+	<!--  ---------------------------------------------------- LAB REPORT START ------------------------------------------------- -->
+		<div th:replace="labmodals/labReport :: labReport"></div> 
+	<!--  ---------------------------------------------------- LAB REPORT END ------------------------------------------------- -->
+	
+	</div>
+
+	  <!-- ------------------------------------------------ INVESTIGATION MODALS START ---------------------------------------------- -->
+		        
+		  <div id="fragments-container" th:replace="birtmodals/inv_modals :: inv_modals"></div>
+		         
+	<!-- ------------------------------------------------ INVESTIGATION MODALS START ---------------------------------------------- -->
+		        
+
+
+
+</div>
+
+
+
+
+<th:block layout:fragment="script">
+	
+
+<script src="./admin/custom/labjs/labReportBuilder.js" type="module"></script>
+
+<!-- INVESTIGATIONS JS START -->
+<script src="./admin/custom/brtjs/xray.js" type="module" ></script>
+<script src="./admin/custom/brtjs/lab.js" type="module" ></script>
+<script src="./admin/custom/brtjs/klpcollectedcount.js" type="module" ></script>
+<script src="./admin/custom/brtjs/klpaccessedcount.js" type="module" ></script>
+<script src="./admin/custom/brtjs/lpcpr.js" type="module" ></script>
+<!-- INVESTIGATIONS JS END -->
+		
+	
+			
+
+</th:block>
+</body>
+
+
+</html>

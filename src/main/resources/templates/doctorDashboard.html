@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{corelayout}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doctor Dashboard</title>
+ <!--  <th:block th:replace="shared/core_css :: core_dt_css"></th:block>-->
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div layout:fragment="content">
+
+
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+      
+      
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0" th:text="#{Doctors_Duty_Schedule}">Doctors Duty Schedule</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a th:href="@{/dailyStatistics}" th:text="#{Home}">Home</a></li>
+              <li class="breadcrumb-item active"><a th:href="@{./doctorDashboard}" th:text="#{Doctors_Schedule}">Doctors Schedule</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      
+				<!-- /.row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+
+
+							<div class="card-header">
+
+								<!-- /.row date selector-->
+								
+								 <!-- ERROR MESSAGE DISPLAY START -->
+								  <div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+    									
+									</div>
+									
+							<!-- ERROR MESSAGE DISPLAY END -->
+									
+		  					<div class="row">			
+								<div class="float-left">
+										<form id="doctorformbean" th:action="@{/doctorDashboard}"
+											th:object=${mrdFormBean}>
+		
+		
+							            	 <div class="col-sm-12">
+									            	 From date:
+									            	  <input type="date" id="fdate"  th:field="*{selectMRDSdate}" th:value="${selectMRDSdate}">
+									            	 To date:
+									            	  <input type="date" id="tdate" th:field="*{selectMRDEdate}" th:value="${selectMRDEdate}">
+														<button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i></button>
+												</div>
+
+										</form>
+										
+										</div>
+										
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+	          <div class="col-lg-3 col-6">
+	          </div>
+	          <!-- ./col -->
+	          <div class="col-lg-3 col-6">
+				  
+				   <a href="./doctorListOnly" data-toggle="modal" class="small-box-footer" target="_blank" onclick="openWindow1(this.href);" >
+		            <!-- small box -->
+		            <div class="small-box bg-success">
+		              <div class="inner">
+		                <h3>
+		                <span class="info-box-number" th:utext="${hmpCatogary.TotalDoctors}"></span>
+		                 </h3>
+		
+		                <p th:text="#{Total_Doctors}">Total Doctors</p>
+		              </div>
+		              <div class="icon">
+		                <i class="fas fa-user-plus"></i>
+		              </div>
+		            </div>
+		            </a>
+		            
+	          </div>
+	          <!-- ./col -->
+	          <div class="col-lg-3 col-6">
+				  
+				  <a href="./dentistListOnly" data-toggle="modal" class="small-box-footer" target="_blank" onclick="openWindow1(this.href);" >
+		            <!-- small box -->
+		             <div class="small-box bg-danger">
+		              <div class="inner">
+		                <h3>
+		                <span class="info-box-number" th:utext="${hmpCatogary.TotalDentist}"></span>
+		               </h3>
+		
+		                <p th:text="#{Total_Dentist}">Total Dentist</p>
+		              </div>
+		              <div class="icon">
+		                 <i class="fas fa-user-plus"></i>
+		              </div>
+		            </div>
+		            </a>
+		            
+	          </div>
+	          <!-- ./col -->
+	          <div class="col-lg-3 col-6">
+	          </div>
+	          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-8 connectedSortable">
+          
+             <div class="card">
+              <div class="card-header">
+                <h3 class="card-title" th:text="#{List_Of_Doctors}">
+                  <i class="fas fa-chart-pie mr-1" ></i>
+                List Of Doctors 
+                </h3>
+
+                
+              
+                <!-- card tools -->
+                <div class="card-tools">
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table id="exampleDocSch"  class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Doctor Name</th>
+                      
+                      <th>Doctor Name_ar</th>
+                      
+                      <th>Counts of Patient</th>
+                     <!--  <th>No.Branch</th>
+                      <th>Wo.Days/Total</th> -->
+                      <th>Speciality</th>
+                      
+                     
+                      <th>Speciality_ar</th>
+                      
+                      <th>Clinics Name</th>
+                      
+                      <th>Clinics Name_ar</th>
+                      
+                      <th> </th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="doctor,itercss : ${hmpDoctorList}">
+                      <td th:text="${itercss.count}"></td>
+                      <td th:text="${doctor.uaserLabel}"></td>
+                      
+                      
+                      <td th:text="${doctor.USERLABEL_AR}"></td>
+                      
+                      <td>		    
+						<a th:href="'./DashPatientDetailsList/findByDoctorId?doctorid=' + ${doctor.doctorId}"
+               				th:attr="data-doctor-id=${doctor.doctorId}" data-toggle="modal"  class="docformurl" target="_blank" onclick="openWindow1(this.href);">
+                			<i class="fas fa-search "></i> <span th:text="${doctor.patientCount}"></span>
+           			   </a>
+            		  </td> 
+
+                	<!-- <td th:text="${doctor.officeCount}"></td>
+                      <td th:text="${doctor.daysWorked}+' /' + ${doctor.noOfDays} "></td> -->
+                      <td th:text="${doctor.deptnameList}"></td>
+                      
+                      <td th:text="${doctor.deptname_ar}"></td>
+                      
+                      <td th:text="${doctor.officeNameList}"></td>
+                      
+                       <td th:text="${doctor.officeNameList_ar}"></td>
+                       
+                       
+                      <td>
+	                      <a th:href="'./doctorInfo?docId='+${doctor.doctorId}" th:attr="data-doctor-info-id=${doctor.doctorId}"
+	                      class="docinfourl"  data-toggle="modal" target="_blank" onclick="openWindow(this.href); " >
+	                        <i class="fas fa-search"></i>
+	                      </a>
+                    </td>
+                      
+                    </tr>
+                 
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+           
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-4 connectedSortable">
+
+            <!-- Map card -->
+            
+             <div class="card">
+             <div class="card-header">
+                <h3 class="card-title" th:text="#{Doctors_Schedule_By_Clinics}">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Doctors Schedule By Clinics
+                </h3>
+                
+              </div><!-- /.card-header -->
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="chart">
+                     <input type="hidden" th:id="hmpDoctorBranchesLabels" th:value="${hmpDoctorBranch.hmpbLabels}"/>
+                      <input type="hidden" th:id="hmpDoctorBranchesData" th:value="${hmpDoctorBranch.hmpbData}"/>
+                      <canvas id="pieDoctorChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;" ></canvas>
+                    </div>
+                    <!-- ./chart-responsive -->
+                  </div>
+                  <!-- /.col -->
+                  <!--
+                   <div class="col-md-4">
+                    <ul class="chart-legend clearfix">
+                      <li><i class="far fa-circle"  style="color: #4b77a9!important;background-color:#4b77a9!important;border-radius: 50% "></i> <h7 th:text ="#{HeadQuarters}"></h7></li>
+                      <li><i class="far fa-circle"  style="color: #5f255f!important;background-color:#5f255f!important;border-radius: 50% "></i> <h7 th:text ="#{Tahreer-Dental}"></h7></li>
+                      <li><i class="far fa-circle" style="color: #d21243!important;background-color:#d21243!important;border-radius: 50% "></i> <h7 th:text ="#{Tahreer}"></h7> </li>
+                      <li><i class="far fa-circle" style="color: #B27200!important;background-color:#B27200!important;border-radius: 50% "></i><h7 th:text ="#{Sheikh-Salem}"></h7></li>
+                      <li><i class="far fa-circle" style="color: #00c0ef!important;background-color:#00c0ef!important;border-radius: 50% "></i> <h7 th:text ="#{Summod}"></h7></li>
+
+                    </ul>
+                  </div>
+                  -->
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-body -->
+              <!-- /.footer -->
+            </div>
+            <!-- /.card -->
+          
+         
+          
+           
+            <!-- /.card -->
+
+
+            
+            <!-- /.card -->
+          </section>
+          <!-- right col -->
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    <!--  <div id="islamy"> <span  th:utext="${randomValueislam}"></span></div>-->
+      <h3 class="mt-4 mb-3" th:text="#{ Doctors_Information}">Doctors Information</h3>
+      
+      <h5 class="description-header">
+      
+      </h5>
+      
+      
+         <div id="DoctorInfoID" class="row">
+         
+              <!-- /.col1 start-->
+         
+          <div class="col-md-3">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-warning">
+				<!--<div th:if="${hmpDoctorList!=null}"></div>-->
+	                <div class="widget-user-image">
+	                 
+	                 <img class="img-circle elevation-2" th:src="@{'http://10.201.53.27/files/photo/'+${hmpDoctorList.get(randomValue).empId} + '.jpg'}" 
+	                 onerror="this.onerror=null; this.src='./admin/dist/img/avatar5.png';">
+	
+	                </div>
+                
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username"> <span th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue).USERLABEL_AR : hmpDoctorList.get(randomValue).uaserLabel}"></span></h3>
+                <h5 class="widget-user-desc">     <span  th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue).deptnameList_ar : hmpDoctorList.get(randomValue).deptnameList}"></span>
+</h5>
+              </div>
+              <div class="card-footer ">
+                <ul class="nav flex-column">
+                
+                
+                 <!-- added new column Employee id -->
+                 
+                 
+                  <li class="nav-item"><span th:text="#{Employee_Id}"></span>
+                   
+              <span class="float-right"   th:utext="${hmpDoctorList.get(randomValue).empId}"></span>
+                  
+                  </li>
+                  
+                  <li class="nav-item"><span th:text="#{ No_of_Patient}"></span>
+                   
+                    <span class="float-right" th:utext="${hmpDoctorList.get(randomValue).patientCount}"></span>
+                   
+                  </li>
+                  <li class="nav-item"><span th:text="#{No_of_Work_Branch }"></span>
+                   
+                       <span class="float-right" th:utext="${hmpDoctorList.get(randomValue).officeCount}" ></span>
+               
+                  </li>
+                  <!--  
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      No of Workdays <span class="float-right badge bg-warning">20</span>
+                    </a>
+                  </li>
+                  -->
+                   <li class="nav-item"><span th:text="#{No_of_Workdays}"></span>
+                  
+                      <span class="float-right" th:utext="${hmpDoctorList.get(randomValue).daysWorked}" ></span>
+                    </a>
+                  </li>
+                  <li class="nav-item"><span th:text="#{Branch}"></span>
+                   
+                      <span class="float-right" style=" white-space: break-spaces;" 
+                      th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue).officeNameList_ar : 
+                      hmpDoctorList.get(randomValue).officeNameList}" ></span>
+                
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+               <!-- /.col1 End-->
+          
+           <!-- /.col2 start-->
+           
+                <div class="col-md-3">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                
+                 <img class="img-circle elevation-2" th:src="@{'http://10.201.53.27/files/photo/'+${hmpDoctorList.get(randomValue+1).empId} + '.jpg'}" 
+                 onerror="this.onerror=null; this.src='./admin/dist/img/avatar5.png';">
+                 
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username"> <span th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+1).USERLABEL_AR : hmpDoctorList.get(randomValue+1).uaserLabel}"></span>
+</h3>
+                <h5 class="widget-user-desc">     <span  th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+1).deptnameList_ar : hmpDoctorList.get(randomValue+1).deptnameList}"></span></h5>
+              </div>
+              <div class="card-footer ">
+                <ul class="nav flex-column">
+                
+                
+                 <!-- added new column Employee id --><!-- "${#httpServletRequest.getParameter('lang') == 'ar' ? Patient.OFFICENAME_AR : Patient.officeName}" -->
+                 
+                 
+                  <li class="nav-item"><span th:text="#{Employee_Id}"></span>
+                   
+               <span class="float-right"   th:utext="${hmpDoctorList.get(randomValue+1).empId}"></span>
+                  
+                  </li>
+                  
+                  <li class="nav-item"><span th:text="#{ No_of_Patient}"></span>
+                    <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+1).patientCount}"></span>
+                   
+                  </li>
+                  <li class="nav-item"><span th:text="#{No_of_Work_Branch }"></span>
+                   
+                     <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+1).officeCount}" ></span>
+               
+                  </li>
+
+                   <li class="nav-item"><span th:text="#{No_of_Workdays}"></span>
+                  
+                     <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+1).daysWorked}" ></span>
+                    </a>
+                  </li>
+                  <li class="nav-item"><span th:text="#{Branch}"></span>
+                   
+                     <span class="float-right" style=" white-space: break-spaces;" 
+                     th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+1).officeNameList_ar : 
+                     hmpDoctorList.get(randomValue+1).officeNameList}"></span>
+                
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+     
+           
+           <!-- /.col2 end -->
+           
+         <!-- /.col3 start-->
+         
+          <div class="col-md-3">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                
+                 <img class="img-circle elevation-2" th:src="@{'http://10.201.53.27/files/photo/'+${hmpDoctorList.get(randomValue+2).empId} + '.jpg'}" 
+                 onerror="this.onerror=null; this.src='./admin/dist/img/avatar5.png';">
+                 
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username"> <span th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+2).USERLABEL_AR : hmpDoctorList.get(randomValue+2).uaserLabel}"></span></h3>
+                <h5 class="widget-user-desc">     <span  th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+2).deptnameList_ar : hmpDoctorList.get(randomValue+2).deptnameList}"></span></h5>
+              </div>
+              <div class="card-footer ">
+                <ul class="nav flex-column">
+                
+                
+                 <!-- added new column Employee id -->
+                 
+                 
+                  <li class="nav-item" ><span th:text="#{Employee_Id}"></span>
+                   
+             <span class="float-right"   th:utext="${hmpDoctorList.get(randomValue+2).empId}"></span>
+                  
+                  </li>
+                  
+                  <li class="nav-item"><span th:text="#{ No_of_Patient}"></span>
+                   
+                  <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+2).patientCount}"></span>
+                   
+                  </li>
+                  <li class="nav-item"><span th:text="#{No_of_Work_Branch }"></span>
+                   
+                     <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+2).officeCount}" ></span>
+               
+                  </li>
+             
+                   <li class="nav-item"><span th:text="#{No_of_Workdays}"></span>
+                  
+                      <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+2).daysWorked}" ></span>
+                    </a>
+                  </li>
+                  <li class="nav-item"><span th:text="#{Branch}"></span>
+                   
+                      <span class="float-right" style=" white-space: break-spaces;" 
+                      th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+2).officeNameList_ar : 
+                     hmpDoctorList.get(randomValue+2).officeNameList}" ></span>
+                
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+               <!-- /.col3 End-->
+                           
+              <!-- /.col4 start-->
+         
+          <div class="col-md-3">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                
+                 <img class="img-circle elevation-2" th:src="@{'http://10.201.53.27/files/photo/'+${hmpDoctorList.get(randomValue+3).empId} + '.jpg'}" 
+                 onerror="this.onerror=null; this.src='./admin/dist/img/avatar5.png';">
+                 
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username"> <span th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+3).USERLABEL_AR : hmpDoctorList.get(randomValue+3).uaserLabel}"></span></h3>
+                <h5 class="widget-user-desc">    <span  th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+3).deptnameList_ar : hmpDoctorList.get(randomValue+3).deptnameList}"></span></h5>
+              </div>
+              <div class="card-footer ">
+                <ul class="nav flex-column">
+            
+                  <li class="nav-item"><span th:text="#{Employee_Id}"></span>
+                   
+              <span class="float-right"   th:utext="${hmpDoctorList.get(randomValue+3).empId}"></span>
+                  
+                  </li>
+                  
+                  <li class="nav-item"><span th:text="#{ No_of_Patient}"></span>
+                   
+                    <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+3).patientCount}"></span>
+                   
+                  </li>
+                  <li class="nav-item"><span th:text="#{No_of_Work_Branch }"></span>
+                   
+                      <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+3).officeCount}" ></span>
+               
+                  </li>
+              
+                   <li class="nav-item"><span th:text="#{No_of_Workdays}"></span>
+                  
+                   <span class="float-right" th:utext="${hmpDoctorList.get(randomValue+3).daysWorked}"></span>
+                    </a>
+                  </li>
+                  <li class="nav-item"><span th:text="#{Branch}"></span>
+                   
+                   <span class="float-right" style=" white-space: break-spaces;" 
+                   th:utext="${lang == 'ar' ? hmpDoctorList.get(randomValue+1).officeNameList_ar : 
+                     hmpDoctorList.get(randomValue+1).officeNameList}"></span>
+                
+                  </li>
+                  
+                </ul>
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+               <!-- /.col4 End-->
+   
+          
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+  
+<th:block layout:fragment="script">
+ <script src="./admin/plugins/chart.js/chart.min_new.js"></script>
+<script src="./admin/plugins/chart.js/chartjs-plugin-datalabels@2.0.0-rc"></script>
+<script type="text/javascript">
+
+
+function refreshdiv()
+ {
+	console.log("-----------------");
+	debugger;
+
+	 fetch("/islam")
+	.then(response =>{
+		if(!response.ok){
+			console.error("sadsad==" ,error);
+			//throw new Error(" network not ok");
+	}
+		return response.text();
+	})
+	.then (data => {
+		document.getElementById("islamy").innerHTML=data;
+		document.getElementById("DoctorInfoID").innerHTML=data;
+    	//div.innerHTML=div.innerHTML;
+		
+		console.log(data);
+	})
+	.catch(error => {
+		console.error("sadsad==" ,error);
+	} ); 
+	var div=document.getElementById("DoctorInfoID");
+
+	var div=document.getElementById("DoctorInfoID");
+	div.innerHTML=div.innerHTML;
+	}
+ 
+  function getRandomNumber()
+    {
+	  return Math.floor(Math.random() * 10);
+	}
+
+
+</script>
+
+<script type="module">
+
+import { ChartKaBaap } from './admin/custom/chartCreator/ChartKaBaap.js';
+import { VerticalBarChartCreator } from './admin/custom/chartCreator/VerticalBarChartCreator.js';
+import { PieChartCreator } from './admin/custom/chartCreator/PieChartCreator.js';
+import { DoughnutChartCreator } from './admin/custom/chartCreator/DoughnutChartCreator.js';
+import { GetUrlParameter } from './admin/custom/chartCreator/GetUrlParameter.js';
+
+$(document).ready(function() 
+{ 
+	/*------------------------------------------------------ Common Current Language function call ------------------------------------------------------ */
+	var ChartLangElement = GetUrlParameter('lang');
+	/*------------------------------------------------------ Common Current Language function call ------------------------------------------------------ */
+
+	//PROC OFFICE CHART JS START
+	var docdashChartLabels = document.getElementById("hmpDoctorBranchesLabels");
+	var docdashChartData = document.getElementById("hmpDoctorBranchesData");
+	var docdashChartName = `pieDoctorChart`; //This has to be same as the id present in the canvas
+	var docdashChartColor = ['#4b77a9', '#B27200', '#00c0ef','#5f255f','#d21243','#9ba8b7','#2b78fd','#e11011'];
+	var docdashHoverDescription= `Doctors by office`;
+	var docdashByOfficeUrlLogic=``;
+	
+	PieChartCreator(docdashChartLabels,docdashChartData,docdashChartName,docdashChartColor,docdashHoverDescription,docdashByOfficeUrlLogic,ChartLangElement);
+	//ChartKaBaap(docdashChartLabels,docdashChartData,docdashChartName,docdashChartColor,docdashHoverDescription,docdashByOfficeUrlLogic,'bar',ChartLangElement);
+	//PROC OFFICE CHART JS END
+});	
+</script>
+
+
+
+
+
+<script>
+//----------------------------------------------------------------------------------------------------------
+function openWindow(url)
+ {
+	var popupwindow=window.open(url,'','location=no,width=500,height=500');
+	
+	popupwindow.moveTo(screen.width/2-250,screen.height/2-250);
+	
+ }
+ 
+ 
+
+function openWindow1(url)
+ {
+	var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+	
+	popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+	
+ }
+//----------------------------------------------------------------------------------------------------------
+
+ //----------------------------- DOCTOR DASHBOARD FORM SUBMIT LOGIC START----------------------------------
+			
+		document.addEventListener('DOMContentLoaded', function (){
+			
+		 var form = document.getElementById('doctorformbean'); // Get the form by its ID
+
+    	form.addEventListener('submit', function (e) {
+
+        var fdate = document.getElementById('fdate').value;
+        var tdate = document.getElementById('tdate').value;
+        var error = document.getElementById('error-message'); // Ensure you have this element in your HTML
+        
+		var startDate = new Date(fdate);
+        var endDate = new Date(tdate);
+        var currentDate = new Date();
+        
+     
+        //-------------------------------------- DOCTOR DASHBOARD DATE FILTER JS LOGIC START -----------------------------------------
+        // Start Date must not be empty
+         if (!fdate) 
+         {
+            error.textContent = 'From date must not be empty.';
+            e.preventDefault(); // Prevent form submission
+            return; // Exit the function
+        }
+        //End date must not be empty
+         if (!tdate) 
+         {
+            error.textContent = 'To date must not be empty.';
+            e.preventDefault(); // Prevent form submission
+            return; // Exit the function
+        }
+        // Start date should be less than end date
+        if (startDate > endDate)
+        {
+            error.textContent = 'From date must be less than To date.';
+            e.preventDefault(); // Prevent form submission
+            return; // Exit the function
+        }
+        
+        // End date does not exceed current date
+        if (endDate > currentDate)
+        {
+            error.textContent = 'To date should not exceed the current date.';
+            e.preventDefault(); // Prevent form submission
+            return; // Exit the function
+        }
+        //-------------------------------------- DOCTOR DASHBOARD DATE FILTER JS LOGIC END -----------------------------------------
+        
+        
+        // If all validations pass, clear any error messages and proceed with the form submission
+        error.textContent = '';
+
+        // Construct the query string for the URL
+        //var queryString = '?selectEmpId=' + encodeURIComponent(empId);
+
+		var queryString='?selectMRDSdate=' + encodeURIComponent(fdate) + '&selectMRDEdate=' + encodeURIComponent(tdate);
+        //if (fdate) 
+        //{
+         //   queryString += '&selectMRDSdate=' + encodeURIComponent(fdate);
+        //}
+        //if (tdate) 
+        //{
+        //    queryString += '&selectMRDEdate=' + encodeURIComponent(tdate);
+        //}
+
+        // Only change the window location if form validation passes
+        if (!e.defaultPrevented) {
+            window.location.href = form.getAttribute('action') + queryString;
+        }
+    });
+		});
+	
+
+		
+	//----------------------------- DOCTOR DASHBOARD FORM SUBMIT LOGIC END----------------------------------
+	
+</script>
+
+
+
+</th:block>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{corelayout}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Daily Laboratory Tests</title>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="content" style="overflow:hidden;">
+        <th:block layout:fragment="content">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title" style="font-size: large; font-weight: bold;">
+                                        Laboratory Tests - KNG Medical Services Directorate
+                                        <button type="button" class="btn btn-primary" onclick="window.history.back();">Go to previous page</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.history.forward();">Go to forward page</button>
+                                    </h1>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <!-- Date and Clinic Selector Form -->
+                                    <form id="formBean" th:action="@{/labTestInfo2}" th:object="${dataFormBean}">
+                                        <!-- Date Selector start -->
+                                        <h1 class="card-title m-0" th:text="#{Select_Range_Date}">Select Range Date</h1>
+                                        <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+                                            <i class="far fa-calendar-alt"></i>
+                                        </button>
+                                        <h7 dir="rtl" th:text="#{From}"></h7>
+                                        <input type="text" th:value="${dataFormBean.selectSDate}" readonly="readonly" id="selectSdateInput" th:field="*{selectSDate}">
+                                        <h7 dir="rtl" th:text="#{To}"></h7>
+                                        <input type="text" th:value="${dataFormBean.selectEDate}" readonly="readonly" id="selectEdateInput" th:field="*{selectEDate}">
+                                        <!-- Date Selector end -->
+<!-- <div class="form-group d-flex align-items-center">
+										From date:<input type="date" id="fdate"  th:field="*{selectMRDSdate}"  >
+							            To date: <input type="date" id="tdate" th:field="*{selectMRDEdate}" >
+										<button type="submit" class="btn btn-primary ml-2"> <i class="fas fa-search"></i></button>
+									</div> -->
+									
+                                        <!-- Clinic Selector start -->
+                                        <div class="float-right">
+                                            <label for="clinics" th:text="#{Select_Clinic}">Select Clinic</label>
+                                            <select th:field="*{ofcId}" id="dropOperator">
+                                                <option th:value='0'>All Clinics</option>
+                                                <option th:each="eclinic : ${eclinic}" th:value="${eclinic.officeId}" th:text="${eclinic.officeName}"></option>
+                                            </select>
+                                        </div>
+                                        <!-- Clinic Selector end -->
+                                    </form>
+                                    
+                                    
+                                    </div>
+                                     <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Test Results</th>
+                                                <th>Patient (Military ID)</th>
+                                                <th>Patient Name</th>
+                                                <th>Test count</th>
+                                                <th>Lab Test Name</th>
+                                                <th>Category Name</th>
+                                                <th>Doctor</th>
+                                                <th>Speciality</th>
+                                                <th>Clinics Name</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="LabtestInfo, iter : ${hmpViewLabtestInfoDetailsToday}">
+                                                <td th:text="${iter.count}"></td>
+                                                 <td>
+                          <a th:href="'./consultationDetails2/findByConsultId?consultid=' + ${LabtestInfo.CONSULT_ID}"
+                             class="btn btn-primary" onclick="openWindow(this.href);">
+                            <i class="nav-icon fa fa-search"></i>
+                          </a>
+                        </td>
+                                                <td th:text="${LabtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                                                <td th:text="${LabtestInfo.PATIENT_NAME}"></td>
+                                                <td th:text="${LabtestInfo.PATIENT_LABTEST_COUNT}"></td>
+                                                <td th:text="${LabtestInfo.testNameList}"></td>
+                                                <td th:text="${LabtestInfo.categoryNameList}"></td>
+                                                <td th:text="${LabtestInfo.DOCTOR_NAME}"></td>
+                                                <td th:text="${LabtestInfo.DEPARTMENT_NAME}"></td>
+                                                <td th:text="${LabtestInfo.OFFICE_NAME}"></td>
+                                                <td th:text="${LabtestInfo.CONSULT_DATE}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </th:block>
+    </div>
+    
+    	<th:block layout:fragment="script">
+    
+    <!-- /.content-wrapper -->
+     <script type="text/javascript">
+    /*  function openWindow(url) {
+         var popupwindow = window.open(url, '', 'location=no,width=700,height=700');
+         popupwindow.moveTo((screen.width / 2) - 350, (screen.height / 2) - 350);
+       } */
+        
+
+        $(document).ready(function () {
+            $('.daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment(),
+                endDate: moment()
+            });
+
+            $('.daterange').on('apply.daterangepicker', function (ev, picker) {
+                var start = picker.startDate;
+                var end = picker.endDate;
+                document.getElementById("selectSdateInput").value = start.format('YYYY-MM-DD');
+                document.getElementById("selectEdateInput").value = end.format('YYYY-MM-DD');
+                document.getElementById("formBean").submit();
+            });
+
+            $('#dropOperator').change(function () {
+                document.getElementById("formBean").submit();
+            });
+        });
+    </script>
+    
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{mrdlayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patient History</title>
+<head th:replace="shared/mrd_css :: styleDataTableFragment"></head>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div layout:fragment="content">
+		
+			<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Patient Medical History</h1>
+						
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a th:href="@{/dailyStatistics}">Home</a></li>
+							<li class="breadcrumb-item active"><a th:href="@{/mrd}">Patient Medical History</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+			 <!-- Main content -->
+    <section class="content">	
+		<div class="row">
+		  <div class="col-12">
+	            <div class="card">  
+					  <!--<form id="mrdFormBean" th:action="@{/mrd/getCivilId}" th:object=${mrdFormBean}>-->
+			            <form id="mrdFormBean" th:action="@{/mrd}" th:object=${mrdFormBean}>
+					        <div class="card-header">
+					           <h5>
+									<b>Patient Medical History by Civil Id(12 Characters):&nbsp;&nbsp;</b>
+					            	<input type="text" id="mrdInput" th:field="*{selectCivilId}">
+					            	<button type="submit" class="btn btn-primary"><i class="nav-icon fa fa-search"></i></button>
+					            </h5>
+					         </div>
+			            </form>
+		 		</div>
+	 		</div>
+	 	</div>	
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS START ----------------------------- -->
+	 	<div class="row">
+		  <div class="col-12">
+	            <div class="card"> 
+					 <div class="card-body">
+					  <div class="row" th:each="p : ${MrdPatDemographDetails}">
+						  <div class="col-sm-6">
+			                    	<div class="form-group">
+			                    	 	<label>Name(En):&nbsp;&nbsp;
+											    <span th:text="${p.PATIENT_NAME}"></span>
+			                    	 	</label>
+			                    	 </div>
+			                    	 <div class="form-group">
+			                    	 	<label>Date of Birth:&nbsp;&nbsp;
+											 <span th:text="${p.DATE_OF_BIRTH}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</label>
+			                    	 </div>
+			                    	  <div class="form-group">
+			                    	 	<label>Age:&nbsp;&nbsp;
+											 <span th:text="${p.PATIENT_AGE_DETAILED}"></span>
+			                    	 	</label>
+			                    	 </div>
+			                 </div>
+		                  	<div class="col-sm-6">
+								  <div class="form-group">
+		                    	 	<label>Military Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_EMPLOYEE_ID}"></span>
+		                    	 	</label>
+		                    	 </div>
+		                    	 <div class="form-group">
+		                    	 	<label>Civil Id:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_CIVILID}"></span>
+		                    	 	</label>
+		                    	 </div>
+		                    	 <div class="form-group">
+		                    	 	<label>Rank:&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_DESIGNATION}"></span>
+		                    	 	</label>
+		                    	 </div>
+							</div>
+					  </div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS END ----------------------------- -->
+	 	
+	 		
+	<div class="row">
+		<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						 <ul class="nav nav-pills">
+		                  <li class="nav-item"><a class="nav-link active"  href="#lab" data-toggle="tab" >1.Lab</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#xray" data-toggle="tab">2.X-ray</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#proc" data-toggle="tab">3.Procedure</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#sick" data-toggle="tab">4.Sick Leave</a></li>
+		                  <li class="nav-item"><a class="nav-link"  href="#vital" data-toggle="tab">5.Vital Signs</a></li>  
+		                  <li class="nav-item"><a class="nav-link"  href="#dispense" data-toggle="tab">6.Dispense</a></li>  
+		                </ul>
+					</div>	
+					
+					  <div class="card-body">
+						   <div class="tab-content">
+				                  <!-- -------------------------------------------------- LAB TAB START ------------------------------------------------- -->
+				                  <div class="active tab-pane" id="lab">
+								  		<th:block th:replace="tabs/lab_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- LAB TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- XRAY TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="xray">
+								  		<th:block th:replace="tabs/xray_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- XRAY TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- PROCEDURE TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="proc">
+								  		<th:block th:replace="tabs/proc_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- PROCEDURE TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- SICK TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="sick">
+								  		<th:block th:replace="tabs/sick_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- SICK TAB END ------------------------------------------------- -->
+								  
+								  <!-- -------------------------------------------------- VITAL TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="vital">
+								  		<th:block th:replace="tabs/vital_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- VITAL TAB END ------------------------------------------------- -->
+			                	
+			                     <!-- -------------------------------------------------- DISPENSE TAB START ------------------------------------------------- -->
+								  <div class="tab-pane" id="dispense">
+								  		<th:block th:replace="tabs/dispense_tab"></th:block>
+								  </div>
+								  <!-- -------------------------------------------------- DISPENSE TAB END ------------------------------------------------- -->
+			                
+                			</div>
+					  </div>			
+				</div>
+		</div>
+	</div>
+	 	
+	 	
+    </section>
+	
+ 
+ </div>
+  
+
+
+  
+<th:block layout:fragment="script">
+   
+<div th:replace="shared/mrdscripts"></div>
+
+
+</th:block>
+</body>
+</html>
+  
+  
+  

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Accession Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Accession Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                   <tr>
+                    <th>No.</th>
+                    <th>Patient (Military ID)</th>
+                  	<th>Patient Name</th>
+                    <th>Patient Name_ar</th>
+                    <th>Doctor Name</th>
+                    <th>Doctor Name_ar</th>
+                    <th>Speciality</th>
+                    <th>Speciality_ar</th>
+                    <th>Clinics Name</th>
+                     <th>Clinics Name_ar</th>
+                    <th>Test Name</th>
+                    <th>Category Name</th>
+                    <th>Accessed Date</th>
+                    <th>Accessed Time</th>
+                    <th>Accessed By</th>
+                     <!-- <th style="text-align: center;">No Of Days</th>-->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="a,itercss : ${ListAccessAcknwldgInfo}" style="text-align: center;">
+                      <td th:text="${itercss.count}"></td>
+                      <td th:text="${a.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${a.PATIENT_NAME}" ></td>
+                      <td th:text="${a.PATIENTNAME_AR}" ></td>
+                      <td th:text="${a.DOCTOR_NAME}"  ></td>
+                      <td th:text="${a.DOCTOR_NAME_AR}"  ></td>
+                      <td th:text="${a.DEPARTMENT_NAME}"></td>
+                      <td th:text="${a.DEPTNAME_AR}"></td>     
+                      <td th:text="${a.OFFICE_NAME}" ></td>
+                      <td th:text="${a.OFFICENAME_AR}" ></td>
+                      <td th:text="${a.TEST_NAME}" ></td>
+                      <td th:text="${a.CATEGORY_NAME}" ></td>
+                      <td th:text="${a.ACCESSION_DATE}" ></td>
+                      <td th:text="${a.ACCESSION_TIME}" ></td>
+                      <td th:text="${a.ACCESSED_PERSON_NAME}" ></td>
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+
+</body>
+</html>
+
+  
+  
+  

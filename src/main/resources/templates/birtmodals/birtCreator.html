@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	
+<!-- 
+	This is to test whethere the modals will be dynamic.
+	As of 30 Jan 2024 we cannot make the modals dynamic because of thymeleaf (server side programme).
+	Need to implement AJAX to call the server side programme
+-->	
+	
+<div th:fragment="birtCreator" th:if="${modalData !=  null}">
+	<div class="modal fade" id="${modalData.brtModalName}">
+	                <div class="modal-dialog modal-xl">
+	                    <div class="modal-content">
+	                        <div class="modal-header">
+	                            <h4 class="modal-title" th:text="${modalData.brtModalTitleNo} + '. ' +${modalData.brtModalTitle} ">Modal Title</h4>
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                                <span aria-hidden="true">&times;</span>
+	                            </button>
+	                        </div>
+	                        <form th:id="${modalData.brtModalFormId}" th:action="@{/${modalData.brtModalFormAction}}" th:object="${brtFormBean}">
+	                            <div class="modal-body">
+	                                <div class="row" style="text-align: center;">
+	                                    <div class="col-sm-4"></div>
+	                                    <div class="col-sm-4"><p id="${modalData.brtModalErrorId}-error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+	                                    <div class="col-sm-4"></div>
+	                                </div>
+	                                
+	                                <div class="row">
+	                                    	<!-- <div id="fragments-container" th:replace="birtmodals/birtModals :: ${modalData.brtModalCodeWriteHere} + 'Fragment'"></div> -->
+	                                    	 <div id="fragments-container" th:text="${modalData.brtModalCodeWriteHere}"></div>"
+	                                </div>
+	                                
+	                            </div>
+	                            <div class="modal-footer justify-content-center">
+	                                <button type="submit" class="btn btn-primary">Submit</button>
+	                            </div>
+	                        </form>
+	                    </div>
+	                </div>
+	</div>
+</div>
+
+</html>

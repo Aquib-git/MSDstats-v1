@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- Vital Signs TAB START ------------------------------------------------- -->
+<div th:fragment="vital">
+	
+	<div class="card-header">
+	       <h5><b>5.Vital Signs:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	 
+	 <div class="card-body">
+		 <div class="row">
+			 <div class="col-12">
+				 <table id="vitalTab" class="table table-bordered table">
+                 <thead>
+                  <tr>
+                  <th>No.</th>
+                    <!-- <th>Patient Name</th>
+                    <th>Nationality</th>
+                    --> 
+                    <th>Vitals Count</th>
+                    <th>Vitals Name</th>
+                     <!--<th>Kng-Moh </th>-->
+                    <th>Doctor </th> 
+                    <th>Dept. Name</th>
+                    <th>Office Name</th>
+                    <th>Date</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="Vitals,itercss : ${MrdVitalDetails}">
+                     <td th:text="${itercss.count}"></td>
+                      <!-- <td th:text="${Vitals.PATIENT_NAME}"  ></td>
+                      <td th:text="${Vitals.PATIENT_KWT_NKWT}"></td> -->
+                      <td th:text="${Vitals.VITALS_COUNT}"  ></td>
+                      <td th:text="${Vitals.VITAL_DETAILS}"></td>  
+					  <!--<td th:text="${Vitals.KNG_MOH}"></td>-->
+					  <td th:text="${Vitals.DOCTOR_NAME}"  ></td>
+                      <td th:text="${Vitals.DEPARTMENT_NAME}"></td>
+                      <td th:text="${Vitals.OFFICE_NAME}" ></td>
+                      <td th:text="${Vitals.CONSULT_DATE}"></td>
+
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+			 </div>
+		 </div>
+		 
+	 </div>
+	 
+	 
+	 
+	 
+	 
+	 
+</div>
+<!--  ---------------------------------------------------- Vital Signs TAB END ------------------------------------------------- -->
+</html>

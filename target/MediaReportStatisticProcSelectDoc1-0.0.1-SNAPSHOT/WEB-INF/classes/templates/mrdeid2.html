@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{corelayout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patient History</title>
+<!--<head th:replace="shared/mrd_css :: styleDataTableFragment"></head>-->
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<div layout:fragment="content">
+		
+			<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0" th:text="#{Patient_Medical_History}">Patient Medical History</h1>
+						
+					</div>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a th:href="@{/dailyStatistics}" th:text="#{Home}">Home</a></li>
+							<li class="breadcrumb-item active"><a th:href="@{/mrdeid}" th:text="#{Patient_Medical_History}">Patient Medical History</a></li>
+						</ol>
+					</div>
+					<!-- /.col -->
+				</div>
+				
+				<!-- /.row -->
+				
+<!-- 
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
+		
+			 <!-- Main content -->
+    <section class="content">	
+		<div class="row">
+		  <div class="col-12">
+			  
+			  	<div class="card">  
+				<div class="card-body">
+					<form id="mrdFormBeanEid" th:action="@{/mrdeid}" class="form-horizontal" th:object=${mrdFormBean} >
+						<span>
+		
+							<div class="row" style="text-align: center;">
+									<div class="col-sm-4"></div>
+									<div class="col-sm-4"><p id="error-message" style="color: red; cursor: pointer;"></p></div>
+									<div class="col-sm-4"></div>				
+							</div>
+		
+		       			 	<div class="row">
+								  <div class="col-sm-6">
+								    <div class="form-group d-flex align-items-center">
+								      <span for="mrdInputEid" class="mr-2" th:text="#{Patient_Medical_History_by_Military_Number}"></span>
+								      <select class="form-control select2" style="width: auto; flex-grow: 1;" id="mrdInputEid" th:field="*{selectEmpId}" >
+								        <option value="0"></option>
+								        <!-- Dynamically populated options will go here -->
+								      </select>
+								    
+								    </div>
+								  </div>
+								   
+								  <div class="col-sm-6">
+									<div class="form-group d-flex align-items-center">
+										From date:<input type="date" id="fdate"  th:field="*{selectMRDSdate}"  >
+							            To date: <input type="date" id="tdate" th:field="*{selectMRDEdate}" >
+										<button type="submit" class="btn btn-primary ml-2"> <i class="fas fa-search"></i></button>
+									</div>
+								</div>
+								  
+							</div>
+						</span>
+					 </form>
+				</div>
+			</div> 
+			  
+			  
+			  <!--
+	            <div class="card">  
+					  
+			            <form id="mrdFormBeanEid" th:action="@{/mrdeid}" th:object=${mrdFormBean} >
+
+							<div class="card-header">
+					           <h5>
+								   <!-- ERROR MESSAGE DISPLAY START
+								  <div class="row" style="text-align: center;">
+									  <div class="col-sm-4"></div>
+									  <div class="col-sm-4"><p id="error-message" style="color: red; cursor: pointer;" onclick="yourFunctionName()"></p></div>
+									  <div class="col-sm-4"></div>
+    									
+									</div>
+									
+									
+								  <div class="row" style="font-size:1.05rem; font-weight:400">
+								   
+								   <div class="col-sm-6">
+													            	
+					            	<p  ><h7 th:text="#{Patient_Medical_History_by_Military_Number}" ></h7>&nbsp;&nbsp;
+					            	  
+					            	  
+					            	  
+            						    <select class="form-control select2" style="width: auto; flex-grow: 1;" id="mrdInputEid">
+								        <option value="0"></option>
+								      
+								      </select>           						   
+            						   
+					            	  </p>&nbsp;&nbsp;&nbsp;&nbsp;
+					            	</div>
+					            	  
+					            	 <div class="col-sm-6">
+						            	 <div class="float-right">
+							            	 From date:
+							            	  <input type="date" id="fdate"  th:field="*{selectMRDSdate}"  >
+							            	 To date:
+							            	  <input type="date" id="tdate" th:field="*{selectMRDEdate}" >
+												<button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i></button>
+										</div>
+								   </div>
+					            </h5>
+					         </div>
+			            </form>
+		 		</div>
+		 		-->
+	 		</div>
+	 	</div>	
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS START ----------------------------- -->
+	 	<div class="row">
+		  <div class="col-12">
+	            <div class="card"> 
+					<div class="card-header">
+					           <h5>
+									<b th:text="#{Patient_Consultation_Details}">Patient Consultation Details:&nbsp;&nbsp;</b>
+					            </h5>
+					 </div>
+					 <div class="card-body">
+					  <div class="row" th:each="p : ${MrdPatDemographDetails}">
+						  <div class="col-sm-6">
+			                    	<div class="form-check">
+			                    	 	<p> 
+			                    	 	<h7 th:text="#{Name}" ></h7>&nbsp;&nbsp;
+											    <span th:text="${p.PATIENT_NAME}"></span>
+			                    	 	</p>
+			                    	 </div>
+			                    	 <div class="form-check">
+			                    	 	<p ><h7 th:text="#{Date_of_Birth}"></h7>&nbsp;&nbsp;
+											 <span th:text="${p.DATE_OF_BIRTH}"></span>
+											   <!-- <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>-->
+			                    	 	</p>
+			                    	 </div>
+			                    	  <div class="form-check">
+			                    	 	<p  ><h7 th:text="#{Age}" ></h7>&nbsp;&nbsp;
+											 <span th:text="${p.PATIENT_AGE_DETAILED}"></span>
+			                    	 	</p>
+			                    	 </div>
+			                 </div>
+		                  	<div class="col-sm-6">
+								  <div class="form-check">
+		                    	 	<p ><h7 th:text="#{Military_Id}"></h7>&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_EMPLOYEE_ID}"></span>
+		                    	 	</p>
+		                    	 </div>
+		                    	 <div class="form-check">
+		                    	 	<p ><h7 th:text="#{Civil_Id}" ></h7>&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_CIVILID}"></span>
+		                    	 	</p>
+		                    	 </div>
+		                    	 <div class="form-check">
+		                    	 	<p > <h7 th:text="#{Rank}"></h7>&nbsp;&nbsp;
+										 <span th:text="${p.PATIENT_DESIGNATION}"></span>
+		                    	 	</p>
+		                    	 </div>
+							</div>
+					  </div>
+					  </div>
+				</div>
+			</div>
+		</div>
+	 	
+	 	<!-- ----------------------------- PATIENT DEMOGRAPHIC DETAILS END ----------------------------- -->
+	 	
+	 		
+	<div class="row">
+		<div class="col-12">
+				<div class="card">
+					            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>Sl No.</th>
+                    <th>Consultation</th>
+                    <th>Patient (Military ID)</th>        
+                    <th>Patient Name</th>
+                    <th>Patient Rank</th>
+                    <th>Nationality</th>
+                    <th>Doctor (Military ID)</th>
+            		<th>Doctor Name </th>
+               <!--      <th>Doctor Designation</th>   -->                  
+                    <th>Speciality</th>
+                    <th>Clinics Name</th>
+                     <th>Date</th>
+                    
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr th:each="PatInfo,itercss : ${MrdPatConsultationDetails}">
+                      <td th:text="${itercss.count}"></td>
+             		  <td class="text-center"><a th:href="'./mrdDetails/findByConsultId?consultid='+${PatInfo.CONSULT_ID}" 
+             		  data-toggle="modal" target="_blank" class="btn-btn-primary" onClick="openWindow(this.href)" >
+             		  <i class="nav-icon fa fa-search"></a></td>
+             		 <!-- onClick="openWindow(this.href)" -->
+             		  <!-- openWindowCreator -->
+  	
+                      <td th:text="${PatInfo.PATIENT_EMPLOYEE_ID}"></td>
+                     
+                      <td th:text="${PatInfo.PATIENT_NAME}"></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_DESIGNATION}"  ></td>
+                      
+                      <td th:text="${PatInfo.PATIENT_KWT_NKWT}"></td> 
+                       
+                        <td th:text="${PatInfo.DOCTOR_EMPLOYEE_ID}"></td>
+                        
+                      <td th:text="${PatInfo.DOCTOR_NAME}"  ></td>
+                      
+                    <!--   <td th:text="${PatInfo.DOCTOR_DESIG}"></td> -->
+                     
+                      <td th:text="${PatInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${PatInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${PatInfo.CONSULT_DATE}"></td>
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>			
+				</div>
+		</div>
+	</div>
+	 	
+	 	
+    </section>
+	
+ 
+ </div>
+  
+
+
+  
+<th:block layout:fragment="script">
+   
+	<!-- <div th:replace="shared/mrdscripts"></div> -->
+	<script src="./admin/custom/mrdeid/mrdeid.js" type="module" ></script>
+	<script>		
+		function openWindow(url)
+		{
+			var popupwindow=window.open(url,'','location=no,width=1500,height=900');
+			popupwindow.moveTo((screen.width/2)-700,(screen.height/2)-450);
+		}
+	</script>
+</th:block>
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>
+  
+  
+  

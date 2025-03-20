@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Doctors  Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Doctors  Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>Sl No.</th>.
+                    <th th:if="${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">Patient Count</th>
+                    <th>Doctor (Military ID)</th>
+                    <th>Doctor_Name </th>
+                    <th>Doctor_Rank </th>
+                    <th>Doctor Designation</th>
+                    
+                    <th>Speciality</th>
+                    <th>Clinics Name</th>
+                    <th>Kng-Moh </th>
+                    <th>Date</th>
+                    
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="DocInfo,itercss : ${hmpViewDocInfoTodayDetailsToday}">
+                      <td th:text="${itercss.count}"></td>
+                      
+                     <td class="text-center" th:if= "${#request.userPrincipal.authorities
+			  .contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_ADMIN'))
+			  || #request.userPrincipal.authorities.contains(new org.springframework.security.core.authority.SimpleGrantedAuthority('ROLE_MANAGER'))}">
+			  
+			 						 <a th:href="@{'./PatientDetailsList/findByDoctorId'(doctorid=${DocInfo.DOCTORS_ID}, departmentid=${DocInfo.DEPARTMENT_ID}, consultdate=${DocInfo.CONSULT_DATE})}" 
+					    class="updatePatientButton">
+					        <i class="fas fa-search " ></i> <span th:text="${DocInfo.PATIENT_COUNT}"></span>
+					    </a></td>
+             		  
+                      <td th:text="${DocInfo.DOCTOR_EMPLOYEE_ID}"></td>
+                      
+                      <td th:text="${DocInfo.DOCTOR_NAME}" ></td>
+                      
+                      
+                       <td th:text="${DocInfo.DOCTOR_RANK}" ></td>
+                       
+                      <td th:text="${DocInfo.DOCTOR_DESIG}"></td>                      
+                      
+				
+                      
+                      
+                      
+                     <!--  	  <td><a th:href="'./consultationDetails/findByConsultId?consultid='+${PatInfo.CONSULT_ID}" class="btn-btn-primary" onClick="openWindow(this.href)">
+             		  <i class="nav-icon fa fa-search"></a></td> -->
+             		  
+                      
+                      
+                      <td th:text="${DocInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${DocInfo.OFFICE_NAME}" ></td>
+                      <td th:text="${DocInfo.KNG_MOH}" ></td>
+                      <td th:text="${DocInfo.CONSULT_DATE}"></td>
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+</body>
+</html>
+
+  
+  
+  

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{datatablelayout}">
+<head>
+  <title>The Daily Stock Adjust Details</title>
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+ <div class="content" style="overflow:hidden;">
+
+<th:block  layout:fragment="content">
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h1 class="card-title" style="font-size: large;font-weight: bold;">The Daily Stock Adjust Details</h1>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Entry Date</th>
+                    <th>Stock Adjust Id</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Speciality</th>
+                    <th>Speciality_ar</th>
+                    <th>Clinics Name</th>
+                    <th>Clinics Name_ar</th>
+                     <!-- <th style="text-align: center;">No Of Days</th>-->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="sa,itercss : ${stockAdjustInfoList}" style="text-align: center;">
+                      <td th:text="${itercss.count}"></td>
+                      <td th:text="${sa.ENTRY_DATE}"></td>
+                      <td th:text="${sa.STK_ADJ_ID}" ></td>
+                      <td th:text="${sa.SUBMIT_STATUS}" ></td>
+                      <td th:text="${sa.REMARKS}"  ></td>
+                      <td th:text="${sa.DEPARTMENT_NAME}"  ></td>
+                      <td th:text="${sa.DEPTNAME_AR}"></td>
+                      <td th:text="${sa.OFFICE_NAME}"></td>     
+                      <td th:text="${sa.OFFICENAME_AR}" ></td>
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </th:block>  
+  </div>
+  
+  <!-- /.content-wrapper -->
+
+
+</body>
+</html>
+
+  
+  
+  

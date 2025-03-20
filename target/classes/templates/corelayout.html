@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout">
+<head>
+   <th:block th:replace="shared/core_css :: core_css"></th:block>  
+   <th:block th:replace="shared/core_css :: core_dt_css"></th:block>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<div class="wrapper">
+
+		<th:block th:replace="shared/core_header :: core_header"></th:block>
+		<th:block th:replace="shared/core_sidebar :: core_sidebar"></th:block>
+	   
+
+		<!-- #########################################################################  --> 
+		<div class="content-wrapper">
+			<div layout:fragment="content">
+
+
+			</div>
+		</div>
+		 <!-- #########################################################################  --> 
+
+
+		<th:block th:replace="shared/core_footer :: core_footer"></th:block>
+		<th:block th:replace="shared/core_script_timeout :: core_script_timeout"></th:block>
+		<th:block th:replace="shared/core_js :: core_js"></th:block>
+		<th:block th:replace="shared/core_js :: core_dt_js"></th:block>
+		
+
+		 <!-- #########################################################################  --> 
+		<div layout:fragment="script">
+				
+						
+		</div>
+		<!-- #########################################################################  --> 
+
+		
+
+	</div>
+
+
+
+</body>
+
+
+<!-- For Languages setting   -->
+<script type="text/javascript">
+// Function to retrieve URL parameters
+function getUrlParameter(name) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(window.location.href);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Function to update all links with the current language preference
+function updateLinksLang(lang) {
+    var links = document.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && !href.includes('&Sdate&Edate&OfcId')  && !href.includes('mailto:') && !href.includes('tel:')) {
+            var hasParams = href.indexOf('?') !== -1;
+            var newHref = href + (hasParams ? '&' : '?') + 'lang=' + lang;
+            link.href = newHref;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var lang = getUrlParameter('lang');
+    if (lang) {
+        localStorage.setItem('userLang', lang);
+    } else {
+        lang = localStorage.getItem('userLang') || 'en'; // Default to 'en'
+    }
+
+    // Update links immediately on page load
+    updateLinksLang(lang);
+
+    // Handle language selection changes
+    var languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+        languageSelect.value = lang; // Set the current selection
+        languageSelect.addEventListener('change', function() {
+            var selectedLang = this.value;
+            localStorage.setItem('userLang', selectedLang); // Store the selected language
+            updateLinksLang(selectedLang); // Update links with the new language selection
+            // Optionally, reload the page with the new language
+            window.location.search = '?lang=' + selectedLang;
+        });
+    }
+
+    // Handle office selection changes
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var lang = getUrlParameter('lang') || localStorage.getItem('userLang') || 'en'; // Default to 'en'
+        localStorage.setItem('userLang', lang); // Ensure this line is not overriding the user's choice unintentionally
+        var languageSelect = document.getElementById('languageSelect');
+
+        if (languageSelect && lang) {
+            languageSelect.value = lang === 'ar' ? "${urlWithArabic}" : "${urlWithEnglish}";
+        }
+        // The rest of your script...
+    });
+  
+});
+
+
+</script>
+
+
+
+</html>
+
+
+
+
+
+
+

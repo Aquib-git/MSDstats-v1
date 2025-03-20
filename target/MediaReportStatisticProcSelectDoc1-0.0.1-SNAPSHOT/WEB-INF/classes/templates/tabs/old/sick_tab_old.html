@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- Sick Leave TAB START ------------------------------------------------- -->
+<div th:fragment="sick">
+	
+	<div class="card-header">
+	       <h5><b>4.Sick Leave:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	 
+	 <div class="card-body">
+		 <div class="row">
+			 <div class="col-12">
+				 <table id="sickTab" class="table table-bordered table">
+                  <thead>
+                  <tr>
+                 <th>No.</th>
+                   <!--  <th>Kng ID</th>
+                    <th>Patient Name</th>
+                    -->
+                     
+                    <th>Leave From</th>
+                    <th>Leave To</th>
+                    <th style="text-align: center;">No Of Days</th>
+                   	 <th>Doctor</th>
+                     <th>Dept. Name</th>
+                     <th>Office Name</th>
+                  	<th>Date</th>
+                   
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="sickLeaveInfo,itercss : ${MrdSickDetails}">
+                     
+                     <td th:text="${itercss.count}"></td>
+                  <!--     <td th:text="${sickLeaveInfo.PATIENT_EMPLOYEE_ID}"></td>-->
+                      <!--<td th:text="${sickLeaveInfo.PATIENT_NAME}" ></td>-->
+                    
+
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_FROM,'yyyy-MM-dd')}"></td>
+                      <td th:text="${#dates.format(sickLeaveInfo.LEAVE_TO,'yyyy-MM-dd')}"></td>
+                      <td th:text="${sickLeaveInfo.NO_OF_DAYS}" style="text-align: center;"></td>
+                       <td th:text="${sickLeaveInfo.DOCTOR_NAME}"  ></td>
+                       <td th:text="${sickLeaveInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${sickLeaveInfo.OFFICE_NAME}" ></td>
+                      <td th:text="${sickLeaveInfo.CONSULT_DATE}"></td>
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+			 </div>
+		 </div>
+		 
+	 </div>
+	 
+	 
+	 
+	 
+	 
+	 
+</div>
+<!--  ---------------------------------------------------- Sick Leave TAB END ------------------------------------------------- -->
+</html>

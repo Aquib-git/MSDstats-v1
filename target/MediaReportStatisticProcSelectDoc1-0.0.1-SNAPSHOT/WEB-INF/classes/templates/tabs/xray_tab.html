@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--  ---------------------------------------------------- X-ray TAB START ------------------------------------------------- -->
+<div th:fragment="xray">
+	
+	<div class="card-header">
+	       <h5><b>2.X-ray:&nbsp;&nbsp;</b></h5>
+	 </div>
+	 
+	 
+      <div class="card-body">
+               <table id="examplePatConsultRad" class="table table-bordered table-striped table-head-fixed">
+                  <thead>
+                  <tr>
+                    <th>No.</th>
+                  <!--   <th>Kng ID</th>
+                    <th>Patient Name</th> -->
+                    <th>Test count</th>
+                    <th>Rad Test Name</th>
+                    <th>Category Name</th>
+                   <!--  <th>Doctor</th>
+                    
+                    <th>Dept Name</th>
+                    <th>Office Name</th>
+                     <th>Date</th> -->
+                  </tr>
+                  </thead>
+                  <tbody>
+                  
+                  
+                    <tr th:each="RadtestInfo,itercss : ${PatConsultRabDetails}">
+                      <td th:text="${itercss.count}"></td>
+                     <!--  <td th:text="${RadtestInfo.PATIENT_EMPLOYEE_ID}"></td>
+                      <td th:text="${RadtestInfo.PATIENT_NAME}" ></td> -->
+                      <td th:text="${RadtestInfo.PATIENT_RADTEST_COUNT}" ></td>
+                      <td th:text="${RadtestInfo.TEST_NAME}"></td>
+                       <td th:text="${RadtestInfo.categoryNameList}"></td>
+                     <!--  <td th:text="${RadtestInfo.DOCTOR_NAME}"  ></td>
+                      <td th:text="${RadtestInfo.DEPARTMENT_NAME}"></td>
+                      <td th:text="${RadtestInfo.OFFICE_NAME}" ></td>
+                       <td th:text="${RadtestInfo.CONSULT_DATE}"></td> -->
+                      
+                      
+                    </tr>
+                  
+                  </tbody>
+                  
+                </table>
+              </div>
+	 
+	 
+	 
+	 
+	 
+	 
+</div>
+<!--  ---------------------------------------------------- X-ray TAB END ------------------------------------------------- -->
+</html>
